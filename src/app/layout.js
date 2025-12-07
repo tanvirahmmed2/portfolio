@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
         className={`w-full overflow-x-hidden relative bg-gray-100`}
       >
         <Navbar/>
-        {children}
+        <div className="mt-20 w-full">{children}</div>
         <Footer/>
       </body>
     </html>

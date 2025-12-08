@@ -32,7 +32,7 @@ const projectSchema = new mongoose.Schema({
         trim: true,
         required: true,
     },
-    site: {
+    siteLink: {
         type: String,
         trim: true,
         required: true,

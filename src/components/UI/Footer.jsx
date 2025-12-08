@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
 
-import { FaFacebookSquare, FaGithubSquare, FaInstagramSquare, FaLinkedinIn, FaTelegramPlane } from "react-icons/fa";
+import { FaFacebookSquare, FaGithubSquare, FaInstagramSquare, FaLinkedinIn, } from "react-icons/fa";
+import { IoCallOutline, IoMailOutline } from "react-icons/io5";
 
 const Footer = () => {
   return (
@@ -10,7 +11,6 @@ const Footer = () => {
         <Link href={'/'}>Home</Link>
         <Link href={'/projects'}>Projects</Link>
         <Link href={'/skills'}>Skills</Link>
-        <Link href={'/signin'}>Sign In</Link>
         <Link href={'/admin'}>Admin</Link>
       </div>
       <div className=' flex flex-col gap-6 p-6'>
@@ -21,7 +21,11 @@ const Footer = () => {
           <Link href={'https://www.instagram.com/tanvirahmmed.4/'}><FaInstagramSquare /></Link>
 
         </div>
-        <p>Alrights are reserved by <Link href={'/'} className='font-semibold'>Tanvir Ahmmed</Link></p>
+        <div className='w-full flex flex-col gap-2'>
+          <p className='w-full flex flex-row gap-2 items-center'><IoCallOutline/> +8801987131369</p>
+          <p className='w-full flex flex-row gap-2 items-center'><IoMailOutline/> tanvir004006@gmail.com</p>
+        </div>
+        <p className='text-center'>All rights are reserved by <Link href={'/'} className='font-semibold'>Tanvir Ahmmed</Link></p>
       </div>
     </footer>
   )

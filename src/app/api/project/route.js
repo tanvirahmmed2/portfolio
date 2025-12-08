@@ -15,3 +15,16 @@ export async function POST(req) {
     }
     
 }
+
+export async function GET() {
+    try {
+        
+    } catch (error) {
+        return NextResponse.json({
+            success: false,
+            message: "Failed to add project",
+            error: error.message
+        }, {status: 500})
+    }
+    
+}

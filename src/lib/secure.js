@@ -1,7 +1,7 @@
 
 
 const MONGO_URL=process.env.MONGO_URL
-const BASE_URL= process.env.BASE_URL
+const BASE_URL= 'http://localhost:3000'
 
 const CLOUDINARY_NAME=process.env.CLOUDINARY_NAME
 const CLOUDINARY_API=process.env.CLOUDINARY_API

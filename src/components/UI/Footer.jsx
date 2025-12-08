@@ -6,7 +6,7 @@ import { IoCallOutline, IoMailOutline } from "react-icons/io5";
 
 const Footer = () => {
   return (
-    <footer className='w-full flex flex-col md:flex-row items-center justify-end md:items-end md:justify-around gap-6 p-4 bg-gray-100'>
+    <footer className='w-full flex flex-col md:flex-row items-center justify-end md:items-end md:justify-around gap-6 p-4 bg-gray-50'>
       <div className=' flex flex-col gap-4 p-6'>
         <Link href={'/'}>Home</Link>
         <Link href={'/projects'}>Projects</Link>

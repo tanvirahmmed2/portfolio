@@ -14,10 +14,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`w-full overflow-x-hidden relative bg-gray-100`}
+        className={`w-full overflow-x-hidden relative`}
       >
         <Navbar/>
-        <div className="mt-20 w-full min-h-screen">{children}</div>
+        <div className="mt-20 w-full min-h-screen bg-gray-100">{children}</div>
         <Footer/>
       </body>
     </html>

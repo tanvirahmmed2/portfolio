@@ -10,7 +10,10 @@ const Admin = async () => {
     method: "GET",
     cache: 'no-store'
   })
-  console.log(res)
+  const data= await res.json()
+
+  console.log(data)
+  
 
   return (
     <div className='w-full flex flex-col items-center justify-center gap-10 p-4'>

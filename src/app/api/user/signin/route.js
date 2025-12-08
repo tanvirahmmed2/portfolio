@@ -2,7 +2,7 @@ import { database } from "@/lib/mongoose"
 import { User } from "@/models/user"
 import { NextResponse } from "next/server"
 import jwt from 'jsonwebtoken'
-import { JWT_SECRET } from "@/lib/secure"
+import { JWT_SECRET, NODE_ENV } from "@/lib/secure"
 import bcrypt from 'bcryptjs'
 
 
@@ -36,11 +36,39 @@ export async function POST(req) {
             }, { status: 4000 })
         }
 
-        return NextResponse.json({
-            success: true,
-            message: "Successfully signed in"
-        }, { status: 200 })
+        if (user.role !== 'admin') {
+            return NextResponse.json({
+                success: false,
+                message: 'Only admin can login'
+            }, { status: 400 })
+        }
 
+
+
+
+        const token = jwt.sign(
+            { id: user._id, email: user.email, role: user.role },
+            JWT_SECRET,
+            { expiresIn: "7d" }
+        );
+
+        const response = NextResponse.json(
+            {
+                success: true,
+                message: "Successfully logged in",
+                payload: user,
+            },
+            { status: 200 }
+        );
+
+        response.cookies.set("user_token", token, {
+            httpOnly: true,
+            secure: NODE_ENV,
+            path: "/",
+            maxAge: 60 * 60 * 24 * 7,
+        });
+
+        return response;
 
 
     } catch (error) {

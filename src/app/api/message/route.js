@@ -58,7 +58,7 @@ export async function DELETE(req) {
             }, { status: 400 })
         }
 
-        await Message.findOneAndDelete({ id })
+        await Message.findByIdAndDelete(id)
 
         return NextResponse.json({
             success: true,

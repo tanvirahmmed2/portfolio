@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { MONGO_URL } from "./secure";
 
-const ConnectDB=async()=>{
+export const database=async()=>{
     try {
         await mongoose.connect(MONGO_URL)
         console.log('Server have been connected successfully')
@@ -10,5 +10,3 @@ const ConnectDB=async()=>{
         console.log('Failed to connect to mongoDB')
     }
 }
-
-module.exports= ConnectDB

@@ -11,18 +11,13 @@ export const metadata = {
 
 const MainLayout = async ({ children }) => {
 
-  const token =(await cookies()).get('user_token')?.value
+  const token = (await cookies()).get('potfolio_token')?.value
 
   if (!token) {
     return redirect('/signin')
   }
 
-  let user;
-  try {
-    user = jwt.verify(token, JWT_SECRET)
-  } catch (error) {
-    return redirect('/signin')
-  }
+  const user = jwt.verify(token, JWT_SECRET)
 
   if (user.role !== 'admin') {
     return redirect('/signin')

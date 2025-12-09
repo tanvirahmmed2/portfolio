@@ -5,8 +5,8 @@ import { JWT_SECRET } from '@/lib/secure'
 import { redirect } from 'next/navigation'
 
 export const metadata = {
-  title: "Tanvir Ahmmed | Sign In",
-  description: 'This is the main sign in page'
+  title: "Tanvir Ahmmed | Sign Up",
+  description: 'This is the main sign up page'
 }
 
 const MainLayout = async ({ children }) => {

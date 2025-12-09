@@ -9,15 +9,15 @@ import { MdDeleteOutline } from "react-icons/md";
 const Admin = async () => {
 
 
-  const res= await fetch(`${BASE_URL}/api/project`,{
+  const res = await fetch(`${BASE_URL}/api/project`, {
     method: "GET",
     cache: 'no-store'
   })
-  const data= await res.json()
-const projects= data.payload
+  const data = await res.json()
+  const projects = data.payload
 
-console.log(projects)
   
+
 
   return (
     <div className='w-full flex flex-col items-center justify-center gap-10 p-4'>
@@ -25,14 +25,14 @@ console.log(projects)
         <h1 className='text-2xl font-mono'>Add Latest Project</h1>
         <AddProject />
         {
-          projects===null && <div>
+          projects === null && <div>
             <h1>Latest projects</h1>
             <div>
               {
-                projects.map((project)=>(
+                projects.map((project) => (
                   <div key={project._id}>
                     <Link href={`/projects/${project.slug}`}>{project.title}</Link>
-                    <DeleteProject id={project._id}/>
+                    <DeleteProject id={project._id} />
                   </div>
                 ))
               }

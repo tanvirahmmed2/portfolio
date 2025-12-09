@@ -5,7 +5,7 @@ import React from 'react'
 const Project = ({title, slug, description, skills, category, image}) => {
   return (
     <Link href={`/projects/${slug}`} className='w-full p-2 bg-white rounded-xl shadow-sm  flex flex-col gap-2 relative'>
-      <Image src={image} alt={title} width={1000} height={1000} className='w-full  rounded-2xl shadow-sm hover:scale-105 transition ease-in-out duration-500'/>
+      <Image src={image} alt={title} width={1000} height={1000} className='w-full  rounded-2xl shadow-sm hover:scale-105 transition ease-in-out duration-500 h-[300px] object-cover'/>
       <h1 className='text-xl font-semibold'>{title}</h1>
       <p className='top-4 right-4 absolute px-4 bg-sky-500 text-white rounded-2xl'>{category}</p>
       <p>{description.slice(0,100)}....</p>

@@ -92,7 +92,7 @@ export async function GET() {
         return NextResponse.json({
             success: true,
             message: "SUccessfully fetched message",
-            pyload: messages
+            payload: messages
         }, { status: 200 })
     } catch (error) {
         return NextResponse.json({

@@ -41,19 +41,17 @@ const projectSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
-    tags: [
-        {
-            type: String,
-            trim: true,
-        }
-    ],
-    skills: [
-        {
-            type: String,
-            trim: true,
-        }
-    ],
-    createdAt:{
+    tags: {
+        type: [String],
+        trim: true,
+        default: []
+    },
+    skills: {
+        type: [String],
+        trim: true,
+        default: []
+    },
+    createdAt: {
         type: Date,
         default: Date.now
     }

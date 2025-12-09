@@ -16,7 +16,7 @@ const AddProject = () => {
   })
 
   const handleChange = (e) => {
-    const { name, value, files } = e.tagret
+    const { name, value, files } = e.target
     if (files) {
       setFormData({ ...formData, image: files[0] });
     } else {
@@ -66,6 +66,10 @@ const AddProject = () => {
       <div className='w-full flex flex-col gap-2'>
         <label htmlFor="skills">Skills</label>
         <input type="text" name='skills' id='skills' value={formData.skills} onChange={handleChange} className='w-full px-2 p-1 border-2 border-black/20 rounded-lg outline-none' />
+      </div>
+      <div className='w-full flex flex-col gap-2'>
+        <label htmlFor="tags">Tags</label>
+        <input type="text" name='tags' id='tags' value={formData.tags} onChange={handleChange} className='w-full px-2 p-1 border-2 border-black/20 rounded-lg outline-none' />
       </div>
       <div className='w-full flex flex-col gap-2'>
         <label htmlFor="siteLink">Link</label>

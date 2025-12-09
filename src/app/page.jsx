@@ -67,9 +67,9 @@ const Home = () => {
 
                 <div className='w-full flex flex-col gap-2'>
                   <h1 className='text-xl'>{e.title}</h1>
-                  <p className='text-sky-600 opacity-50'>{e.category}</p>
+                  <p className='text-sky-500 opacity-50'>{e.category}</p>
                 </div>
-                <p className='bg-sky-600 px-2 p-1 text-white rounded-2xl'>{e.level}</p>
+                <p className='bg-sky-500 px-2 p-1 text-white rounded-2xl'>{e.level}</p>
               </div>
             ))
           }
@@ -80,7 +80,7 @@ const Home = () => {
           <h1 className='text-3xl border-b-2 border-sky-500'>Education</h1>
           {
             education.map((e) => (
-              <div key={e.id} className='w-full flex flex-col gap-4 bg-gray-100 rounded-2xl p-2 shadow-xs shadow-sky-500'>
+              <div key={e.id} className='w-full flex flex-col gap-4 bg-gray-100 rounded-2xl p-2 shadow-xs '>
                 <h1 className='text-xl'>{e.title}</h1>
                 <p className='text-sky-500'>{e.institution}</p>
                 <p className='w-full flex flex-row items-center gap-6 opacity-50'><span>{e.time}</span> <span className='border-l-2 px-4'>{e.grade}</span></p>
@@ -94,7 +94,7 @@ const Home = () => {
       <div className='w-full lg:w-1/2 flex flex-col items-center justify-center gap-2 bg-white rounded-2xl p-4'>
         <Image src='/formal.jpg' alt='main image' width={1000} height={1000} className='w-[300px] h-[300px] rounded-full border-4 border-sky-500' />
         <h1 className='text-4xl font-semibold'>Tanvir Ahmmed</h1>
-        <p className='text-sky-500'>Web Developer & Tech Enthusiast</p>
+        <p className=''>Web Developer & Tech Enthusiast</p>
         <DetailBox />
       </div>
 

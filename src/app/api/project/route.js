@@ -1,3 +1,4 @@
+import cloudinary from "@/lib/cloudinary";
 import { database } from "@/lib/mongoose";
 import Project from "@/models/project";
 import { NextResponse } from "next/server";
@@ -34,6 +35,21 @@ export async function POST(req) {
             }, { status: 400 })
         }
 
+
+
+        const slug = slugify(title)
+
+        const existProject = await Project.findOne({ slug })
+        if (existProject) {
+            return NextResponse.json({
+                success: false,
+                message: "Please use another title"
+            }, { status: 400 })
+        }
+
+        const tagsArr = tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+        const skillsArr = skills.split(',').map(skill => skill.trim()).filter(skill => skill.length > 0)
+
         const imageBuffer = Buffer.from(await imageFile.arrayBuffer());
 
         const cloudImage = await new Promise((resolve, reject) => {
@@ -47,18 +63,16 @@ export async function POST(req) {
             stream.end(imageBuffer);
         });
 
-        const slug = slugify(title)
+        const newProject = new Project({
+            title, description, slug, category, repository, siteLink, image: cloudImage.secure_url, imageId: cloudImage.public_id, tags: tagsArr, skills: skillsArr
+        })
 
-        const existProject = await Project.findOne({ slug })
-        if (existProject) {
-            return NextResponse.json({
-                success: false,
-                message: "Please use another title"
-            }, { status: 400 })
-        }
+        await newProject.save()
 
-
-
+        return NextResponse.json({
+            success: true,
+            message: ' Successfully submitted project'
+        })
 
 
     } catch (error) {

@@ -15,10 +15,10 @@ const Projects = async () => {
       {
         projects === null || projects.length < 1 ? <p>No Project Found</p> : <div className='w-full flex-col flex items-center justify-center gap-6'>
           <h1 className='text-2xl font-semibold text-center'>My Latest Projects</h1>
-          <div>
+          <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3'>
             {
               projects.map((project) => (
-                <Project key={e._id} {...project} />
+                <Project key={project._id} {...project} />
               ))
             }
           </div>

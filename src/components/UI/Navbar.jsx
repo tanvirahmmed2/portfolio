@@ -3,8 +3,8 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <section className='w-full fixed top-0'>
-        <nav className='w-full  flex flex-row items-center justify-around px-4 h-20 bg-linear-to-br from-blue-700 text-white to-sky-400'>
+    <section className='w-full fixed top-0 z-40'>
+        <nav className='w-full  flex flex-row items-center justify-around px-4 h-20 bg-sky-500 text-white'>
             <Link href={'/'}>
                 <h1 className='text-xl sm:text-2xl font-semibold'>Tanvir Ahmmed</h1>
                 <p className=' text-[10px] sm:text-[12px]'>Web Developer & Tech Enthusiast</p>

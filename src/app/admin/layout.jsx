@@ -11,7 +11,7 @@ export const metadata = {
 
 const MainLayout = async ({ children }) => {
 
-  const token = (await cookies()).get('potfolio_token')?.value
+  const token = (await cookies()).get('user_token')?.value
 
   if (!token) {
     return redirect('/signin')

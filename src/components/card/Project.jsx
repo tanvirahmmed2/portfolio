@@ -9,7 +9,7 @@ const Project = ({title, slug, description, skills, category, image}) => {
       <h1 className='text-xl font-semibold'>{title}</h1>
       <p className='top-4 right-4 absolute px-4 bg-sky-500 text-white rounded-2xl'>{category}</p>
       <p>{description.slice(0,100)}....</p>
-      <div className='w-full flex flex-wrap gap-2'>
+      <div className='w-full flex flex-wrap gap-2 opacity-20'>
         {
           skills.map((skill)=> (
             <p key={skill} className='px-2 bg-sky-500 rounded-2xl text-white '>{skill}</p>

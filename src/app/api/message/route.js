@@ -1,6 +1,6 @@
 
 import { database } from "@/lib/mongoose";
-import { Message } from "@/models/message";
+import Message from "@/models/message";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -16,11 +16,18 @@ export async function POST(req) {
             }, { status: 400 })
         }
 
+        const spam = await Message.findOne({email})
 
+        if(spam){
+            return NextResponse.json({
+                success: false,
+                message: 'Already a message in review, wait for response'
+            })
+        }
 
-        const newMessgae = new Message({ name, email, message })
+        const newMessage = new Message({ name, email, message })
 
-        await newMessgae.save()
+        await newMessage.save()
 
         return NextResponse.json({
             success: true,

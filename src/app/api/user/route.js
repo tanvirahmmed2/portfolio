@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { User } from "@/models/user";
 import { database } from "@/lib/mongoose";
+import User from "@/models/user";
 
 export async function POST(req) {
     try {
@@ -26,7 +26,8 @@ export async function POST(req) {
 
         const hashedPass = await bcrypt.hash(password, 10);
 
-        await User.create({ name, email, password: hashedPass });
+        const newUser= new User({ name, email, password: hashedPass });
+        await newUser.save()
 
         return NextResponse.json(
             { success: true, message: "Successfully signed up" },

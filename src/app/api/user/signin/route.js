@@ -1,9 +1,9 @@
 import { database } from "@/lib/mongoose"
-import { User } from "@/models/user"
 import { NextResponse } from "next/server"
 import jwt from 'jsonwebtoken'
 import { JWT_SECRET, NODE_ENV } from "@/lib/secure"
 import bcrypt from 'bcryptjs'
+import User from "@/models/user"
 
 
 export async function POST(req) {
@@ -33,7 +33,7 @@ export async function POST(req) {
             return NextResponse.json({
                 success: false,
                 message: "Incorrect password"
-            }, { status: 4000 })
+            }, { status: 400 })
         }
 
         if (user.role !== 'admin') {

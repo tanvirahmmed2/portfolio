@@ -1,16 +1,11 @@
+export const MONGO_URL = process.env.MONGO_URL;
+export const BASE_URL = 'http://localhost:3000';
+
+export const CLOUDINARY_NAME = process.env.CLOUDINARY_NAME;
+export const CLOUDINARY_API = process.env.CLOUDINARY_API;
+export const CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET;
+
+export const JWT_SECRET = process.env.JWT_SECRET;
 
 
-const MONGO_URL=process.env.MONGO_URL
-const BASE_URL= 'http://localhost:3000'
-
-const CLOUDINARY_NAME=process.env.CLOUDINARY_NAME
-const CLOUDINARY_API=process.env.CLOUDINARY_API
-const CLOUDINARY_API_SECRET=process.env.CLOUDINARY_API_SECRET
-
-const JWT_SECRET=process.env.JWT_SECRET
-const NODE_ENV=process.env.NODE_ENV
-
-module.exports={
-    MONGO_URL, BASE_URL, CLOUDINARY_API, CLOUDINARY_NAME, CLOUDINARY_API_SECRET, JWT_SECRET, NODE_ENV
-}
-
+export const NODE_ENV = process.env.NODE_ENV === "production";

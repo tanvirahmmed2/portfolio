@@ -33,7 +33,7 @@ const Admin = async () => {
         <h1 className='text-2xl font-mono'>Add Latest Project</h1>
         <AddProject />
         {
-          projects !== null || projects.length > 0 && <div className='w-full flex flex-col items-center justify-center gap-4'>
+          projects && <div className='w-full flex flex-col items-center justify-center gap-4'>
             <h1 className='text-2xl font-semibold text-center'>Latest projects</h1>
             <div className='w-full flex flex-col items-center justify-center gap-2'>
               {
@@ -55,7 +55,7 @@ const Admin = async () => {
 
 
       {
-        messages !== null || messages.length > 0 && <div className='w-full md:w-3/4 lg:w-1/2 flex flex-col items-center justify-center gap-6'>
+        messages && <div className='w-full md:w-3/4 lg:w-1/2 flex flex-col items-center justify-center gap-6'>
           <h1 className='text-2xl font-semibold text-center'>Latest Messages</h1>
           <div className='w-full flex flex-col items-center justify-center gap-2'>
             {

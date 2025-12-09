@@ -41,6 +41,17 @@ const AddProject = () => {
       const response = await axios.post('/api/project', newData, { withCredentials: true })
       alert(response.data.message)
       console.log(response)
+      setFormData({
+        title: '',
+        description: '',
+        image: null,
+        category: '',
+        repository: '',
+        tags: '',
+        siteLink: '',
+        skills: ''
+
+      })
 
     } catch (error) {
       alert(error?.response?.data?.message)

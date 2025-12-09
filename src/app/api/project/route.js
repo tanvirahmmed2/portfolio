@@ -156,3 +156,55 @@ export async function DELETE(req) {
     }
 
 }
+
+export async function PUT(req) {
+    try {
+        await database()
+
+        const { id, title, description, siteLink, repository, tags, skills, category } = await req.json()
+
+        const project = await Project.findById(id)
+
+        if (!project) {
+            return NextResponse.json({
+                success: false,
+                message: 'Project not found'
+            }, { status: 400 })
+        }
+
+        if (skills !== undefined && skills !== null) {
+            const skillArr = skills.split(',').map(skill => skill.trim()).filter(skill => skill.length > 0)
+            project.skills = skillArr
+
+        }
+
+        if (tags !== undefined && tags !== null) {
+            const tagArr = tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0)
+            project.tags = tagArr
+        }
+
+        const slug = slugify(title)
+
+        project.slug = slug
+        project.title = title,
+        project.category = category
+        project.description = description
+        project.siteLink = siteLink
+        project.repository = repository
+
+        await project.save()
+
+        return NextResponse.json({
+            success: true,
+            message: 'Successfully updated project'
+        }, { status: 200 })
+
+    } catch (error) {
+        return NextResponse.json({
+            success: false,
+            message: 'Failed to update project',
+            error: error.message
+        }, { status: 500 })
+    }
+
+}

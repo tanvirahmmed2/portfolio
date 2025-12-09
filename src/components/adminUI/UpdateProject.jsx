@@ -2,8 +2,9 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 
-const UpdateProject = ({ title, description, category, repository, siteLink }) => {
+const UpdateProject = ({_id, title, description, category, repository, siteLink }) => {
     const [formData, setFormData] = useState({
+        id: _id,
         title: title,
         description: description,
         category: category,

@@ -16,7 +16,7 @@ const DeleteProject = ({id}) => {
         
     }
   return (
-    <button onClick={deleteProject}><MdDeleteOutline/></button>
+    <button onClick={deleteProject} className='cursor-pointer'><MdDeleteOutline/></button>
   )
 }
 

@@ -15,7 +15,7 @@ const Project = async ({ params }) => {
   })
   const data = await res.json()
   const project = data.payload
-  if (!data || data.length < 1) {
+  if (!project || project.length < 1) {
     return redirect('/projects')
   }
 

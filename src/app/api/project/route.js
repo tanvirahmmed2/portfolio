@@ -101,7 +101,7 @@ export async function GET() {
 
         return NextResponse.json({
             success: true,
-            messgae: 'Successfully fetched project data',
+            message: 'Successfully fetched project data',
             payload: projects
         }, { status: 200 })
 
@@ -111,6 +111,48 @@ export async function GET() {
             message: "Failed to add project",
             error: error.message
         }, { status: 500 })
+    }
+
+}
+
+
+export async function DELETE(req) {
+    try {
+        await database()
+
+        const { id } = await req.json()
+        if (!id) {
+            return NextResponse.json({
+                success: false,
+                message: "Project id not recieved"
+            }, { status: 400 })
+        }
+
+        const project = await Project.findById(id)
+
+        if (!project) {
+            return NextResponse.json({
+                success: false,
+                message: "Project not found"
+            }, { status: 400 })
+        }
+
+        await cloudinary.uploader.destroy(project.imageId)
+
+        await Project.findByIdAndDelete(id)
+
+        return NextResponse.json({
+            success: true,
+            message: "successfully deleted project data"
+        }, { status: 200 })
+
+    } catch (error) {
+        return NextResponse.json({
+            success: false,
+            message: 'Failed to delete project',
+            error: error.message
+        }, { status: 500 })
+
     }
 
 }

@@ -11,6 +11,7 @@ const Footer = () => {
         <Link href={'/'}>Home</Link>
         <Link href={'/projects'}>Projects</Link>
         <Link href={'/skills'}>Skills</Link>
+        <Link href={'/contact'}>Contact</Link>
         <Link href={'/admin'}>Admin</Link>
       </div>
       <div className=' flex flex-col gap-2 p-6'>

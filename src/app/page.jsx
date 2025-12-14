@@ -1,5 +1,7 @@
 import DetailBox from '@/components/card/DetailBox'
+import { BASE_URL } from '@/lib/secure'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const education = [
@@ -48,7 +50,21 @@ const primarySkill = [
   },
 ]
 
-const Home = () => {
+const Home = async () => {
+
+  const res = await fetch(`${BASE_URL}/api/project/latest`, {
+    method: 'GET',
+    cache: 'no-store'
+  })
+  const data = await res.json()
+
+  const projects = data.payload
+
+  console.log(projects)
+
+
+
+
   return (
     <div className='w-full flex flex-col-reverse md:flex-row items-center md:items-start justify-center gap-4 py-12 p-4'>
 
@@ -58,6 +74,8 @@ const Home = () => {
           <h1 className='text-3xl border-b-2 border-sky-500'>Bio</h1>
           <p className='text-justify w-full'>Versatile Full Stack Developer with expertise in the MERN stack, Next.js, and modern CSS frameworks like Tailwind and Bootstrap. Experienced in building responsive, high-performance web applications from concept to deployment. Skilled at creating intuitive user interfaces, integrating APIs, and ensuring seamless functionality across platforms. Driven by problem-solving, continuous learning, and a passion for turning ideas into scalable digital solutions.</p>
         </div>
+
+
 
         <div className='p-4 flex flex-col gap-4 bg-white/50 rounded-2xl'>
           <h1 className='text-3xl border-b-2 border-sky-500'>Primary Skills</h1>
@@ -76,7 +94,7 @@ const Home = () => {
                       className={`px-3 py-1 text-xs font-bold rounded-full whitespace-nowrap
                         ${e.level === 'Expert' ? 'bg-sky-500 text-white' :
                           e.level === 'Advanced' ? 'bg-indigo-100 text-indigo-700' :
-                          'bg-gray-200 text-gray-700'
+                            'bg-gray-200 text-gray-700'
                         }`}
                     >
                       {e.level}
@@ -88,6 +106,21 @@ const Home = () => {
           </div>
         </div>
 
+
+        {
+          projects && <div className='w-full flex flex-col items-center justify-center gap-4'>
+            <h1 className='text-2xl font-semibold text-center text-sky-500'>My Latest Projects</h1>
+            <div className=' w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4'>
+              {
+                projects.map((project) => (
+                  <Link href={`/projects/${project.slug}`} key={project._id} className='w-full border-2 border-sky-500 rounded-2xl overflow-hidden'>
+                    <Image alt={project.title} src={project.image} height={1000} width={1000} />
+                  </Link>
+                ))
+              }
+            </div>
+          </div>
+        }
 
         <div className='p-4 flex flex-col gap-4 bg-white rounded-2xl'>
           <h1 className='text-3xl border-b-2 border-sky-500'>Education</h1>

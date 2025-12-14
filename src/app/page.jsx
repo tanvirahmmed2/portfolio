@@ -60,8 +60,6 @@ const Home = async () => {
 
   const projects = data.payload
 
-  console.log(projects)
-
 
 
 
@@ -69,7 +67,7 @@ const Home = async () => {
     <div className='w-full flex flex-col-reverse md:flex-row items-center md:items-start justify-center gap-4 py-12 p-4'>
 
 
-      <div className='w-full flex flex-col gap-6'>
+      <div className='w-full flex flex-col gap-20'>
         <div className='p-4 flex flex-col gap-4 bg-white rounded-2xl'>
           <h1 className='text-3xl border-b-2 border-sky-500'>Bio</h1>
           <p className='text-justify w-full'>Versatile Full Stack Developer with expertise in the MERN stack, Next.js, and modern CSS frameworks like Tailwind and Bootstrap. Experienced in building responsive, high-performance web applications from concept to deployment. Skilled at creating intuitive user interfaces, integrating APIs, and ensuring seamless functionality across platforms. Driven by problem-solving, continuous learning, and a passion for turning ideas into scalable digital solutions.</p>

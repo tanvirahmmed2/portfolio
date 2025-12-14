@@ -1,8 +1,7 @@
 import { cookies } from 'next/headers'
 import React from 'react'
-import jwt from 'jsonwebtoken'
-import { JWT_SECRET } from '@/lib/secure'
 import { redirect } from 'next/navigation'
+import { isAdmin } from '@/middleware/isAdmin'
 
 export const metadata = {
   title: "Tanvir Ahmmed | Sign In",
@@ -11,13 +10,11 @@ export const metadata = {
 
 const MainLayout = async ({ children }) => {
 
-  const token = (await cookies()).get('user_token')?.value
+  const auth= await isAdmin()
 
-  if (token) {
-    const decode = jwt.verify(token, JWT_SECRET)
-    if (decode.role === admin) {
-      return redirect('/profile')
-    }
+
+  if (auth.success) {
+    return redirect('/profile')
   }
 
   return (

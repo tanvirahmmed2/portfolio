@@ -1,7 +1,10 @@
+
 import Link from 'next/link'
 import React from 'react'
 
-const Navbar = () => {
+const Navbar = async() => {
+
+
   return (
     <section className='w-full fixed top-0 z-40'>
         <nav className='w-full  flex flex-row items-center justify-around px-4 h-20 bg-sky-500 text-white'>

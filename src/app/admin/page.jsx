@@ -1,6 +1,7 @@
 import AddProject from '@/components/adminUI/AddProject'
 import DeleteMessage from '@/components/buttons/DeleteMessage'
 import DeleteProject from '@/components/buttons/DeleteProject'
+import SignOut from '@/components/buttons/SignOut'
 import UpdateProjectButton from '@/components/buttons/UpdateProjectButton'
 import { BASE_URL } from '@/lib/secure'
 import Link from 'next/link'
@@ -77,6 +78,8 @@ const Admin = async () => {
           </div>
         </div>
       }
+
+      <SignOut/>
     </div>
   )
 }

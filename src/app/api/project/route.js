@@ -50,7 +50,29 @@ export async function GET(req) {
       projectsRes = await query('SELECT * FROM projects WHERE is_published = true ORDER BY created_at DESC');
     }
 
-    return NextResponse.json({ projects: projectsRes.rows });
+    const projects = projectsRes.rows;
+
+    // Fetch skills mapping for all projects
+    const projectSkillsRes = await query(
+      `SELECT ps.project_id, s.* FROM skills s 
+       JOIN project_skills ps ON s.id = ps.skill_id`
+    );
+
+    const skillsMap = {};
+    projectSkillsRes.rows.forEach((row) => {
+      const { project_id, ...skill } = row;
+      if (!skillsMap[project_id]) {
+        skillsMap[project_id] = [];
+      }
+      skillsMap[project_id].push(skill);
+    });
+
+    const enrichedProjects = projects.map((p) => ({
+      ...p,
+      skills: skillsMap[p.id] || []
+    }));
+
+    return NextResponse.json({ projects: enrichedProjects });
   } catch (error) {
     console.error('GET /api/project error:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

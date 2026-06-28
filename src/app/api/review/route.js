@@ -26,10 +26,10 @@ export async function POST(req) {
   try {
     const userPayload = verifyAuth(req); // Optional auth
     const body = await req.json();
-    const { name, title, company, rating, review } = body;
+    const { name, email, title, company, rating, review } = body;
 
-    if (!name || !rating || !review) {
-      return NextResponse.json({ error: 'Name, rating, and review text are required' }, { status: 400 });
+    if (!name || !rating || !review || !email) {
+      return NextResponse.json({ error: 'Name, email, rating, and review text are required' }, { status: 400 });
     }
 
     const ratingVal = parseInt(rating, 10);
@@ -40,10 +40,10 @@ export async function POST(req) {
     const userId = userPayload ? userPayload.id : null;
 
     const insertRes = await query(
-      `INSERT INTO reviews (user_id, name, title, company, rating, review, is_approved) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7) 
+      `INSERT INTO reviews (user_id, name, email, title, company, rating, review, is_approved) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8) 
        RETURNING *`,
-      [userId, name, title || null, company || null, ratingVal, review, false] // Default to unapproved for moderation
+      [userId, name, email, title || null, company || null, ratingVal, review, false] // Default to unapproved for moderation
     );
 
     return NextResponse.json({

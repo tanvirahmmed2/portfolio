@@ -33,10 +33,24 @@ export async function POST(req) {
     }
 
     const body = await req.json();
-    const { name, category, proficiency, image, image_id, display_order, is_featured } = body;
+    const { name, category, image, image_id, is_featured } = body;
+    
+    // Convert and validate types
+    const proficiency = parseInt(body.proficiency, 10) || 0;
+    const display_order = parseInt(body.display_order, 10) || 0;
 
     if (!name || !category) {
       return NextResponse.json({ error: 'Name and category are required' }, { status: 400 });
+    }
+
+    if (proficiency < 0 || proficiency > 100) {
+      return NextResponse.json({ error: 'Proficiency must be between 0 and 100' }, { status: 400 });
+    }
+
+    // Check duplicate skill name
+    const duplicateCheck = await query('SELECT id FROM skills WHERE LOWER(name) = LOWER($1)', [name.trim()]);
+    if (duplicateCheck.rows.length > 0) {
+      return NextResponse.json({ error: 'Skill name already exists' }, { status: 400 });
     }
 
     const insertRes = await query(
@@ -44,12 +58,12 @@ export async function POST(req) {
        VALUES ($1, $2, $3, $4, $5, $6, $7) 
        RETURNING *`,
       [
-        name,
-        category,
-        proficiency || 0,
+        name.trim(),
+        category.trim(),
+        proficiency,
         image || null,
         image_id || null,
-        display_order || 0,
+        display_order,
         is_featured === true
       ]
     );
@@ -76,16 +90,33 @@ export async function PUT(req) {
     }
 
     const body = await req.json();
-    const { name, category, proficiency, image, image_id, display_order, is_featured } = body;
+    const { name, category, image, image_id, is_featured } = body;
+    
+    // Convert and validate types
+    const proficiency = parseInt(body.proficiency, 10) || 0;
+    const display_order = parseInt(body.display_order, 10) || 0;
 
     if (!name || !category) {
       return NextResponse.json({ error: 'Name and category are required' }, { status: 400 });
     }
 
-    // Get current skill to check if image was replaced
+    if (proficiency < 0 || proficiency > 100) {
+      return NextResponse.json({ error: 'Proficiency must be between 0 and 100' }, { status: 400 });
+    }
+
+    // Get current skill to check existence and handle image replacements
     const currentSkillRes = await query('SELECT image_id FROM skills WHERE id = $1', [id]);
     if (currentSkillRes.rows.length === 0) {
       return NextResponse.json({ error: 'Skill not found' }, { status: 404 });
+    }
+
+    // Check duplicate skill name (for a different skill id)
+    const duplicateCheck = await query(
+      'SELECT id FROM skills WHERE LOWER(name) = LOWER($1) AND id <> $2', 
+      [name.trim(), id]
+    );
+    if (duplicateCheck.rows.length > 0) {
+      return NextResponse.json({ error: 'Skill name already exists' }, { status: 400 });
     }
 
     const oldImageId = currentSkillRes.rows[0].image_id;
@@ -104,12 +135,12 @@ export async function PUT(req) {
        WHERE id = $8 
        RETURNING *`,
       [
-        name,
-        category,
-        proficiency || 0,
+        name.trim(),
+        category.trim(),
+        proficiency,
         image || null,
         image_id || null,
-        display_order || 0,
+        display_order,
         is_featured === true,
         id
       ]

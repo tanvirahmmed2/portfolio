@@ -29,10 +29,10 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = async (email, password) => {
-    const res = await fetch('/api/user', {
+    const res = await fetch('/api/user/signin', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'login', email, password })
+      body: JSON.stringify({ email, password })
     });
     
     const data = await res.json();
@@ -44,10 +44,10 @@ export function AuthProvider({ children }) {
   };
 
   const signup = async (email, password, name) => {
-    const res = await fetch('/api/user', {
+    const res = await fetch('/api/user/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'register', email, password, name })
+      body: JSON.stringify({ email, password, name })
     });
     
     const data = await res.json();
@@ -59,10 +59,10 @@ export function AuthProvider({ children }) {
   };
 
   const logout = async () => {
-    const res = await fetch('/api/user', {
+    const res = await fetch('/api/user/signout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'logout' })
+      body: JSON.stringify({})
     });
     if (res.ok) {
       setUser(null);

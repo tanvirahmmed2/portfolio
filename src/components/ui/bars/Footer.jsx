@@ -133,18 +133,20 @@ export default function Footer() {
             Connect
           </h3>
           {activeSocials.length > 0 ? (
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-col gap-3">
               {activeSocials.map((social) => (
-                <a
+                <Link
                   key={social.name}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={social.name}
-                  className="p-3 rounded-xl bg-neutral-900/40 border border-neutral-800/80 text-neutral-400 hover:text-violet-400 hover:border-violet-500/50 hover:bg-neutral-900 hover:-translate-y-1 transition-all duration-300"
+                  className="group flex items-center gap-3 text-sm text-neutral-400 hover:text-white hover:translate-x-1 transition-all duration-200 w-fit"
                 >
-                  {social.icon}
-                </a>
+                  <span className="text-neutral-500 group-hover:text-violet-400 transition-colors duration-200">
+                    {social.icon}
+                  </span>
+                  <span>{social.name}</span>
+                </Link>
               ))}
             </div>
           ) : (

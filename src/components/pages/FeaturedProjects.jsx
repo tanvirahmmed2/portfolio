@@ -1,9 +1,155 @@
-import React from 'react'
+"use client";
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
-const FeaturedProjects = () => {
+export default function FeaturedProjects() {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadProjects() {
+      try {
+        const res = await fetch('/api/project');
+        if (res.ok) {
+          const data = await res.json();
+          // Filter published & featured projects
+          const list = (data.projects || []).filter(p => p.is_published && p.is_featured);
+          setProjects(list.slice(0, 3)); // show top 3 featured
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadProjects();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="py-20 px-6 sm:px-8 bg-neutral-950">
+        <div className="max-w-6xl mx-auto space-y-6">
+          <div className="h-6 w-36 bg-neutral-900 rounded animate-pulse"></div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="h-64 bg-neutral-900 rounded-3xl animate-pulse"></div>
+            <div className="h-64 bg-neutral-900 rounded-3xl animate-pulse"></div>
+            <div className="h-64 bg-neutral-900 rounded-3xl animate-pulse"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (projects.length === 0) return null;
+
   return (
-    <div>FeaturedProjects</div>
-  )
-}
+    <section className="py-20 px-6 sm:px-8 bg-neutral-950 border-t border-neutral-900/60">
+      <div className="max-w-6xl mx-auto space-y-12">
+        
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div className="space-y-2">
+            <span className="text-[10px] font-black tracking-widest text-violet-400 uppercase">Selected Work</span>
+            <h2 className="text-3xl font-black text-white">Featured Projects</h2>
+          </div>
+          <Link
+            href="/projects"
+            className="text-xs font-bold text-violet-400 hover:text-violet-300 transition-colors flex items-center gap-1.5 self-start sm:self-auto"
+          >
+            Browse all projects
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        </div>
 
-export default FeaturedProjects
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <div
+              key={project.id}
+              className="group bg-neutral-900/20 border border-neutral-900 hover:border-neutral-850 rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                {/* Cover Image */}
+                <div className="relative aspect-video w-full bg-neutral-950 overflow-hidden border-b border-neutral-900/80">
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-xs text-neutral-600 font-bold uppercase tracking-wider">
+                      No Preview Image
+                    </div>
+                  )}
+                  {project.is_featured && (
+                    <span className="absolute top-3 left-3 bg-violet-600 text-[8px] font-black text-white px-2.5 py-1 rounded-full uppercase tracking-wider">
+                      Featured
+                    </span>
+                  )}
+                </div>
+
+                {/* Body Content */}
+                <div className="p-5 space-y-3">
+                  <h3 className="text-sm font-bold text-white group-hover:text-violet-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-[11px] text-neutral-450 leading-relaxed line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  {/* Skills tags */}
+                  {project.skills && project.skills.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-2">
+                      {project.skills.slice(0, 3).map((skill) => (
+                        <span
+                          key={skill.id}
+                          className="text-[8px] font-bold text-neutral-400 bg-neutral-950 px-2 py-0.5 rounded"
+                        >
+                          {skill.name}
+                        </span>
+                      ))}
+                      {project.skills.length > 3 && (
+                        <span className="text-[8px] font-bold text-neutral-500">
+                          +{project.skills.length - 3}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="p-5 pt-0 flex items-center gap-4">
+                {project.project_url && (
+                  <a
+                    href={project.project_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] font-bold text-white bg-neutral-800 hover:bg-neutral-750 px-4 py-2 rounded-lg transition-all"
+                  >
+                    Live Demo
+                  </a>
+                )}
+                {project.github_url && (
+                  <a
+                    href={project.github_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] font-bold text-neutral-400 hover:text-white transition-colors"
+                  >
+                    Source Code
+                  </a>
+                )}
+              </div>
+
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}

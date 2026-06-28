@@ -31,13 +31,13 @@ export default function SignupForm() {
     setLoading(true);
     try {
       const data = await signup(email, password, name);
-      if (data.user && data.user.role === 'admin') {
-        showToast("Welcome! Admin account created successfully.", "success");
-        router.push('/panel');
-      } else {
-        showToast("Registration successful! Only admin accounts can sign in.", "warning");
-        await logout(); // Log out standard user since only admins can log in
-        router.push('/signin');
+      if (data.user) {
+        showToast("Account created successfully!", "success");
+        if (data.user.role === 'admin') {
+          router.push('/panel');
+        } else {
+          router.push('/');
+        }
       }
     } catch (err) {
       showToast(err.message || "Registration failed", "error");

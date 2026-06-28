@@ -24,11 +24,15 @@ export default function LoginForm() {
     setLoading(true);
     try {
       const data = await login(email, password);
-      if (data.user && data.user.role === 'admin') {
+      if (data.user) {
         showToast("Logged in successfully!", "success");
-        router.push('/panel');
+        if (data.user.role === 'admin') {
+          router.push('/panel');
+        } else {
+          router.push('/');
+        }
       } else {
-        showToast("Access denied: Only administrators can sign in.", "error");
+        showToast("Invalid credentials", "error");
       }
     } catch (err) {
       showToast(err.message || "Invalid email or password", "error");

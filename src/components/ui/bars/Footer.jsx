@@ -83,53 +83,47 @@ export default function Footer() {
   const activeSocials = socialsList.filter(social => social.url);
 
   return (
-    <footer className="bg-neutral-950 text-neutral-400 border-t border-neutral-900/60 py-16 px-6 md:px-12 relative overflow-hidden">
-      {/* Decorative gradient blur background elements */}
-      <div className="absolute top-0 left-1/4 -translate-x-1/2 w-80 h-80 bg-violet-600/5 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-0 right-1/4 translate-x-1/2 w-80 h-80 bg-indigo-600/5 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-start relative z-10">
+    <footer className="w-full bg-indigo-500 px-4 md:px-10 py-28 text-white">
+     
+      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-12">
         
-        {/* Div 1: Name and Title */}
         <div className="flex flex-col">
           <Link href="/" className="text-2xl font-black text-white hover:text-violet-400 transition-colors duration-300 tracking-tight">
             {settings.name}
           </Link>
-          <p className="text-sm text-neutral-400 font-medium mt-2">
+          <p className="text-sm font-medium mt-2">
             {settings.title}
           </p>
-          <p className="text-xs text-neutral-600 mt-8">
+          <p className="text-xs mt-8">
             &copy; {new Date().getFullYear()} {settings.name}. All rights reserved.
           </p>
         </div>
 
-        {/* Div 2: Navigation Links */}
         <div className="flex flex-col">
-          <h3 className="text-xs font-semibold text-neutral-300 uppercase tracking-widest mb-4">
+          <h3 className="text-xs font-semibold uppercase tracking-widest mb-4">
             Navigation
           </h3>
           <nav className="flex flex-col gap-3">
-            <Link href="/" className="text-sm text-neutral-400 hover:text-white hover:translate-x-1 transition-all duration-200 block w-fit">
+            <Link href="/" className="text-sm hover:text-white hover:translate-x-1 transition-all duration-200 block w-fit">
               Home
             </Link>
-            <Link href="/about" className="text-sm text-neutral-400 hover:text-white hover:translate-x-1 transition-all duration-200 block w-fit">
+            <Link href="/about" className="text-sm hover:text-white hover:translate-x-1 transition-all duration-200 block w-fit">
               About
             </Link>
-            <Link href="/projects" className="text-sm text-neutral-400 hover:text-white hover:translate-x-1 transition-all duration-200 block w-fit">
+            <Link href="/projects" className="text-sm hover:text-white hover:translate-x-1 transition-all duration-200 block w-fit">
               Projects
             </Link>
-            <Link href="/skills" className="text-sm text-neutral-400 hover:text-white hover:translate-x-1 transition-all duration-200 block w-fit">
+            <Link href="/skills" className="text-sm hover:text-white hover:translate-x-1 transition-all duration-200 block w-fit">
               Skills
             </Link>
-            <Link href="/contact" className="text-sm text-neutral-400 hover:text-white hover:translate-x-1 transition-all duration-200 block w-fit">
+            <Link href="/contact" className="text-sm hover:text-white hover:translate-x-1 transition-all duration-200 block w-fit">
               Contact
             </Link>
           </nav>
         </div>
 
-        {/* Div 3: Social Links */}
         <div className="flex flex-col">
-          <h3 className="text-xs font-semibold text-neutral-300 uppercase tracking-widest mb-4">
+          <h3 className="text-xs font-semibold uppercase tracking-widest mb-4">
             Connect
           </h3>
           {activeSocials.length > 0 ? (
@@ -140,9 +134,9 @@ export default function Footer() {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-3 text-sm text-neutral-400 hover:text-white hover:translate-x-1 transition-all duration-200 w-fit"
+                  className="group flex items-center gap-3 text-sm hover:text-white hover:translate-x-1 transition-all duration-200 w-fit"
                 >
-                  <span className="text-neutral-500 group-hover:text-violet-400 transition-colors duration-200">
+                  <span className="group-hover:text-violet-400 transition-colors duration-200">
                     {social.icon}
                   </span>
                   <span>{social.name}</span>
@@ -150,7 +144,7 @@ export default function Footer() {
               ))}
             </div>
           ) : (
-            <p className="text-sm text-neutral-500 italic">No social links configured.</p>
+            <p className="text-sm italic">No social links configured.</p>
           )}
         </div>
 

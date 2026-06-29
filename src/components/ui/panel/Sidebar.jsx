@@ -106,13 +106,13 @@ export default function Sidebar() {
   return (
     <>
       {/* Mobile Top Header */}
-      <div className="md:hidden flex items-center justify-between bg-neutral-900 border-b border-neutral-800 px-6 py-4 w-full relative z-30">
+      <div className="md:hidden flex items-center justify-between border-b px-6 py-4 w-full relative z-30">
         <Link href="/panel" className="text-lg font-black tracking-wider text-white">
           ADMIN PANEL
         </Link>
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="p-2 text-neutral-400 hover:text-white focus:outline-none"
+          className="p-2 hover:text-white focus:outline-none"
           aria-label="Toggle Menu"
         >
           {mobileOpen ? (
@@ -173,21 +173,21 @@ export default function Sidebar() {
         </div>
 
         {/* User Info / Action Buttons */}
-        <div className="p-4 border-t border-neutral-800/80 bg-neutral-900/40">
+        <div className="p-4 border-t">
           <div className="flex items-center gap-3 px-2 py-2 mb-4">
-            <div className="w-9 h-9 rounded-full bg-neutral-800 flex items-center justify-center text-sm font-bold text-neutral-300 border border-neutral-700/60 uppercase">
+            <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold border uppercase">
               {user?.name ? user.name[0] : 'A'}
             </div>
             <div className="flex flex-col min-w-0">
               <span className="text-sm font-semibold text-white truncate">{user?.name || 'Administrator'}</span>
-              <span className="text-xs text-neutral-500 truncate">{user?.email || 'admin@portfolio.com'}</span>
+              <span className="text-xs truncate">{user?.email || 'admin@portfolio.com'}</span>
             </div>
           </div>
 
           <div className="flex flex-col gap-1.5">
             <Link
               href="/"
-              className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-all duration-200 border border-neutral-700/50"
+              className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold hover:text-white transition-all duration-200 border"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />

@@ -179,29 +179,29 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
   if (!mounted) return null;
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-4xl bg-neutral-900/10 p-2 sm:p-6 border border-neutral-900 rounded-2xl">
+    <form onSubmit={handleSubmit} className="space-y-6 max-w-4xl p-2 sm:p-6 border rounded-2xl">
       
       {/* Title & Slug */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-bold text-neutral-400 uppercase tracking-wide">Project Title</label>
+          <label className="text-xs font-bold uppercase tracking-wide">Project Title</label>
           <input
             type="text"
             value={title}
             onChange={handleTitleChange}
             placeholder="e.g. Antigravity Coding IDE"
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
+            className="w-full border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
           />
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-bold text-neutral-400 uppercase tracking-wide">URL Slug</label>
+          <label className="text-xs font-bold uppercase tracking-wide">URL Slug</label>
           <input
             type="text"
             value={slug}
             onChange={(e) => setSlug(generateSlug(e.target.value))}
             placeholder="e.g. antigravity-coding-ide"
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
+            className="w-full border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
           />
         </div>
       </div>
@@ -209,24 +209,24 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
       {/* Demo & GitHub URLs */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-bold text-neutral-400 uppercase tracking-wide">Live Demo Link</label>
+          <label className="text-xs font-bold uppercase tracking-wide">Live Demo Link</label>
           <input
             type="url"
             value={demoUrl}
             onChange={(e) => setDemoUrl(e.target.value)}
             placeholder="e.g. https://your-demo-app.com"
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
+            className="w-full border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
           />
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-bold text-neutral-400 uppercase tracking-wide">GitHub Repository Link</label>
+          <label className="text-xs font-bold uppercase tracking-wide">GitHub Repository Link</label>
           <input
             type="url"
             value={githubUrl}
             onChange={(e) => setGithubUrl(e.target.value)}
             placeholder="e.g. https://github.com/user/repository"
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
+            className="w-full border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
           />
         </div>
       </div>
@@ -234,8 +234,8 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
       {/* Summary */}
       <div className="flex flex-col gap-1.5">
         <div className="flex justify-between items-center">
-          <label className="text-xs font-bold text-neutral-400 uppercase tracking-wide">Short Project Summary</label>
-          <span className="text-[10px] text-neutral-500 font-medium">{summary.length}/500 chars</span>
+          <label className="text-xs font-bold uppercase tracking-wide">Short Project Summary</label>
+          <span className="text-[10px] font-medium">{summary.length}/500 chars</span>
         </div>
         <textarea
           rows={3}
@@ -243,31 +243,31 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
           value={summary}
           onChange={(e) => setSummary(e.target.value)}
           placeholder="Briefly describe what this project does and the technology stack utilized..."
-          className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200 resize-none"
+          className="w-full border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200 resize-none"
         />
       </div>
 
       {/* Description Content Editor */}
       <div className="flex flex-col gap-1.5">
-        <label className="text-xs font-bold text-neutral-400 uppercase tracking-wide">Detailed Description</label>
+        <label className="text-xs font-bold uppercase tracking-wide">Detailed Description</label>
         <Editor content={description} onChange={setDescription} />
       </div>
 
       {/* Thumbnail Cover Uploader */}
-      <div className="flex flex-col gap-2 bg-neutral-950/20 border border-neutral-800/80 p-4 rounded-xl">
-        <label className="text-xs font-bold text-neutral-400 uppercase tracking-wide">Project Showcase Image</label>
+      <div className="flex flex-col gap-2 border p-4 rounded-xl">
+        <label className="text-xs font-bold uppercase tracking-wide">Project Showcase Image</label>
         
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-1">
           {/* Cover Preview */}
-          <div className="w-40 h-24 rounded-xl bg-neutral-950 border border-neutral-800/80 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+          <div className="w-40 h-24 rounded-xl border flex items-center justify-center relative overflow-hidden flex-shrink-0">
             {uploadingImage ? (
-              <div className="absolute inset-0 bg-neutral-950/80 flex items-center justify-center">
+              <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-5 h-5 border-2 border-violet-500/20 border-t-violet-500 rounded-full animate-spin"></div>
               </div>
             ) : imageUrl ? (
               <img src={imageUrl} alt="Project Preview" className="w-full h-full object-cover" />
             ) : (
-              <div className="flex flex-col items-center gap-1 text-neutral-600">
+              <div className="flex flex-col items-center gap-1">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
@@ -286,39 +286,39 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
             />
             <label
               htmlFor="cover-upload"
-              className="inline-block px-4 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700/60 text-xs font-bold text-neutral-300 hover:text-white cursor-pointer transition-all duration-200"
+              className="inline-block px-4 py-2 rounded-xl border text-xs font-bold hover:text-white cursor-pointer transition-all duration-200"
             >
               Choose Showcase Image
             </label>
-            <p className="text-[10px] text-neutral-500">Supported formats: JPEG, PNG, WEBP. Recommend sizes under 2MB.</p>
+            <p className="text-[10px]">Supported formats: JPEG, PNG, WEBP. Recommend sizes under 2MB.</p>
           </div>
         </div>
       </div>
 
       {/* Featured & Published Toggles */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="flex items-center gap-3 bg-neutral-950/20 border border-neutral-800/80 p-3.5 rounded-xl">
+        <div className="flex items-center gap-3 border p-3.5 rounded-xl">
           <input
             type="checkbox"
             id="isFeatured"
             checked={isFeatured}
             onChange={(e) => setIsFeatured(e.target.checked)}
-            className="w-4.5 h-4.5 accent-violet-600 bg-neutral-950 border-neutral-800 rounded focus:ring-0 focus:ring-offset-0 cursor-pointer"
+            className="w-4.5 h-4.5 accent-violet-600 rounded focus:ring-0 focus:ring-offset-0 cursor-pointer"
           />
-          <label htmlFor="isFeatured" className="text-xs font-bold text-neutral-300 uppercase tracking-wide cursor-pointer select-none">
+          <label htmlFor="isFeatured" className="text-xs font-bold uppercase tracking-wide cursor-pointer select-none">
             Featured Project (Prominently shown first)
           </label>
         </div>
 
-        <div className="flex items-center gap-3 bg-neutral-950/20 border border-neutral-800/80 p-3.5 rounded-xl">
+        <div className="flex items-center gap-3 border p-3.5 rounded-xl">
           <input
             type="checkbox"
             id="isPublished"
             checked={isPublished}
             onChange={(e) => setIsPublished(e.target.checked)}
-            className="w-4.5 h-4.5 accent-violet-600 bg-neutral-950 border-neutral-800 rounded focus:ring-0 focus:ring-offset-0 cursor-pointer"
+            className="w-4.5 h-4.5 accent-violet-600 rounded focus:ring-0 focus:ring-offset-0 cursor-pointer"
           />
-          <label htmlFor="isPublished" className="text-xs font-bold text-neutral-300 uppercase tracking-wide cursor-pointer select-none">
+          <label htmlFor="isPublished" className="text-xs font-bold uppercase tracking-wide cursor-pointer select-none">
             Publish Project (Visible on public portfolio)
           </label>
         </div>
@@ -326,11 +326,11 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
 
       {/* Associated Skills (At the bottom) */}
       <div className="flex flex-col gap-2.5">
-        <label className="text-xs font-bold text-neutral-400 uppercase tracking-wide">Associated Skills (Click to toggle)</label>
+        <label className="text-xs font-bold uppercase tracking-wide">Associated Skills (Click to toggle)</label>
         {skills.length === 0 ? (
-          <p className="text-xs text-neutral-500 italic">No skills configured to associate.</p>
+          <p className="text-xs italic">No skills configured to associate.</p>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3 max-h-[160px] overflow-y-auto p-3 bg-neutral-950/20 border border-neutral-800/80 rounded-xl">
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3 max-h-[160px] overflow-y-auto p-3 border rounded-xl">
             {skills.map((skill) => {
               const isSelected = selectedSkills.includes(skill.id);
               return (
@@ -360,11 +360,11 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex justify-end gap-3 pt-4 border-t border-neutral-800/80">
+      <div className="flex justify-end gap-3 pt-4 border-t">
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2 rounded-xl text-xs font-bold bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-colors"
+          className="px-4 py-2 rounded-xl text-xs font-bold hover:text-white transition-colors"
         >
           Cancel
         </button>

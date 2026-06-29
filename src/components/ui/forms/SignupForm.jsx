@@ -47,60 +47,60 @@ export default function SignupForm() {
   };
 
   return (
-    <div className="w-full max-w-md p-8 rounded-3xl bg-neutral-900/60 border border-neutral-800/80 backdrop-blur-2xl shadow-[0_0_50px_-12px_rgba(0,0,0,0.7)] shadow-black/80">
+    <div className="w-full max-w-md p-8 rounded-3xl border backdrop-blur-2xl shadow-[0_0_50px_-12px_rgba(0,0,0,0.7)] shadow-black/80">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-extrabold tracking-tight text-white mb-2 bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
           Create Account
         </h2>
-        <p className="text-neutral-400 text-sm">Join to manage your professional portfolio</p>
+        <p className="text-sm">Join to manage your professional portfolio</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-xs font-semibold text-neutral-300 uppercase tracking-wider mb-2">Name</label>
+          <label className="block text-xs font-semibold uppercase tracking-wider mb-2">Name</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="John Doe"
             disabled={loading}
-            className="w-full px-4 py-3 rounded-xl bg-neutral-950/80 border border-neutral-800 text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all duration-200"
+            className="w-full px-4 py-3 rounded-xl border text-white focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all duration-200"
           />
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-neutral-300 uppercase tracking-wider mb-2">Email address</label>
+          <label className="block text-xs font-semibold uppercase tracking-wider mb-2">Email address</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="name@example.com"
             disabled={loading}
-            className="w-full px-4 py-3 rounded-xl bg-neutral-950/80 border border-neutral-800 text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all duration-200"
+            className="w-full px-4 py-3 rounded-xl border text-white focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all duration-200"
           />
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-neutral-300 uppercase tracking-wider mb-2">Password</label>
+          <label className="block text-xs font-semibold uppercase tracking-wider mb-2">Password</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="••••••••"
             disabled={loading}
-            className="w-full px-4 py-3 rounded-xl bg-neutral-950/80 border border-neutral-800 text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all duration-200"
+            className="w-full px-4 py-3 rounded-xl border text-white focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all duration-200"
           />
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-neutral-300 uppercase tracking-wider mb-2">Confirm Password</label>
+          <label className="block text-xs font-semibold uppercase tracking-wider mb-2">Confirm Password</label>
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="••••••••"
             disabled={loading}
-            className="w-full px-4 py-3 rounded-xl bg-neutral-950/80 border border-neutral-800 text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all duration-200"
+            className="w-full px-4 py-3 rounded-xl border text-white focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all duration-200"
           />
         </div>
 
@@ -113,7 +113,7 @@ export default function SignupForm() {
         </button>
       </form>
 
-      <div className="mt-8 pt-6 border-t border-neutral-800/80 text-center text-sm text-neutral-400">
+      <div className="mt-8 pt-6 border-t text-center text-sm">
         Already have an account?{' '}
         <Link href="/signin" className="font-semibold text-violet-400 hover:text-violet-300 transition-colors">
           Sign In

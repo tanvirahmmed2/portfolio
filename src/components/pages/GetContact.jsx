@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function GetContact() {
   return (
-    <section className="py-24 px-6 sm:px-8 bg-neutral-950 border-t border-neutral-900/60 relative overflow-hidden text-center">
+    <section className="py-24 px-6 sm:px-8 border-t relative overflow-hidden text-center">
       
       {/* Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-violet-600/5 rounded-full blur-[80px] pointer-events-none"></div>
@@ -12,7 +12,7 @@ export default function GetContact() {
       <div className="max-w-2xl mx-auto relative z-10 space-y-6">
         <span className="text-[10px] font-black tracking-widest text-violet-400 uppercase">Collaboration</span>
         <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight">Have a project idea in mind?</h2>
-        <p className="text-neutral-400 text-xs sm:text-sm max-w-lg mx-auto leading-relaxed">
+        <p className="text-xs sm:text-sm max-w-lg mx-auto leading-relaxed">
           Let's discuss details and construct something exceptional together. Send an email or fill in the quick contact form.
         </p>
         

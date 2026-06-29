@@ -125,24 +125,24 @@ export default function PanelAccessPage() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-black tracking-tight text-white">Access Control</h1>
-        <p className="text-neutral-400 text-sm mt-1">Verify new accounts, promote users, and manage administrative privileges.</p>
+        <p className="text-sm mt-1">Verify new accounts, promote users, and manage administrative privileges.</p>
       </div>
 
       {/* Query Filters */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-neutral-900/30 border border-neutral-800/80 p-4 rounded-2xl relative overflow-hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border p-4 rounded-2xl relative overflow-hidden">
         
         {/* Search */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Search Users</label>
+          <label className="text-[10px] font-bold uppercase tracking-widest">Search Users</label>
           <div className="relative">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by name or email..."
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-xl pl-9 pr-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all"
+              className="w-full border rounded-xl pl-9 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all"
             />
-            <svg className="w-4 h-4 text-neutral-600 absolute left-3 top-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 absolute left-3 top-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
@@ -150,11 +150,11 @@ export default function PanelAccessPage() {
 
         {/* Role Filter */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Filter Role</label>
+          <label className="text-[10px] font-bold uppercase tracking-widest">Filter Role</label>
           <select
             value={roleFilter}
             onChange={(e) => setRoleFilter(e.target.value)}
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
+            className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
           >
             <option value="All">All Roles</option>
             <option value="admin">Administrators</option>
@@ -164,11 +164,11 @@ export default function PanelAccessPage() {
 
         {/* Verification Filter */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Filter Status</label>
+          <label className="text-[10px] font-bold uppercase tracking-widest">Filter Status</label>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
+            className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
           >
             <option value="All">All Statuses</option>
             <option value="Verified">Verified Only</option>
@@ -179,35 +179,35 @@ export default function PanelAccessPage() {
 
       {/* Users Table / List */}
       {loading ? (
-        <div className="border border-neutral-800/80 rounded-2xl overflow-hidden bg-neutral-900/10 divide-y divide-neutral-900 animate-pulse">
+        <div className="border rounded-2xl overflow-hidden divide-y animate-pulse">
           {[...Array(5)].map((_, i) => (
             <div key={i} className="flex flex-col sm:flex-row items-center justify-between p-6 gap-4">
               <div className="flex items-center gap-3 w-1/3">
-                <div className="w-9 h-9 bg-neutral-800 rounded-full"></div>
+                <div className="w-9 h-9 rounded-full"></div>
                 <div className="space-y-2 flex-1">
-                  <div className="h-3 bg-neutral-800 rounded w-2/3"></div>
-                  <div className="h-2.5 bg-neutral-800 rounded w-1/2"></div>
+                  <div className="h-3 rounded w-2/3"></div>
+                  <div className="h-2.5 rounded w-1/2"></div>
                 </div>
               </div>
-              <div className="h-6 bg-neutral-800 rounded w-20"></div>
-              <div className="h-6 bg-neutral-800 rounded w-24"></div>
-              <div className="h-6 bg-neutral-800 rounded w-12"></div>
+              <div className="h-6 rounded w-20"></div>
+              <div className="h-6 rounded w-24"></div>
+              <div className="h-6 rounded w-12"></div>
             </div>
           ))}
         </div>
       ) : filteredUsers.length === 0 ? (
-        <div className="text-center py-20 border border-dashed border-neutral-800/80 rounded-2xl bg-neutral-900/10">
-          <svg className="w-12 h-12 mx-auto text-neutral-600 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="text-center py-20 border border-dashed rounded-2xl">
+          <svg className="w-12 h-12 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
-          <p className="text-neutral-400 font-medium">No users match your criteria.</p>
+          <p className="font-medium">No users match your criteria.</p>
         </div>
       ) : (
-        <div className="border border-neutral-800/85 rounded-2xl bg-neutral-900/20 shadow-sm overflow-hidden">
+        <div className="border rounded-2xl shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-neutral-800/80 bg-neutral-900/40 text-[10px] font-bold text-neutral-400 uppercase tracking-widest">
+                <tr className="border-b text-[10px] font-bold uppercase tracking-widest">
                   <th className="py-4 px-6">User</th>
                   <th className="py-4 px-6">Joined Date</th>
                   <th className="py-4 px-6 text-center">Verification Status</th>
@@ -215,19 +215,19 @@ export default function PanelAccessPage() {
                   <th className="py-4 px-6 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-neutral-800/50 text-sm text-neutral-300">
+              <tbody className="divide-y text-sm">
                 {filteredUsers.map((user) => {
                   const isSelf = user.id === currentUser?.id;
                   const verifyLoading = actionLoading[`${user.id}-is_verified`];
                   const roleLoading = actionLoading[`${user.id}-role`];
 
                   return (
-                    <tr key={user.id} className="hover:bg-neutral-900/30 transition-colors duration-150">
+                    <tr key={user.id} className="transition-colors duration-150">
                       
                       {/* User Info */}
                       <td className="py-4 px-6">
                         <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 rounded-full bg-neutral-800 flex items-center justify-center font-bold text-neutral-300 border border-neutral-700/60 uppercase">
+                          <div className="w-9 h-9 rounded-full flex items-center justify-center font-bold border uppercase">
                             {user.name ? user.name[0] : 'U'}
                           </div>
                           <div className="flex flex-col min-w-0">
@@ -239,13 +239,13 @@ export default function PanelAccessPage() {
                                 </span>
                               )}
                             </span>
-                            <span className="text-xs text-neutral-500 truncate mt-0.5">{user.email}</span>
+                            <span className="text-xs truncate mt-0.5">{user.email}</span>
                           </div>
                         </div>
                       </td>
 
                       {/* Created At */}
-                      <td className="py-4 px-6 text-xs text-neutral-400 font-medium">
+                      <td className="py-4 px-6 text-xs font-medium">
                         {user.created_at 
                           ? new Date(user.created_at).toLocaleDateString('en-US', {
                               year: 'numeric',
@@ -343,7 +343,7 @@ export default function PanelAccessPage() {
       {/* Delete User Confirmation Modal */}
       {deleteConfirmId && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-neutral-900 border border-neutral-800 rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">
+          <div className="border rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">
             
             <div className="w-12 h-12 bg-rose-600/10 rounded-full flex items-center justify-center mx-auto text-rose-500 mb-4 border border-rose-500/20">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -352,7 +352,7 @@ export default function PanelAccessPage() {
             </div>
 
             <h3 className="font-bold text-lg text-white mb-2">Delete User Account</h3>
-            <p className="text-neutral-400 text-xs leading-relaxed mb-6">
+            <p className="text-xs leading-relaxed mb-6">
               Are you sure you want to delete this user? This will permanently remove their profile, comments, reviews, and all associated items from the database.
             </p>
 
@@ -360,7 +360,7 @@ export default function PanelAccessPage() {
               <button
                 type="button"
                 onClick={() => setDeleteConfirmId(null)}
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-colors flex-1"
+                className="px-4 py-2 rounded-xl text-xs font-bold hover:text-white transition-colors flex-1"
               >
                 Cancel
               </button>

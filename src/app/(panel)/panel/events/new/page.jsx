@@ -7,7 +7,7 @@ export default function PanelNewEventPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-black tracking-tight text-white">Create Event</h1>
-        <p className="text-neutral-400 text-sm mt-1">Publish a new event details, location credentials, and registration information.</p>
+        <p className="text-sm mt-1">Publish a new event details, location credentials, and registration information.</p>
       </div>
 
       <EventForm />

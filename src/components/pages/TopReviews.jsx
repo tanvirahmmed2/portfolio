@@ -27,12 +27,12 @@ export default function TopReviews() {
 
   if (loading) {
     return (
-      <section className="py-20 px-6 sm:px-8 bg-neutral-950">
+      <section className="py-20 px-6 sm:px-8">
         <div className="max-w-4xl mx-auto space-y-6 animate-pulse">
-          <div className="h-6 w-36 bg-neutral-900 rounded"></div>
+          <div className="h-6 w-36 rounded"></div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="h-40 bg-neutral-900 rounded-2xl"></div>
-            <div className="h-40 bg-neutral-900 rounded-2xl"></div>
+            <div className="h-40 rounded-2xl"></div>
+            <div className="h-40 rounded-2xl"></div>
           </div>
         </div>
       </section>
@@ -42,7 +42,7 @@ export default function TopReviews() {
   if (reviews.length === 0) return null;
 
   return (
-    <section className="py-20 px-6 sm:px-8 bg-neutral-950 border-t border-neutral-900/60">
+    <section className="py-20 px-6 sm:px-8 border-t">
       <div className="max-w-5xl mx-auto space-y-12">
         
         {/* Section Header */}
@@ -67,7 +67,7 @@ export default function TopReviews() {
           {reviews.map((review) => (
             <div
               key={review.id}
-              className="p-6 bg-neutral-900/10 hover:bg-neutral-900/30 border border-neutral-900 hover:border-neutral-850 rounded-3xl transition-all duration-300 flex flex-col justify-between"
+              className="p-6 border rounded-3xl transition-all duration-300 flex flex-col justify-between"
             >
               <div className="space-y-4">
                 
@@ -81,7 +81,7 @@ export default function TopReviews() {
                 </div>
 
                 {/* Review Text */}
-                <p className="text-[11px] text-neutral-400 leading-relaxed italic">
+                <p className="text-[11px] leading-relaxed italic">
                   &ldquo;{review.review}&rdquo;
                 </p>
               </div>
@@ -93,7 +93,7 @@ export default function TopReviews() {
                 </div>
                 <div className="flex flex-col min-w-0">
                   <span className="text-[11px] font-bold text-white truncate">{review.name || 'Anonymous client'}</span>
-                  <span className="text-[9px] text-neutral-500 truncate">{review.email || ''}</span>
+                  <span className="text-[9px] truncate">{review.email || ''}</span>
                 </div>
               </div>
 

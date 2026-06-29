@@ -113,70 +113,70 @@ export default function PanelSettingsPage() {
       {/* Page Header */}
       <div>
         <h1 className="text-2xl font-black tracking-tight text-white">System Settings</h1>
-        <p className="text-neutral-400 text-sm mt-1">Configure profile summaries, theme views, resume links, and social metadata.</p>
+        <p className="text-sm mt-1">Configure profile summaries, theme views, resume links, and social metadata.</p>
       </div>
 
       {loading ? (
         /* Skeleton loaders */
-        <div className="max-w-4xl bg-neutral-900/10 border border-neutral-900 rounded-3xl p-6 sm:p-8 space-y-6 animate-pulse">
+        <div className="max-w-4xl border rounded-3xl p-6 sm:p-8 space-y-6 animate-pulse">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="h-10 bg-neutral-850 rounded-xl"></div>
-            <div className="h-10 bg-neutral-850 rounded-xl"></div>
-            <div className="h-10 bg-neutral-850 rounded-xl"></div>
-            <div className="h-10 bg-neutral-850 rounded-xl"></div>
+            <div className="h-10 rounded-xl"></div>
+            <div className="h-10 rounded-xl"></div>
+            <div className="h-10 rounded-xl"></div>
+            <div className="h-10 rounded-xl"></div>
           </div>
-          <div className="h-24 bg-neutral-850 rounded-xl"></div>
+          <div className="h-24 rounded-xl"></div>
         </div>
       ) : (
         /* Settings Update Form */
-        <form onSubmit={handleSubmit} className="max-w-4xl bg-neutral-900/10 border border-neutral-900 rounded-3xl p-6 sm:p-8 space-y-8">
+        <form onSubmit={handleSubmit} className="max-w-4xl border rounded-3xl p-6 sm:p-8 space-y-8">
           
           {/* Section 1: Developer Information */}
           <div className="space-y-5">
-            <h2 className="text-xs font-bold text-violet-400 uppercase tracking-widest border-b border-neutral-900 pb-2">Developer Profile</h2>
+            <h2 className="text-xs font-bold text-violet-400 uppercase tracking-widest border-b pb-2">Developer Profile</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Public Name</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider">Public Name</label>
                 <input
                   type="text"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Tanvir Ahmmed"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+                  className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Contact Email</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider">Contact Email</label>
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="e.g. hello@portfolio.com"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+                  className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Professional Title</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider">Professional Title</label>
                 <input
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. Senior Full-Stack Engineer"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+                  className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Default Site Theme</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider">Default Site Theme</label>
                 <select
                   value={theme}
                   onChange={(e) => setTheme(e.target.value)}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all cursor-pointer"
+                  className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all cursor-pointer"
                 >
                   <option value="dark">Dark Theme</option>
                   <option value="light">Light Theme</option>
@@ -185,92 +185,92 @@ export default function PanelSettingsPage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Bio Description Summary</label>
+              <label className="text-[10px] font-bold uppercase tracking-wider">Bio Description Summary</label>
               <textarea
                 rows={4}
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
                 placeholder="A brief bio displayed at the bottom, about, or contact pages..."
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all resize-none"
+                className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all resize-none"
               />
             </div>
           </div>
 
           {/* Section 2: Online URLs & Assets */}
           <div className="space-y-5">
-            <h2 className="text-xs font-bold text-violet-400 uppercase tracking-widest border-b border-neutral-900 pb-2">Social & Asset URLs</h2>
+            <h2 className="text-xs font-bold text-violet-400 uppercase tracking-widest border-b pb-2">Social & Asset URLs</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Resume PDF Link</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider">Resume PDF Link</label>
                 <input
                   type="url"
                   value={resumeUrl}
                   onChange={(e) => setResumeUrl(e.target.value)}
                   placeholder="https://drive.google.com/resume.pdf"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+                  className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">GitHub Link</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider">GitHub Link</label>
                 <input
                   type="url"
                   value={github}
                   onChange={(e) => setGithub(e.target.value)}
                   placeholder="https://github.com/username"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+                  className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">LinkedIn Link</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider">LinkedIn Link</label>
                 <input
                   type="url"
                   value={linkedin}
                   onChange={(e) => setLinkedin(e.target.value)}
                   placeholder="https://linkedin.com/in/username"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+                  className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Twitter Link</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider">Twitter Link</label>
                 <input
                   type="url"
                   value={twitter}
                   onChange={(e) => setTwitter(e.target.value)}
                   placeholder="https://twitter.com/username"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+                  className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Facebook Link</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider">Facebook Link</label>
                 <input
                   type="url"
                   value={facebook}
                   onChange={(e) => setFacebook(e.target.value)}
                   placeholder="https://facebook.com/username"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+                  className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Instagram Link</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider">Instagram Link</label>
                 <input
                   type="url"
                   value={instagram}
                   onChange={(e) => setInstagram(e.target.value)}
                   placeholder="https://instagram.com/username"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+                  className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
                 />
               </div>
             </div>
           </div>
 
           {/* Action Row */}
-          <div className="flex justify-end pt-4 border-t border-neutral-900">
+          <div className="flex justify-end pt-4 border-t">
             <button
               type="submit"
               disabled={submitLoading}

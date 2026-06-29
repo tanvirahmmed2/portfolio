@@ -25,7 +25,7 @@ export default function EventsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-neutral-950 py-24 px-6 sm:px-8 relative overflow-hidden">
+    <div className="min-h-screen py-24 px-6 sm:px-8 relative overflow-hidden">
       
       {/* Background Glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-600/5 rounded-full blur-[100px] pointer-events-none"></div>
@@ -34,10 +34,10 @@ export default function EventsPage() {
       <div className="max-w-4xl mx-auto relative z-10 space-y-12">
         
         {/* Header */}
-        <div className="space-y-3 border-b border-neutral-900 pb-8">
+        <div className="space-y-3 border-b pb-8">
           <span className="text-[10px] font-black tracking-widest text-violet-400 uppercase">Community & Outreach</span>
           <h1 className="text-4xl font-black text-white leading-tight">Featured Events</h1>
-          <p className="text-neutral-450 text-xs sm:text-sm">
+          <p className="text-xs sm:text-sm">
             Keep track of upcoming hackathons, tech meetups, presentations, and webinars.
           </p>
         </div>
@@ -45,24 +45,24 @@ export default function EventsPage() {
         {/* Events Grid */}
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-pulse">
-            <div className="h-48 bg-neutral-900 rounded-3xl"></div>
-            <div className="h-48 bg-neutral-900 rounded-3xl"></div>
+            <div className="h-48 rounded-3xl"></div>
+            <div className="h-48 rounded-3xl"></div>
           </div>
         ) : events.length === 0 ? (
-          <div className="p-8 text-center border border-neutral-900 bg-neutral-900/10 rounded-2xl">
-            <p className="text-neutral-500 text-xs">No active events listed at this time.</p>
+          <div className="p-8 text-center border rounded-2xl">
+            <p className="text-xs">No active events listed at this time.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {events.map((event) => (
               <div
                 key={event.id}
-                className="group bg-neutral-900/20 border border-neutral-900 hover:border-neutral-850 rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between"
+                className="group border rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between"
               >
                 
                 <div>
                   {/* Event Cover Photo */}
-                  <div className="relative aspect-video w-full bg-neutral-950 overflow-hidden border-b border-neutral-900/80">
+                  <div className="relative aspect-video w-full overflow-hidden border-b">
                     {event.image ? (
                       <img
                         src={event.image}
@@ -70,7 +70,7 @@ export default function EventsPage() {
                         className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-xs text-neutral-700 font-bold uppercase tracking-wider">
+                      <div className="w-full h-full flex items-center justify-center text-xs font-bold uppercase tracking-wider">
                         No Event Cover Preview
                       </div>
                     )}
@@ -97,12 +97,12 @@ export default function EventsPage() {
                     </h2>
                     
                     {event.location && (
-                      <span className="text-[10px] text-neutral-500 block">
+                      <span className="text-[10px] block">
                         📍 {event.location}
                       </span>
                     )}
 
-                    <p className="text-[11px] text-neutral-450 leading-relaxed line-clamp-3">
+                    <p className="text-[11px] leading-relaxed line-clamp-3">
                       {event.description}
                     </p>
                   </div>
@@ -125,7 +125,7 @@ export default function EventsPage() {
                       href={event.event_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-2 rounded-lg text-[10px] font-bold text-neutral-400 hover:text-white transition-colors"
+                      className="px-4 py-2 rounded-lg text-[10px] font-bold hover:text-white transition-colors"
                     >
                       Event Details
                     </a>

@@ -112,11 +112,11 @@ export default function PanelReviewsPage() {
       {/* Page Header */}
       <div>
         <h1 className="text-2xl font-black tracking-tight text-white">Review Moderation</h1>
-        <p className="text-neutral-400 text-sm mt-1">Approve client reviews, draft testimonials, and manage recommendation lists.</p>
+        <p className="text-sm mt-1">Approve client reviews, draft testimonials, and manage recommendation lists.</p>
       </div>
 
       {/* Tab Selectors */}
-      <div className="flex gap-4 border-b border-neutral-800 pb-px">
+      <div className="flex gap-4 border-b pb-px">
         <button
           onClick={() => setActiveTab('pending')}
           className={`pb-3 text-xs font-bold uppercase tracking-wider relative transition-all duration-150 cursor-pointer
@@ -146,27 +146,27 @@ export default function PanelReviewsPage() {
         /* Skeleton Grid */
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="bg-neutral-900/15 border border-neutral-900 rounded-2xl p-5 space-y-4 animate-pulse">
+            <div key={i} className="border rounded-2xl p-5 space-y-4 animate-pulse">
               <div className="flex justify-between">
-                <div className="h-3.5 bg-neutral-850 rounded w-1/4"></div>
-                <div className="h-3.5 bg-neutral-850 rounded w-20"></div>
+                <div className="h-3.5 rounded w-1/4"></div>
+                <div className="h-3.5 rounded w-20"></div>
               </div>
-              <div className="h-3 bg-neutral-850 rounded w-full"></div>
-              <div className="h-3 bg-neutral-850 rounded w-5/6"></div>
+              <div className="h-3 rounded w-full"></div>
+              <div className="h-3 rounded w-5/6"></div>
               <div className="flex gap-3 justify-end pt-3">
-                <div className="h-7 bg-neutral-850 rounded w-16"></div>
-                <div className="h-7 bg-neutral-850 rounded w-16"></div>
+                <div className="h-7 rounded w-16"></div>
+                <div className="h-7 rounded w-16"></div>
               </div>
             </div>
           ))}
         </div>
       ) : displayedReviews.length === 0 ? (
         /* Empty State */
-        <div className="text-center py-20 border border-dashed border-neutral-800/80 rounded-2xl bg-neutral-900/10">
-          <svg className="w-12 h-12 mx-auto text-neutral-600 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="text-center py-20 border border-dashed rounded-2xl">
+          <svg className="w-12 h-12 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.961 0 1.36 1.246.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.906a1 1 0 00.95-.69l1.519-4.674z" />
           </svg>
-          <p className="text-neutral-400 font-medium">No reviews in this category.</p>
+          <p className="font-medium">No reviews in this category.</p>
         </div>
       ) : (
         /* Reviews Grid */
@@ -177,28 +177,28 @@ export default function PanelReviewsPage() {
             return (
               <div
                 key={rev.id}
-                className="bg-neutral-900/30 border border-neutral-800/80 rounded-2xl p-5 flex flex-col justify-between gap-4 relative overflow-hidden"
+                className="border rounded-2xl p-5 flex flex-col justify-between gap-4 relative overflow-hidden"
               >
                 
                 {/* Header Rating & Email */}
                 <div className="flex justify-between items-center flex-wrap gap-2">
                   {renderStars(rev.rating)}
                   {rev.email && (
-                    <span className="text-[10px] text-neutral-500 font-mono select-all">{rev.email}</span>
+                    <span className="text-[10px] font-mono select-all">{rev.email}</span>
                   )}
                 </div>
 
                 {/* Body Text */}
-                <div className="flex-1 bg-neutral-950/20 border border-neutral-900 p-3.5 rounded-xl">
-                  <p className="text-xs text-neutral-300 italic whitespace-pre-wrap leading-relaxed">&ldquo;{rev.review}&rdquo;</p>
+                <div className="flex-1 border p-3.5 rounded-xl">
+                  <p className="text-xs italic whitespace-pre-wrap leading-relaxed">&ldquo;{rev.review}&rdquo;</p>
                 </div>
 
                 {/* Reviewer Meta & Action Buttons */}
-                <div className="flex justify-between items-center border-t border-neutral-800/50 pt-3 flex-wrap gap-3">
+                <div className="flex justify-between items-center border-t pt-3 flex-wrap gap-3">
                   <div>
                     <span className="text-xs font-bold text-white block">{rev.name}</span>
                     {(rev.title || rev.company) && (
-                      <span className="text-[9px] text-neutral-500 mt-0.5 block">
+                      <span className="text-[9px] mt-0.5 block">
                         {rev.title || ''}{rev.title && rev.company ? ' at ' : ''}{rev.company || ''}
                       </span>
                     )}
@@ -210,7 +210,7 @@ export default function PanelReviewsPage() {
                       <button
                         onClick={() => handleToggleApproval(rev.id, false)}
                         disabled={modLoading}
-                        className="px-3 py-1.5 rounded-xl border border-neutral-700/60 hover:bg-neutral-800 text-[10px] font-bold text-neutral-300 hover:text-white transition-all cursor-pointer"
+                        className="px-3 py-1.5 rounded-xl border text-[10px] font-bold hover:text-white transition-all cursor-pointer"
                       >
                         {modLoading ? 'Updating...' : 'Set Pending'}
                       </button>
@@ -227,7 +227,7 @@ export default function PanelReviewsPage() {
                     {/* Delete Trigger */}
                     <button
                       onClick={() => setDeleteConfirmId(rev.id)}
-                      className="p-1.5 rounded-xl bg-neutral-800/40 hover:bg-rose-500/10 text-neutral-500 hover:text-rose-400 border border-neutral-700/20 transition-all cursor-pointer"
+                      className="p-1.5 rounded-xl hover:bg-rose-500/10 hover:text-rose-400 border transition-all cursor-pointer"
                       title="Delete Review"
                     >
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -246,7 +246,7 @@ export default function PanelReviewsPage() {
       {/* Delete Confirmation Modal */}
       {deleteConfirmId && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-neutral-900 border border-neutral-800 rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">
+          <div className="border rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">
             
             <div className="w-12 h-12 bg-rose-600/10 rounded-full flex items-center justify-center mx-auto text-rose-500 mb-4 border border-rose-500/20">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -255,7 +255,7 @@ export default function PanelReviewsPage() {
             </div>
 
             <h3 className="font-bold text-lg text-white mb-2">Delete Review</h3>
-            <p className="text-neutral-400 text-xs leading-relaxed mb-6">
+            <p className="text-xs leading-relaxed mb-6">
               Are you sure you want to delete this review? This action is permanent and cannot be undone.
             </p>
 
@@ -263,7 +263,7 @@ export default function PanelReviewsPage() {
               <button
                 type="button"
                 onClick={() => setDeleteConfirmId(null)}
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-colors flex-1"
+                className="px-4 py-2 rounded-xl text-xs font-bold hover:text-white transition-colors flex-1"
               >
                 Cancel
               </button>

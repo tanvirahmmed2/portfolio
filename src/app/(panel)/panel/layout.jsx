@@ -17,7 +17,7 @@ export default function PanelLayout({ children }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-neutral-950 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="relative w-12 h-12">
           <div className="absolute inset-0 border-4 border-violet-500/10 rounded-full"></div>
           <div className="absolute inset-0 border-4 border-t-violet-500 rounded-full animate-spin"></div>
@@ -31,7 +31,7 @@ export default function PanelLayout({ children }) {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col md:flex-row">
+    <div className="min-h-screen flex flex-col md:flex-row">
       <Sidebar />
       <div className="flex-1 flex flex-col min-h-screen overflow-x-hidden">
         <Navbar />

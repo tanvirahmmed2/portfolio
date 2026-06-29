@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Hero() {
   const [settings, setSettings] = useState(null);
@@ -21,36 +22,24 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-neutral-950 flex items-center justify-center pt-16 px-6 sm:px-8 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center pt-16 px-6 sm:px-8 overflow-hidden">
+
       
-      {/* Background Glows */}
-      <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-violet-600/10 rounded-full blur-[100px] pointer-events-none"></div>
-      <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-indigo-600/5 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="w-full flex flex-col items-center justify-center gap-6">
 
-      <div className="max-w-4xl w-full text-center relative z-10 space-y-6">
-        
-        {/* Intro Tag */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-violet-500/20 bg-violet-950/20 text-violet-400 backdrop-blur-sm">
-          <span className="w-1.5 h-1.5 bg-violet-400 rounded-full animate-ping"></span>
-          <span className="text-[10px] font-black uppercase tracking-widest">Available for Hire</span>
-        </div>
 
-        {/* Dynamic Name & Title */}
-        <div className="space-y-3">
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
-            Hi, I'm <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-400 to-indigo-400">{settings?.name || 'Tanvir Ahmmed'}</span>
-          </h1>
-          <h2 className="text-xl sm:text-2xl font-bold text-neutral-300">
-            {settings?.title || 'Senior Full-Stack Developer'}
-          </h2>
-        </div>
 
-        {/* Description Summary */}
-        <p className="text-xs sm:text-sm text-neutral-400 max-w-xl mx-auto leading-relaxed">
+        <h2 className="text-4xl md:text-6xl font-semibold">
+          {settings?.title || 'Senior Full-Stack Developer'}
+        </h2>
+        <p className="text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
           {settings?.bio || 'Crafting robust software solutions and modern web applications with precision, detail, and rich user experiences.'}
         </p>
 
-        {/* Action Buttons */}
+        <div className='w-auto mx-auto'>
+          <Image src={'/tanvirahmmed.jpeg'} alt='tanvirahmmed' width={500} height={500} className='w-full max-w-52 rounded-full overflow-hidden object-cover'/>
+        </div>
+
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
           <Link
             href="/projects"
@@ -60,7 +49,7 @@ export default function Hero() {
           </Link>
           <Link
             href="/contact"
-            className="px-6 py-3 rounded-xl text-xs font-bold border border-neutral-800 hover:border-neutral-700 bg-neutral-950 text-neutral-300 hover:text-white transition-all hover:-translate-y-0.5"
+            className="px-6 py-3 rounded-xl text-xs font-bold border hover:text-white transition-all hover:-translate-y-0.5"
           >
             Get In Touch
           </Link>
@@ -73,7 +62,7 @@ export default function Hero() {
               href={settings.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-500 hover:text-white transition-colors"
+              className="hover:text-white transition-colors"
               title="GitHub"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -86,7 +75,7 @@ export default function Hero() {
               href={settings.socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-500 hover:text-white transition-colors"
+              className="hover:text-white transition-colors"
               title="LinkedIn"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -99,7 +88,7 @@ export default function Hero() {
               href={settings.socials.twitter}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-500 hover:text-white transition-colors"
+              className="hover:text-white transition-colors"
               title="Twitter"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

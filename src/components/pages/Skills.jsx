@@ -25,14 +25,14 @@ export default function Skills() {
 
   if (loading) {
     return (
-      <section className="py-20 px-6 sm:px-8 bg-neutral-950">
+      <section className="py-20 px-6 sm:px-8">
         <div className="max-w-4xl mx-auto space-y-6 animate-pulse">
-          <div className="h-6 w-36 bg-neutral-900 rounded"></div>
+          <div className="h-6 w-36 rounded"></div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="h-16 bg-neutral-900 rounded-xl"></div>
-            <div className="h-16 bg-neutral-900 rounded-xl"></div>
-            <div className="h-16 bg-neutral-900 rounded-xl"></div>
-            <div className="h-16 bg-neutral-900 rounded-xl"></div>
+            <div className="h-16 rounded-xl"></div>
+            <div className="h-16 rounded-xl"></div>
+            <div className="h-16 rounded-xl"></div>
+            <div className="h-16 rounded-xl"></div>
           </div>
         </div>
       </section>
@@ -51,7 +51,7 @@ export default function Skills() {
   });
 
   return (
-    <section className="py-20 px-6 sm:px-8 bg-neutral-950 border-t border-neutral-900/60">
+    <section className="py-20 px-6 sm:px-8 border-t">
       <div className="max-w-4xl mx-auto space-y-12">
         
         {/* Section Header */}
@@ -75,7 +75,7 @@ export default function Skills() {
         <div className="space-y-8">
           {Object.keys(categories).map((catName) => (
             <div key={catName} className="space-y-4">
-              <h3 className="text-xs font-black tracking-widest text-neutral-450 uppercase border-l-2 border-violet-500/40 pl-3">
+              <h3 className="text-xs font-black tracking-widest uppercase border-l-2 border-violet-500/40 pl-3">
                 {catName}
               </h3>
               
@@ -86,7 +86,7 @@ export default function Skills() {
                     <Link
                       key={skill.id}
                       href={`/skills/${slug}`}
-                      className="p-4 bg-neutral-900/10 hover:bg-neutral-900/30 border border-neutral-900 hover:border-neutral-850 rounded-2xl transition-all duration-300 flex items-center gap-3 group"
+                      className="p-4 border rounded-2xl transition-all duration-300 flex items-center gap-3 group"
                     >
                       {skill.image ? (
                         <img
@@ -95,7 +95,7 @@ export default function Skills() {
                           className="w-7 h-7 object-contain opacity-70 group-hover:opacity-100 transition-opacity"
                         />
                       ) : (
-                        <div className="w-7 h-7 rounded bg-neutral-850 flex items-center justify-center text-[9px] font-bold text-neutral-600">
+                        <div className="w-7 h-7 rounded flex items-center justify-center text-[9px] font-bold">
                           {skill.name.slice(0, 2).toUpperCase()}
                         </div>
                       )}
@@ -106,7 +106,7 @@ export default function Skills() {
                         </span>
                         
                         {/* Progress meter */}
-                        <div className="w-full bg-neutral-900 h-1 rounded-full overflow-hidden mt-1.5">
+                        <div className="w-full h-1 rounded-full overflow-hidden mt-1.5">
                           <div
                             className="bg-violet-500 h-full rounded-full"
                             style={{ width: `${skill.proficiency || 0}%` }}

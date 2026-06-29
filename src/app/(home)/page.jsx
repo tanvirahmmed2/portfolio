@@ -9,7 +9,7 @@ import React from 'react'
 
 const HomePage = () => {
   return (
-    <div>
+    <div className='w-full overflow-x-hidden'>
       <Hero/>
       <LittleDescription/>
       <FeaturedProjects/>

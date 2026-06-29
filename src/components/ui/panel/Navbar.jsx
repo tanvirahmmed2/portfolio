@@ -20,7 +20,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="h-16 border-b border-neutral-900/60 bg-neutral-950/40 backdrop-blur-md px-6 md:px-8 flex items-center justify-between sticky top-0 z-10">
+    <header className="h-16 border-b backdrop-blur-md px-6 md:px-8 flex items-center justify-between sticky top-0 z-10">
       <div className="flex items-center gap-2">
         <h2 className="text-sm font-bold text-white tracking-wider uppercase">
           {getRouteTitle(pathname)}
@@ -29,7 +29,7 @@ export default function Navbar() {
       
       <div className="flex items-center gap-4">
         {user?.name && (
-          <span className="hidden sm:inline-block text-xs font-semibold text-neutral-400 bg-neutral-900/60 px-3 py-1.5 rounded-full border border-neutral-800/60">
+          <span className="hidden sm:inline-block text-xs font-semibold px-3 py-1.5 rounded-full border">
             Welcome back, <strong className="text-violet-400 font-bold ml-1">{user.name}</strong>
           </span>
         )}

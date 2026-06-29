@@ -20,7 +20,7 @@ export default function LittleDescription() {
   }, []);
 
   return (
-    <section className="py-20 px-6 sm:px-8 bg-neutral-950 border-t border-neutral-900/60">
+    <section className="py-20 px-6 sm:px-8 border-t">
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-8 items-center justify-between">
         
         {/* Left tagline */}
@@ -31,10 +31,10 @@ export default function LittleDescription() {
 
         {/* Right bio text */}
         <div className="md:w-2/3 border-l-2 border-violet-500/20 pl-6 py-2">
-          <p className="text-xs text-neutral-400 leading-relaxed italic">
+          <p className="text-xs leading-relaxed italic">
             &ldquo;{settings?.bio || 'Building web applications with optimized pipelines, structured databases, and responsive client layouts. My goal is to engineer software that scales effectively and provides seamless, robust user experiences.'}&rdquo;
           </p>
-          <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block mt-4">
+          <span className="text-[10px] font-bold uppercase tracking-widest block mt-4">
             &mdash; {settings?.name || 'Tanvir Ahmmed'}, {settings?.title || 'Lead Architect'}
           </span>
         </div>

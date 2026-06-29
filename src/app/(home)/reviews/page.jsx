@@ -98,7 +98,7 @@ export default function PublicReviewsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-950 py-20 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative overflow-hidden">
       
       {/* Background Orbs */}
       <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-violet-600/5 rounded-full blur-[100px] pointer-events-none"></div>
@@ -107,11 +107,11 @@ export default function PublicReviewsPage() {
       <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-10 relative z-10">
         
         {/* Left Side: Submit Card (col-span-5) */}
-        <div className="lg:col-span-5 p-6 sm:p-8 bg-neutral-900/30 border border-neutral-800/80 rounded-3xl backdrop-blur-md flex flex-col gap-6">
+        <div className="lg:col-span-5 p-6 sm:p-8 border rounded-3xl backdrop-blur-md flex flex-col gap-6">
           <div>
             <span className="text-[10px] font-black tracking-widest text-violet-400 uppercase">Testimonials</span>
             <h1 className="text-2xl font-black tracking-tight text-white mt-1">Leave a Review</h1>
-            <p className="text-neutral-400 text-xs mt-2 leading-relaxed">
+            <p className="text-xs mt-2 leading-relaxed">
               Your feedback is valuable! Shares your experience collaborating or working with me.
             </p>
           </div>
@@ -119,57 +119,57 @@ export default function PublicReviewsPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1">
-                <label className="text-[9px] font-bold text-neutral-400 uppercase tracking-wider">Your Name</label>
+                <label className="text-[9px] font-bold uppercase tracking-wider">Your Name</label>
                 <input
                   type="text"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. John Doe"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-white placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
+                  className="w-full border rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
                 />
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-[9px] font-bold text-neutral-400 uppercase tracking-wider">Email Address</label>
+                <label className="text-[9px] font-bold uppercase tracking-wider">Email Address</label>
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="e.g. john@example.com"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-white placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
+                  className="w-full border rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1">
-                <label className="text-[9px] font-bold text-neutral-400 uppercase tracking-wider">Designation / Role</label>
+                <label className="text-[9px] font-bold uppercase tracking-wider">Designation / Role</label>
                 <input
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. Tech Lead (Optional)"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-white placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
+                  className="w-full border rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
                 />
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-[9px] font-bold text-neutral-400 uppercase tracking-wider">Company</label>
+                <label className="text-[9px] font-bold uppercase tracking-wider">Company</label>
                 <input
                   type="text"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
                   placeholder="e.g. Google (Optional)"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-white placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
+                  className="w-full border rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
                 />
               </div>
             </div>
 
             {/* Interactive Rating Star Select */}
-            <div className="flex flex-col gap-1 bg-neutral-950/30 border border-neutral-850 p-3 rounded-xl">
-              <span className="text-[9px] font-bold text-neutral-400 uppercase tracking-wider">Select Rating</span>
+            <div className="flex flex-col gap-1 border p-3 rounded-xl">
+              <span className="text-[9px] font-bold uppercase tracking-wider">Select Rating</span>
               <div className="flex gap-1.5 mt-1.5">
                 {[1, 2, 3, 4, 5].map((star) => {
                   const isGold = hoverRating ? star <= hoverRating : star <= rating;
@@ -180,7 +180,7 @@ export default function PublicReviewsPage() {
                       onClick={() => setRating(star)}
                       onMouseEnter={() => setHoverRating(star)}
                       onMouseLeave={() => setHoverRating(0)}
-                      className="text-neutral-700 hover:scale-110 active:scale-95 transition-all duration-150 cursor-pointer"
+                      className="hover:scale-110 active:scale-95 transition-all duration-150 cursor-pointer"
                     >
                       <svg
                         className={`w-7 h-7 transition-colors ${isGold ? 'text-amber-400 fill-current' : 'text-neutral-700'}`}
@@ -196,14 +196,14 @@ export default function PublicReviewsPage() {
             </div>
 
             <div className="flex flex-col gap-1">
-              <label className="text-[9px] font-bold text-neutral-400 uppercase tracking-wider">Review Message</label>
+              <label className="text-[9px] font-bold uppercase tracking-wider">Review Message</label>
               <textarea
                 required
                 rows={4}
                 value={reviewText}
                 onChange={(e) => setReviewText(e.target.value)}
                 placeholder="Share your detailed feedback here..."
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-white placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all resize-none"
+                className="w-full border rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all resize-none"
               />
             </div>
 
@@ -231,50 +231,50 @@ export default function PublicReviewsPage() {
           {loading ? (
             <div className="space-y-4">
               {[...Array(3)].map((_, i) => (
-                <div key={i} className="bg-neutral-900/15 border border-neutral-900 rounded-2xl p-5 space-y-3 animate-pulse">
-                  <div className="h-4 bg-neutral-800 rounded w-20"></div>
-                  <div className="h-3.5 bg-neutral-800 rounded w-full"></div>
-                  <div className="h-3 bg-neutral-800 rounded w-1/3"></div>
+                <div key={i} className="border rounded-2xl p-5 space-y-3 animate-pulse">
+                  <div className="h-4 rounded w-20"></div>
+                  <div className="h-3.5 rounded w-full"></div>
+                  <div className="h-3 rounded w-1/3"></div>
                 </div>
               ))}
             </div>
           ) : reviews.length === 0 ? (
-            <div className="text-center py-20 border border-dashed border-neutral-900/50 rounded-2xl bg-neutral-900/10">
-              <svg className="w-10 h-10 mx-auto text-neutral-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="text-center py-20 border border-dashed rounded-2xl">
+              <svg className="w-10 h-10 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
-              <p className="text-neutral-500 text-xs font-semibold uppercase tracking-wider">No reviews approved yet</p>
-              <p className="text-[10px] text-neutral-600 mt-0.5">Be the first to submit a review on the left!</p>
+              <p className="text-xs font-semibold uppercase tracking-wider">No reviews approved yet</p>
+              <p className="text-[10px] mt-0.5">Be the first to submit a review on the left!</p>
             </div>
           ) : (
             <div className="space-y-4 max-h-[500px] overflow-y-auto pr-1">
               {reviews.map((rev) => (
                 <div
                   key={rev.id}
-                  className="bg-neutral-900/20 hover:bg-neutral-900/40 border border-neutral-900 hover:border-neutral-850 rounded-2xl p-5 flex flex-col justify-between gap-4 transition-all duration-300 relative overflow-hidden"
+                  className="border rounded-2xl p-5 flex flex-col justify-between gap-4 transition-all duration-300 relative overflow-hidden"
                 >
                   {/* Rating & Quote Icon */}
                   <div className="flex justify-between items-center">
                     {renderStars(rev.rating)}
-                    <span className="text-3xl text-neutral-800 font-serif leading-none select-none">“</span>
+                    <span className="text-3xl font-serif leading-none select-none">“</span>
                   </div>
 
                   {/* Review Text */}
-                  <p className="text-xs text-neutral-300 leading-relaxed whitespace-pre-wrap italic">
+                  <p className="text-xs leading-relaxed whitespace-pre-wrap italic">
                     {rev.review}
                   </p>
 
                   {/* Reviewer Meta */}
-                  <div className="border-t border-neutral-900/60 pt-3 flex justify-between items-center text-[10px] font-semibold text-neutral-500">
+                  <div className="border-t pt-3 flex justify-between items-center text-[10px] font-semibold">
                     <div>
                       <span className="text-white block font-bold">{rev.name}</span>
                       {(rev.title || rev.company) && (
-                        <span className="text-[9px] text-neutral-500 mt-0.5 block">
+                        <span className="text-[9px] mt-0.5 block">
                           {rev.title || ''}{rev.title && rev.company ? ' at ' : ''}{rev.company || ''}
                         </span>
                       )}
                     </div>
-                    <span className="font-medium text-neutral-600">
+                    <span className="font-medium">
                       {rev.created_at
                         ? new Date(rev.created_at).toLocaleDateString('en-US', {
                             year: 'numeric',

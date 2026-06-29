@@ -150,110 +150,110 @@ export default function EventForm({ initialData }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-4xl bg-neutral-900/10 border border-neutral-900 rounded-3xl p-6 sm:p-8">
+    <form onSubmit={handleSubmit} className="space-y-6 max-w-4xl border rounded-3xl p-6 sm:p-8">
       
       {/* 2-Column Inputs Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         {/* Title */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Event Title</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider">Event Title</label>
           <input
             type="text"
             required
             value={title}
             onChange={(e) => handleTitleChange(e.target.value)}
             placeholder="e.g. NextJS Developer Meetup"
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+            className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
           />
         </div>
 
         {/* Slug */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">URL Slug</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider">URL Slug</label>
           <input
             type="text"
             required
             value={slug}
             onChange={(e) => setSlug(e.target.value.toLowerCase().replace(/\s+/g, '-'))}
             placeholder="e.g. nextjs-developer-meetup"
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+            className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
           />
         </div>
 
         {/* Event Date */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Event Date & Time</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider">Event Date & Time</label>
           <input
             type="datetime-local"
             required
             value={eventDate}
             onChange={(e) => setEventDate(e.target.value)}
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
+            className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
           />
         </div>
 
         {/* Event Type */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Event Type / Tag</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider">Event Type / Tag</label>
           <input
             type="text"
             value={eventType}
             onChange={(e) => setEventType(e.target.value)}
             placeholder="e.g. Meetup, Workshop, Conference"
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+            className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
           />
         </div>
 
         {/* Location */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Location / Streaming Link</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider">Location / Streaming Link</label>
           <input
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             placeholder="e.g. Silicon Valley Center or Zoom/YouTube"
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+            className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
           />
         </div>
 
         {/* Featured Toggle */}
         <div className="flex flex-col justify-end">
-          <label className="flex items-center gap-3 bg-neutral-950/40 border border-neutral-850 p-3 rounded-xl cursor-pointer select-none">
+          <label className="flex items-center gap-3 border p-3 rounded-xl cursor-pointer select-none">
             <input
               type="checkbox"
               checked={isFeatured}
               onChange={(e) => setIsFeatured(e.target.checked)}
-              className="accent-violet-500 w-4 h-4 rounded border-neutral-800 bg-neutral-950 cursor-pointer"
+              className="accent-violet-500 w-4 h-4 rounded cursor-pointer"
             />
             <div className="flex flex-col">
               <span className="text-xs font-bold text-white">Featured Event</span>
-              <span className="text-[9px] text-neutral-500">Showcase this event prominently</span>
+              <span className="text-[9px]">Showcase this event prominently</span>
             </div>
           </label>
         </div>
 
         {/* Registration URL */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Registration Link</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider">Registration Link</label>
           <input
             type="url"
             value={registrationUrl}
             onChange={(e) => setRegistrationUrl(e.target.value)}
             placeholder="https://eventbrite.com/example"
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+            className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
           />
         </div>
 
         {/* Event details page link */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Join / Details Link</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider">Join / Details Link</label>
           <input
             type="url"
             value={eventUrl}
             onChange={(e) => setEventUrl(e.target.value)}
             placeholder="https://zoom.us/j/example"
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-violet-500 transition-all"
+            className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
           />
         </div>
 
@@ -261,10 +261,10 @@ export default function EventForm({ initialData }) {
 
       {/* Image Cover Upload block */}
       <div className="flex flex-col gap-1.5">
-        <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Cover Image</span>
-        <div className="flex items-center gap-6 p-5 border border-neutral-800 bg-neutral-950/20 rounded-2xl flex-col sm:flex-row">
+        <span className="text-[10px] font-bold uppercase tracking-wider">Cover Image</span>
+        <div className="flex items-center gap-6 p-5 border rounded-2xl flex-col sm:flex-row">
           {imageUrl ? (
-            <div className="relative w-40 h-24 rounded-lg overflow-hidden border border-neutral-850 flex-shrink-0 bg-neutral-950">
+            <div className="relative w-40 h-24 rounded-lg overflow-hidden border flex-shrink-0">
               <img src={imageUrl} alt="Thumbnail Preview" className="object-cover w-full h-full" />
               <button
                 type="button"
@@ -281,7 +281,7 @@ export default function EventForm({ initialData }) {
               </button>
             </div>
           ) : (
-            <div className="w-40 h-24 rounded-lg border-2 border-dashed border-neutral-800 flex items-center justify-center text-neutral-600 flex-shrink-0">
+            <div className="w-40 h-24 rounded-lg border-2 border-dashed flex items-center justify-center flex-shrink-0">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
@@ -289,7 +289,7 @@ export default function EventForm({ initialData }) {
           )}
 
           <div className="flex-1 flex flex-col items-start gap-2">
-            <label className="px-4 py-2 border border-neutral-800 hover:border-neutral-700 bg-neutral-950 text-neutral-300 hover:text-white rounded-xl text-xs font-bold transition-all cursor-pointer">
+            <label className="px-4 py-2 border hover:text-white rounded-xl text-xs font-bold transition-all cursor-pointer">
               {uploadingImage ? 'Uploading Image...' : 'Choose Cover File'}
               <input
                 type="file"
@@ -299,23 +299,23 @@ export default function EventForm({ initialData }) {
                 className="hidden"
               />
             </label>
-            <span className="text-[10px] text-neutral-500">Supports PNG, JPG, or WEBP up to 5MB. Uploaded via Cloudinary.</span>
+            <span className="text-[10px]">Supports PNG, JPG, or WEBP up to 5MB. Uploaded via Cloudinary.</span>
           </div>
         </div>
       </div>
 
       {/* Description Rich-Text Editor */}
       <div className="flex flex-col gap-1.5">
-        <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider font-semibold">Event Description</label>
+        <label className="text-[10px] font-bold uppercase tracking-wider font-semibold">Event Description</label>
         <Editor value={description} onChange={setDescription} />
       </div>
 
       {/* Action Row */}
-      <div className="flex justify-end gap-4 pt-4 border-t border-neutral-900">
+      <div className="flex justify-end gap-4 pt-4 border-t">
         <button
           type="button"
           onClick={() => router.push('/panel/events')}
-          className="px-5 py-2.5 rounded-xl text-xs font-bold bg-neutral-850 hover:bg-neutral-800 text-neutral-400 hover:text-white transition-colors cursor-pointer"
+          className="px-5 py-2.5 rounded-xl text-xs font-bold hover:text-white transition-colors cursor-pointer"
         >
           Cancel
         </button>

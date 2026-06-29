@@ -89,7 +89,7 @@ const MenuBar = ({ editor }) => {
   ];
 
   return (
-    <div className="flex flex-wrap gap-1 p-1.5 bg-neutral-900 border border-neutral-800 rounded-t-xl border-b-transparent">
+    <div className="flex flex-wrap gap-1 p-1.5 border rounded-t-xl border-b-transparent">
       {items.map((item, idx) => (
         <button
           key={idx}

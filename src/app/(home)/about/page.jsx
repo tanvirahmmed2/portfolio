@@ -23,7 +23,7 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-neutral-950 py-24 px-6 sm:px-8 relative overflow-hidden">
+    <div className="min-h-screen py-24 px-6 sm:px-8 relative overflow-hidden">
       
       {/* Glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-600/5 rounded-full blur-[100px] pointer-events-none"></div>
@@ -35,35 +35,35 @@ export default function AboutPage() {
         <div className="space-y-3">
           <span className="text-[10px] font-black tracking-widest text-violet-400 uppercase">Who I Am</span>
           <h1 className="text-4xl font-black text-white leading-tight">About Me</h1>
-          <p className="text-neutral-400 text-sm leading-relaxed max-w-xl">
+          <p className="text-sm leading-relaxed max-w-xl">
             A comprehensive breakdown of my engineering philosophy, background history, and current credentials.
           </p>
         </div>
 
         {loading ? (
           <div className="space-y-6 animate-pulse">
-            <div className="h-6 w-1/2 bg-neutral-900 rounded"></div>
-            <div className="h-40 bg-neutral-900 rounded-3xl"></div>
+            <div className="h-6 w-1/2 rounded"></div>
+            <div className="h-40 rounded-3xl"></div>
           </div>
         ) : (
           <div className="space-y-8">
             
             {/* Core Card */}
-            <div className="p-6 sm:p-8 bg-neutral-900/10 border border-neutral-900 rounded-3xl space-y-6">
+            <div className="p-6 sm:p-8 border rounded-3xl space-y-6">
               <h2 className="text-lg font-bold text-white">
                 Hi, I'm {settings?.name || 'Tanvir Ahmmed'}, a passionate {settings?.title || 'Full-Stack Developer'}.
               </h2>
               
-              <p className="text-xs text-neutral-400 leading-relaxed whitespace-pre-line">
+              <p className="text-xs leading-relaxed whitespace-pre-line">
                 {settings?.bio || 'Building web applications with optimized pipelines, structured databases, and responsive client layouts. My goal is to engineer software that scales effectively and provides seamless, robust user experiences.'}
               </p>
 
               {/* Resume download button if present */}
               {settings?.resumeUrl && (
-                <div className="pt-4 border-t border-neutral-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div className="pt-4 border-t flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div className="space-y-1">
                     <span className="text-[10px] font-bold text-white uppercase block">Curriculum Vitae</span>
-                    <span className="text-[8px] text-neutral-500 block">Download my resume PDF to view full professional credits.</span>
+                    <span className="text-[8px] block">Download my resume PDF to view full professional credits.</span>
                   </div>
                   
                   <a
@@ -84,26 +84,26 @@ export default function AboutPage() {
             {/* Engineering Values Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               
-              <div className="p-5 bg-neutral-900/10 border border-neutral-900 rounded-2xl space-y-2">
+              <div className="p-5 border rounded-2xl space-y-2">
                 <span className="text-lg">💻</span>
                 <h3 className="text-xs font-bold text-white">Full-Stack Capability</h3>
-                <p className="text-[10px] text-neutral-500 leading-relaxed">
+                <p className="text-[10px] leading-relaxed">
                   Proficient in React, Next.js, Node.js, and structured relational database design.
                 </p>
               </div>
 
-              <div className="p-5 bg-neutral-900/10 border border-neutral-900 rounded-2xl space-y-2">
+              <div className="p-5 border rounded-2xl space-y-2">
                 <span className="text-lg">⚙️</span>
                 <h3 className="text-xs font-bold text-white">Optimized Architecture</h3>
-                <p className="text-[10px] text-neutral-500 leading-relaxed">
+                <p className="text-[10px] leading-relaxed">
                   Writing clean, semantic, and reusable code modules that compile efficiently.
                 </p>
               </div>
 
-              <div className="p-5 bg-neutral-900/10 border border-neutral-900 rounded-2xl space-y-2">
+              <div className="p-5 border rounded-2xl space-y-2">
                 <span className="text-lg">🎯</span>
                 <h3 className="text-xs font-bold text-white">User Centered UI</h3>
-                <p className="text-[10px] text-neutral-500 leading-relaxed">
+                <p className="text-[10px] leading-relaxed">
                   Creating responsive interfaces, smooth transitions, and premium dark glassmorphism effects.
                 </p>
               </div>

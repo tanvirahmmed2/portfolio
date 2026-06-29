@@ -27,13 +27,13 @@ export default function FeaturedProjects() {
 
   if (loading) {
     return (
-      <section className="py-20 px-6 sm:px-8 bg-neutral-950">
+      <section className="py-20 px-6 sm:px-8">
         <div className="max-w-6xl mx-auto space-y-6">
-          <div className="h-6 w-36 bg-neutral-900 rounded animate-pulse"></div>
+          <div className="h-6 w-36 rounded animate-pulse"></div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="h-64 bg-neutral-900 rounded-3xl animate-pulse"></div>
-            <div className="h-64 bg-neutral-900 rounded-3xl animate-pulse"></div>
-            <div className="h-64 bg-neutral-900 rounded-3xl animate-pulse"></div>
+            <div className="h-64 rounded-3xl animate-pulse"></div>
+            <div className="h-64 rounded-3xl animate-pulse"></div>
+            <div className="h-64 rounded-3xl animate-pulse"></div>
           </div>
         </div>
       </section>
@@ -43,7 +43,7 @@ export default function FeaturedProjects() {
   if (projects.length === 0) return null;
 
   return (
-    <section className="py-20 px-6 sm:px-8 bg-neutral-950 border-t border-neutral-900/60">
+    <section className="py-20 px-6 sm:px-8 border-t">
       <div className="max-w-6xl mx-auto space-y-12">
         
         {/* Section Header */}
@@ -68,11 +68,11 @@ export default function FeaturedProjects() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group bg-neutral-900/20 border border-neutral-900 hover:border-neutral-850 rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between"
+              className="group border rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 {/* Cover Image */}
-                <div className="relative aspect-video w-full bg-neutral-950 overflow-hidden border-b border-neutral-900/80">
+                <div className="relative aspect-video w-full overflow-hidden border-b">
                   {project.image ? (
                     <img
                       src={project.image}
@@ -80,7 +80,7 @@ export default function FeaturedProjects() {
                       className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-xs text-neutral-600 font-bold uppercase tracking-wider">
+                    <div className="w-full h-full flex items-center justify-center text-xs font-bold uppercase tracking-wider">
                       No Preview Image
                     </div>
                   )}
@@ -96,7 +96,7 @@ export default function FeaturedProjects() {
                   <h3 className="text-sm font-bold text-white group-hover:text-violet-400 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-[11px] text-neutral-450 leading-relaxed line-clamp-3">
+                  <p className="text-[11px] leading-relaxed line-clamp-3">
                     {project.description}
                   </p>
 
@@ -106,13 +106,13 @@ export default function FeaturedProjects() {
                       {project.skills.slice(0, 3).map((skill) => (
                         <span
                           key={skill.id}
-                          className="text-[8px] font-bold text-neutral-400 bg-neutral-950 px-2 py-0.5 rounded"
+                          className="text-[8px] font-bold px-2 py-0.5 rounded"
                         >
                           {skill.name}
                         </span>
                       ))}
                       {project.skills.length > 3 && (
-                        <span className="text-[8px] font-bold text-neutral-500">
+                        <span className="text-[8px] font-bold">
                           +{project.skills.length - 3}
                         </span>
                       )}
@@ -128,7 +128,7 @@ export default function FeaturedProjects() {
                     href={project.project_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[10px] font-bold text-white bg-neutral-800 hover:bg-neutral-750 px-4 py-2 rounded-lg transition-all"
+                    className="text-[10px] font-bold text-white px-4 py-2 rounded-lg transition-all"
                   >
                     Live Demo
                   </a>
@@ -138,7 +138,7 @@ export default function FeaturedProjects() {
                     href={project.github_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[10px] font-bold text-neutral-400 hover:text-white transition-colors"
+                    className="text-[10px] font-bold hover:text-white transition-colors"
                   >
                     Source Code
                   </a>

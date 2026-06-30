@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Skills() {
   const [skills, setSkills] = useState([]);
@@ -58,7 +59,7 @@ export default function Skills() {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div className="space-y-2">
             <span className="text-[10px] font-black tracking-widest text-violet-400 uppercase">Core Competencies</span>
-            <h2 className="text-3xl font-black text-white">Technical Skills</h2>
+            <h2 className="text-3xl font-black ">Technical Skills</h2>
           </div>
           <Link
             href="/skills"
@@ -89,7 +90,7 @@ export default function Skills() {
                       className="p-4 border rounded-2xl transition-all duration-300 flex items-center gap-3 group"
                     >
                       {skill.image ? (
-                        <img
+                        <Image width={100} height={100}
                           src={skill.image}
                           alt={skill.name}
                           className="w-7 h-7 object-contain opacity-70 group-hover:opacity-100 transition-opacity"
@@ -101,7 +102,7 @@ export default function Skills() {
                       )}
                       
                       <div className="flex-1 min-w-0">
-                        <span className="text-[11px] font-bold text-white block truncate group-hover:text-violet-400 transition-colors">
+                        <span className="text-[11px] font-bold  block truncate text-violet-400 transition-colors">
                           {skill.name}
                         </span>
                         

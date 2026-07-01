@@ -95,6 +95,9 @@ export default function Skills() {
                           alt={skill.name}
                           className="w-7 h-7 object-contain opacity-70 group-hover:opacity-100 transition-opacity"
                         />
+
+
+                        
                       ) : (
                         <div className="w-7 h-7 rounded flex items-center justify-center text-[9px] font-bold">
                           {skill.name.slice(0, 2).toUpperCase()}

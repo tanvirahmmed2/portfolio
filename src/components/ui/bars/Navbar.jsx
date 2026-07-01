@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out bg-white 
         ${visible ? 'translate-y-0  backdrop-blur-md' : '-translate-y-full bg-transparent'}
       `}
     >
@@ -35,7 +35,7 @@ export default function Navbar() {
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-violet-500 to-indigo-500 transition-all duration-300 group-hover:w-full"></span>
           </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="flex items-center gap-8">
           <Link href="/about" className="text-sm font-medium  transition-colors relative group py-2">
             About
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-violet-500 to-indigo-500 transition-all duration-300 group-hover:w-full"></span>

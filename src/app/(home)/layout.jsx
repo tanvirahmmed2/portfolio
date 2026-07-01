@@ -2,6 +2,11 @@ import Footer from '@/components/ui/bars/Footer';
 import Navbar from '@/components/ui/bars/Navbar';
 import React from 'react';
 
+export const metadata = {
+  title: 'Home | Tanvir Ahmmed',
+  description: 'Explore the full-stack portfolio of Tanvir Ahmmed, a software engineer building web applications and IoT systems.',
+};
+
 export default function HomeLayout({ children }) {
   return <div className='w-full'>
     <Navbar />

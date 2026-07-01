@@ -13,9 +13,9 @@ const HomePage = () => {
       <Hero/>
       <LittleDescription/>
       <FeaturedProjects/>
-      <Skills/>
       <WorksLife/>
       <TopReviews/>
+      <Skills/>
       <GetContact/>
 
     </div>

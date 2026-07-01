@@ -269,7 +269,7 @@ export default function AboutPage() {
                 
                 {/* Philosophy 1 */}
                 <div className="p-6 border-l-4 border-violet-500 bg-slate-50 rounded-r-2xl space-y-2.5">
-                  <span className="text-lg">✍️</span>
+                  
                   <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider">Write for Humans, Optimize for Machines</h4>
                   <p className="text-[11px] leading-relaxed text-slate-500">
                     Code should be clean, modular, and self-documenting. Following SOLID principles guarantees that the code created today can be scaled seamlessly by other developers tomorrow.
@@ -278,7 +278,7 @@ export default function AboutPage() {
 
                 {/* Philosophy 2 */}
                 <div className="p-6 border-l-4 border-indigo-500 bg-slate-50 rounded-r-2xl space-y-2.5">
-                  <span className="text-lg">📊</span>
+                  
                   <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider">Data-Driven Performance</h4>
                   <p className="text-[11px] leading-relaxed text-slate-500">
                     Whether it is optimizing a PostgreSQL index strategy to slash database fetch latency or lazy-loading React nodes to enhance Cumulative Layout Shift (CLS), metrics direct the optimization process.
@@ -287,7 +287,7 @@ export default function AboutPage() {
 
                 {/* Philosophy 3 */}
                 <div className="p-6 border-l-4 border-fuchsia-500 bg-slate-50 rounded-r-2xl space-y-2.5">
-                  <span className="text-lg">👤</span>
+                  
                   <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider">User-Centric Engineering</h4>
                   <p className="text-[11px] leading-relaxed text-slate-500">
                     I build solutions, not just features. Stepping into the end-user's shoes ensures the application is intuitive, accessible, and friction-free across all screen dimensions.

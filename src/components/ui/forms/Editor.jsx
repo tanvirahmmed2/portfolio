@@ -89,7 +89,7 @@ const MenuBar = ({ editor }) => {
   ];
 
   return (
-    <div className="flex flex-wrap gap-1 p-1.5 border rounded-t-xl border-b-transparent">
+    <div className="flex flex-wrap gap-1 p-1.5 border border-slate-200 bg-slate-50 rounded-t-xl border-b-transparent">
       {items.map((item, idx) => (
         <button
           key={idx}
@@ -97,8 +97,8 @@ const MenuBar = ({ editor }) => {
           onClick={item.action}
           className={`p-1.5 rounded-lg text-xs font-bold flex items-center justify-center min-w-[28px] h-[28px] border transition-all duration-150
             ${item.isActive()
-              ? 'bg-violet-600/20 text-violet-400 border-violet-500/20 shadow-sm'
-              : 'bg-transparent text-neutral-400 border-transparent hover:bg-neutral-800/80 hover:text-white'
+              ? 'bg-violet-50 text-violet-600 border-violet-200 shadow-xs'
+              : 'bg-transparent text-slate-500 border-transparent hover:bg-slate-200/50 hover:text-slate-800'
             }
           `}
           title={item.label}
@@ -125,7 +125,7 @@ export default function Editor({ content, onChange }) {
     },
     editorProps: {
       attributes: {
-        class: 'focus:outline-none min-h-[250px] max-h-[400px] overflow-y-auto prose prose-invert max-w-none text-sm text-neutral-300 p-4 border border-neutral-800 rounded-b-xl bg-neutral-950/40',
+        class: 'focus:outline-none min-h-[250px] max-h-[400px] overflow-y-auto prose max-w-none text-sm text-slate-800 p-4 border border-slate-200 rounded-b-xl bg-white',
       },
     },
   });

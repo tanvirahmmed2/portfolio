@@ -106,13 +106,13 @@ export default function Sidebar() {
   return (
     <>
       {/* Mobile Top Header */}
-      <div className="md:hidden flex items-center justify-between border-b px-6 py-4 w-full relative z-30">
-        <Link href="/panel" className="text-lg font-black tracking-wider text-white">
+      <div className="md:hidden flex items-center justify-between border-b border-slate-200 bg-white px-6 py-4 w-full relative z-30 shadow-xs">
+        <Link href="/panel" className="text-lg font-black tracking-wider text-slate-900">
           ADMIN PANEL
         </Link>
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="p-2 hover:text-white focus:outline-none"
+          className="p-2 text-slate-600 hover:text-slate-900 focus:outline-none cursor-pointer"
           aria-label="Toggle Menu"
         >
           {mobileOpen ? (
@@ -129,17 +129,14 @@ export default function Sidebar() {
 
       {/* Sidebar Component */}
       <aside
-        className={`fixed inset-y-0 left-0 z-20 flex flex-col justify-between w-64 bg-neutral-900 border-r border-neutral-800/80 pt-16 md:pt-0 transform transition-transform duration-300 ease-in-out md:translate-x-0 md:relative
+        className={`fixed inset-y-0 left-0 z-20 flex flex-col justify-between w-64 bg-white border-r border-slate-200 pt-16 md:pt-0 transform transition-transform duration-300 ease-in-out md:translate-x-0 md:relative
           ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
       >
         <div className="flex flex-col flex-1 px-4 py-6 overflow-y-auto">
           {/* Logo / Title */}
           <div className="hidden md:flex items-center gap-2 mb-8 px-2">
-            <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white font-black text-sm">
-              A
-            </div>
-            <Link href="/panel" className="text-lg font-black tracking-wider text-white">
+            <Link href="/panel" className="text-lg font-black tracking-wider text-slate-900">
               ADMIN PANEL
             </Link>
           </div>
@@ -155,13 +152,13 @@ export default function Sidebar() {
                   onClick={() => setMobileOpen(false)}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group
                     ${isActive
-                      ? 'bg-violet-600/10 text-violet-400 border border-violet-500/20'
-                      : 'text-neutral-400 hover:text-white hover:bg-neutral-800/50 border border-transparent'
+                      ? 'bg-violet-50 text-violet-650 border border-violet-200'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent'
                     }
                   `}
                 >
                   <span className={`transition-colors duration-200
-                    ${isActive ? 'text-violet-400' : 'text-neutral-500 group-hover:text-neutral-300'}
+                    ${isActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-650'}
                   `}>
                     {item.icon}
                   </span>
@@ -173,23 +170,23 @@ export default function Sidebar() {
         </div>
 
         {/* User Info / Action Buttons */}
-        <div className="p-4 border-t">
+        <div className="p-4 border-t border-slate-100">
           <div className="flex items-center gap-3 px-2 py-2 mb-4">
-            <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold border uppercase">
+            <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold border border-slate-200 bg-slate-50 text-slate-700 uppercase">
               {user?.name ? user.name[0] : 'A'}
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="text-sm font-semibold text-white truncate">{user?.name || 'Administrator'}</span>
-              <span className="text-xs truncate">{user?.email || 'admin@portfolio.com'}</span>
+              <span className="text-sm font-semibold text-slate-800 truncate">{user?.name || 'Administrator'}</span>
+              <span className="text-xs text-slate-400 truncate">{user?.email || 'admin@portfolio.com'}</span>
             </div>
           </div>
 
           <div className="flex flex-col gap-1.5">
             <Link
               href="/"
-              className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold hover:text-white transition-all duration-200 border"
+              className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-slate-750 hover:text-slate-950 transition-all duration-200 border border-slate-200 bg-white hover:bg-slate-50 shadow-xs"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 text-slate-450" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
               </svg>
               View Live Site
@@ -197,7 +194,7 @@ export default function Sidebar() {
 
             <button
               onClick={() => logout()}
-              className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-rose-600/10 hover:bg-rose-600 text-rose-400 hover:text-white border border-rose-500/10 hover:border-transparent transition-all duration-200"
+              className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-rose-50 hover:bg-rose-600 text-rose-600 hover:text-white border border-rose-200/60 hover:border-transparent transition-all duration-200 cursor-pointer shadow-xs"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -208,11 +205,10 @@ export default function Sidebar() {
         </div>
       </aside>
 
-      {/* Mobile Backdrop overlay */}
       {mobileOpen && (
         <div
           onClick={() => setMobileOpen(false)}
-          className="fixed inset-0 z-10 bg-black/60 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-10 bg-slate-900/40 backdrop-blur-sm md:hidden"
         ></div>
       )}
     </>

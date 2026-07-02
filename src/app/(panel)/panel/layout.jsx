@@ -32,11 +32,9 @@ export default function PanelLayout({ children }) {
 
   return (
     <>
-      <head>
-        <title>Dashboard | Tanvir Ahmmed</title>
-        <meta name="description" content="Admin dashboard to manage portfolio settings, skills, projects, comments, work history, events, and reviews." />
-      </head>
-      <div className="min-h-screen flex flex-col md:flex-row">
+      <title>Dashboard | Tanvir Ahmmed</title>
+      <meta name="description" content="Admin dashboard to manage portfolio settings, skills, projects, comments, work history, events, and reviews." />
+      <div className="min-h-screen flex flex-col md:flex-row bg-slate-50 text-slate-600">
         <Sidebar />
         <div className="flex-1 flex flex-col min-h-screen overflow-x-hidden">
           <Navbar />

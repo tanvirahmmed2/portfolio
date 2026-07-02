@@ -103,71 +103,71 @@ export default function PanelProfilePage() {
       
       {/* Header Info */}
       <div>
-        <h1 className="text-2xl font-black tracking-tight text-white">Account Profile Settings</h1>
-        <p className="text-sm mt-1">Configure your personal admin details, email addresses, and security passwords.</p>
+        <h1 className="text-2xl font-black tracking-tight text-slate-900">Account Profile Settings</h1>
+        <p className="text-sm mt-1 text-slate-500">Configure your personal admin details, email addresses, and security passwords.</p>
       </div>
 
       {loading ? (
         /* Skeleton loading */
-        <div className="max-w-xl border rounded-3xl p-6 sm:p-8 space-y-5 animate-pulse">
-          <div className="h-10 rounded-xl"></div>
-          <div className="h-10 rounded-xl"></div>
-          <div className="h-10 rounded-xl"></div>
-          <div className="h-10 rounded-xl"></div>
+        <div className="max-w-xl border border-slate-200 bg-white rounded-3xl p-6 sm:p-8 space-y-5 animate-pulse shadow-xs">
+          <div className="h-10 bg-slate-200 rounded-xl"></div>
+          <div className="h-10 bg-slate-200 rounded-xl"></div>
+          <div className="h-10 bg-slate-200 rounded-xl"></div>
+          <div className="h-10 bg-slate-200 rounded-xl"></div>
         </div>
       ) : (
         /* Profile Edit Form */
-        <form onSubmit={handleSubmit} className="max-w-xl border rounded-3xl p-6 sm:p-8 space-y-5">
+        <form onSubmit={handleSubmit} className="max-w-xl border border-slate-200 bg-white rounded-3xl p-6 sm:p-8 space-y-5 shadow-xs">
           
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] font-bold uppercase tracking-wider">Account Username</label>
+            <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Account Username</label>
             <input
               type="text"
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Administrator"
-              className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
+              className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
             />
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] font-bold uppercase tracking-wider">Email Address</label>
+            <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Email Address</label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="e.g. admin@portfolio.com"
-              className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
+              className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
             />
           </div>
 
           {/* Divider */}
-          <div className="border-t my-4 pt-4">
-            <span className="text-[10px] font-bold uppercase tracking-wider block mb-2">Change Password</span>
-            <span className="text-[9px] block mb-4">Leave fields blank if you do not want to alter your password credentials.</span>
+          <div className="border-t border-slate-100 my-4 pt-4 text-slate-650">
+            <span className="text-[10px] font-bold text-slate-800 uppercase tracking-wider block mb-2">Change Password</span>
+            <span className="text-[9px] text-slate-400 block mb-4">Leave fields blank if you do not want to alter your password credentials.</span>
             
             <div className="space-y-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold uppercase tracking-wider">New Password</label>
+                <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">New Password</label>
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Min 6 characters (Optional)"
-                  className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
+                  className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold uppercase tracking-wider">Confirm New Password</label>
+                <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Confirm New Password</label>
                 <input
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Confirm password changes (Optional)"
-                  className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
+                  className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
                 />
               </div>
             </div>

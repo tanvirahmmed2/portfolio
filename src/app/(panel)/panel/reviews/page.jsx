@@ -95,7 +95,7 @@ export default function PanelReviewsPage() {
         {[...Array(5)].map((_, i) => (
           <svg
             key={i}
-            className={`${size} ${i < count ? 'fill-current' : 'text-neutral-700'}`}
+            className={`${size} ${i < count ? 'fill-current' : 'text-slate-200'}`}
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -111,18 +111,18 @@ export default function PanelReviewsPage() {
       
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-black tracking-tight text-white">Review Moderation</h1>
-        <p className="text-sm mt-1">Approve client reviews, draft testimonials, and manage recommendation lists.</p>
+        <h1 className="text-2xl font-black tracking-tight text-slate-900">Review Moderation</h1>
+        <p className="text-sm mt-1 text-slate-500">Approve client reviews, draft testimonials, and manage recommendation lists.</p>
       </div>
 
       {/* Tab Selectors */}
-      <div className="flex gap-4 border-b pb-px">
+      <div className="flex gap-4 border-b border-slate-200 pb-px">
         <button
           onClick={() => setActiveTab('pending')}
           className={`pb-3 text-xs font-bold uppercase tracking-wider relative transition-all duration-150 cursor-pointer
             ${activeTab === 'pending'
-              ? 'text-white border-b-2 border-violet-600'
-              : 'text-neutral-500 hover:text-neutral-300'
+              ? 'text-slate-800 border-b-2 border-violet-600'
+              : 'text-slate-400 hover:text-slate-700'
             }
           `}
         >
@@ -133,8 +133,8 @@ export default function PanelReviewsPage() {
           onClick={() => setActiveTab('approved')}
           className={`pb-3 text-xs font-bold uppercase tracking-wider relative transition-all duration-150 cursor-pointer
             ${activeTab === 'approved'
-              ? 'text-white border-b-2 border-violet-600'
-              : 'text-neutral-500 hover:text-neutral-300'
+              ? 'text-slate-800 border-b-2 border-violet-600'
+              : 'text-slate-400 hover:text-slate-700'
             }
           `}
         >
@@ -146,24 +146,24 @@ export default function PanelReviewsPage() {
         /* Skeleton Grid */
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="border rounded-2xl p-5 space-y-4 animate-pulse">
+            <div key={i} className="border border-slate-200 bg-white rounded-2xl p-5 space-y-4 animate-pulse shadow-xs">
               <div className="flex justify-between">
-                <div className="h-3.5 rounded w-1/4"></div>
-                <div className="h-3.5 rounded w-20"></div>
+                <div className="h-3.5 bg-slate-200 rounded w-1/4"></div>
+                <div className="h-3.5 bg-slate-200 rounded w-20"></div>
               </div>
-              <div className="h-3 rounded w-full"></div>
-              <div className="h-3 rounded w-5/6"></div>
+              <div className="h-3 bg-slate-200 rounded w-full"></div>
+              <div className="h-3 bg-slate-200 rounded w-5/6 mt-2"></div>
               <div className="flex gap-3 justify-end pt-3">
-                <div className="h-7 rounded w-16"></div>
-                <div className="h-7 rounded w-16"></div>
+                <div className="h-7 bg-slate-200 rounded w-16"></div>
+                <div className="h-7 bg-slate-200 rounded w-16"></div>
               </div>
             </div>
           ))}
         </div>
       ) : displayedReviews.length === 0 ? (
         /* Empty State */
-        <div className="text-center py-20 border border-dashed rounded-2xl">
-          <svg className="w-12 h-12 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="text-center py-20 border border-dashed border-slate-200 bg-white rounded-2xl text-slate-500 shadow-xs">
+          <svg className="w-12 h-12 mx-auto mb-3 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.961 0 1.36 1.246.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.906a1 1 0 00.95-.69l1.519-4.674z" />
           </svg>
           <p className="font-medium">No reviews in this category.</p>
@@ -177,28 +177,28 @@ export default function PanelReviewsPage() {
             return (
               <div
                 key={rev.id}
-                className="border rounded-2xl p-5 flex flex-col justify-between gap-4 relative overflow-hidden"
+                className="border border-slate-200 bg-white rounded-2xl p-5 flex flex-col justify-between gap-4 relative overflow-hidden shadow-xs hover:shadow-md transition-shadow duration-200"
               >
                 
                 {/* Header Rating & Email */}
                 <div className="flex justify-between items-center flex-wrap gap-2">
                   {renderStars(rev.rating)}
                   {rev.email && (
-                    <span className="text-[10px] font-mono select-all">{rev.email}</span>
+                    <span className="text-[10px] font-mono text-slate-400 select-all">{rev.email}</span>
                   )}
                 </div>
 
                 {/* Body Text */}
-                <div className="flex-1 border p-3.5 rounded-xl">
-                  <p className="text-xs italic whitespace-pre-wrap leading-relaxed">&ldquo;{rev.review}&rdquo;</p>
+                <div className="flex-1 border border-slate-100 bg-slate-50/50 p-3.5 rounded-xl">
+                  <p className="text-xs italic text-slate-650 whitespace-pre-wrap leading-relaxed">&ldquo;{rev.review}&rdquo;</p>
                 </div>
 
                 {/* Reviewer Meta & Action Buttons */}
-                <div className="flex justify-between items-center border-t pt-3 flex-wrap gap-3">
+                <div className="flex justify-between items-center border-t border-slate-100 pt-3 flex-wrap gap-3">
                   <div>
-                    <span className="text-xs font-bold text-white block">{rev.name}</span>
+                    <span className="text-xs font-bold text-slate-800 block">{rev.name}</span>
                     {(rev.title || rev.company) && (
-                      <span className="text-[9px] mt-0.5 block">
+                      <span className="text-[9px] text-slate-400 mt-0.5 block">
                         {rev.title || ''}{rev.title && rev.company ? ' at ' : ''}{rev.company || ''}
                       </span>
                     )}
@@ -210,7 +210,7 @@ export default function PanelReviewsPage() {
                       <button
                         onClick={() => handleToggleApproval(rev.id, false)}
                         disabled={modLoading}
-                        className="px-3 py-1.5 rounded-xl border text-[10px] font-bold hover:text-white transition-all cursor-pointer"
+                        className="px-3 py-1.5 rounded-xl border border-slate-200 bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-all cursor-pointer text-[10px] font-bold shadow-xs"
                       >
                         {modLoading ? 'Updating...' : 'Set Pending'}
                       </button>
@@ -227,7 +227,7 @@ export default function PanelReviewsPage() {
                     {/* Delete Trigger */}
                     <button
                       onClick={() => setDeleteConfirmId(rev.id)}
-                      className="p-1.5 rounded-xl hover:bg-rose-500/10 hover:text-rose-400 border transition-all cursor-pointer"
+                      className="p-1.5 rounded-xl text-slate-400 hover:bg-rose-50 hover:text-rose-600 border border-slate-200 transition-all cursor-pointer shadow-xs"
                       title="Delete Review"
                     >
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -245,17 +245,17 @@ export default function PanelReviewsPage() {
 
       {/* Delete Confirmation Modal */}
       {deleteConfirmId && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="border rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="border border-slate-200 bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">
             
-            <div className="w-12 h-12 bg-rose-600/10 rounded-full flex items-center justify-center mx-auto text-rose-500 mb-4 border border-rose-500/20">
+            <div className="w-12 h-12 bg-rose-50 rounded-full flex items-center justify-center mx-auto text-rose-600 mb-4 border border-rose-100">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
             </div>
 
-            <h3 className="font-bold text-lg text-white mb-2">Delete Review</h3>
-            <p className="text-xs leading-relaxed mb-6">
+            <h3 className="font-bold text-lg text-slate-900 mb-2">Delete Review</h3>
+            <p className="text-xs text-slate-500 leading-relaxed mb-6">
               Are you sure you want to delete this review? This action is permanent and cannot be undone.
             </p>
 
@@ -263,7 +263,7 @@ export default function PanelReviewsPage() {
               <button
                 type="button"
                 onClick={() => setDeleteConfirmId(null)}
-                className="px-4 py-2 rounded-xl text-xs font-bold hover:text-white transition-colors flex-1"
+                className="px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors flex-1"
               >
                 Cancel
               </button>

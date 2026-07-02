@@ -37,26 +37,26 @@ export default function PanelEditEventPage({ params }) {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-black tracking-tight text-white">Edit Event</h1>
-        <p className="text-sm mt-1">Modify event dates, description details, location credentials, or image covers.</p>
+        <h1 className="text-2xl font-black tracking-tight text-slate-900">Edit Event</h1>
+        <p className="text-sm mt-1 text-slate-500">Modify event dates, description details, location credentials, or image covers.</p>
       </div>
 
       {loading ? (
-        <div className="max-w-4xl border rounded-3xl p-6 sm:p-8 space-y-6 animate-pulse">
+        <div className="max-w-4xl border border-slate-200 bg-white rounded-3xl p-6 sm:p-8 space-y-6 animate-pulse shadow-xs">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="h-10 rounded-xl"></div>
-            <div className="h-10 rounded-xl"></div>
-            <div className="h-10 rounded-xl"></div>
-            <div className="h-10 rounded-xl"></div>
+            <div className="h-10 bg-slate-200 rounded-xl"></div>
+            <div className="h-10 bg-slate-200 rounded-xl"></div>
+            <div className="h-10 bg-slate-200 rounded-xl"></div>
+            <div className="h-10 bg-slate-200 rounded-xl"></div>
           </div>
-          <div className="h-28 rounded-xl"></div>
+          <div className="h-28 bg-slate-200 rounded-xl mt-4"></div>
         </div>
       ) : event ? (
         <EventForm initialData={event} />
       ) : (
-        <div className="text-center py-20 border rounded-2xl">
+        <div className="text-center py-20 border border-slate-200 bg-white text-slate-550 rounded-2xl shadow-xs">
           <p className="font-semibold uppercase tracking-wider text-xs">Event Not Found</p>
-          <p className="text-[11px] mt-1">The event you are looking for does not exist or has been deleted.</p>
+          <p className="text-[11px] mt-1 text-slate-400">The event you are looking for does not exist or has been deleted.</p>
         </div>
       )}
     </div>

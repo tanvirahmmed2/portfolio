@@ -22,7 +22,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-16 px-6 sm:px-8 overflow-hidden">
+    <section className="relative min-h-200 flex items-center justify-center pt-16 px-6 sm:px-8 overflow-hidden">
 
       
       <div className="w-full flex flex-col items-center justify-center gap-6">
@@ -37,7 +37,7 @@ export default function Hero() {
         </p>
 
         <div className='w-auto mx-auto'>
-          <Image src={'/tanvirahmmed.jpeg'} alt='tanvirahmmed' width={500} height={500} className='w-full max-w-52 rounded-full overflow-hidden object-cover'/>
+          <Image src={'/tanvirahmmed.jpeg'} loading="eager" alt='tanvirahmmed' width={500} height={500} className='w-full max-w-52 rounded-full overflow-hidden object-cover'/>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">

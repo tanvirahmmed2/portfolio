@@ -182,25 +182,25 @@ export default function PanelContactsPage() {
       
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-black tracking-tight text-white">Inbox Messages</h1>
-        <p className="text-sm mt-1">Read submissions from your contact form and draft responses.</p>
+        <h1 className="text-2xl font-black tracking-tight text-slate-900">Inbox Messages</h1>
+        <p className="text-sm mt-1 text-slate-500">Read submissions from your contact form and draft responses.</p>
       </div>
 
       {/* Inbox Split Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[550px] items-stretch">
         
         {/* Left Side: Inbox List (col-span-5) */}
-        <div className="lg:col-span-5 border rounded-2xl flex flex-col overflow-hidden">
+        <div className="lg:col-span-5 border border-slate-200 bg-white rounded-2xl flex flex-col overflow-hidden shadow-xs">
           
           {/* Header Search & Filter */}
-          <div className="p-4 border-b space-y-3">
-            <div className="relative">
+          <div className="p-4 border-b border-slate-150 space-y-3">
+            <div className="relative text-slate-400">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search inbox..."
-                className="w-full border rounded-xl pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
+                className="w-full border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-xs text-slate-900 bg-white placeholder-slate-400 focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/10 transition-all"
               />
               <svg className="w-3.5 h-3.5 absolute left-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -208,15 +208,15 @@ export default function PanelContactsPage() {
             </div>
 
             {/* Quick Status Buttons */}
-            <div className="flex gap-1.5 p-1 rounded-lg border">
+            <div className="flex gap-1.5 p-1 rounded-lg border border-slate-100 bg-slate-50/50">
               {['All', 'Unread', 'Replied'].map((st) => (
                 <button
                   key={st}
                   onClick={() => setStatusFilter(st)}
                   className={`flex-1 py-1 text-[10px] font-bold uppercase tracking-wider rounded transition-all duration-150 cursor-pointer
                     ${statusFilter === st
-                      ? 'bg-neutral-850 text-white shadow-sm'
-                      : 'bg-transparent text-neutral-500 hover:text-neutral-300'
+                      ? 'bg-slate-700 text-white shadow-xs'
+                      : 'bg-transparent text-slate-500 hover:text-slate-800'
                     }
                   `}
                 >
@@ -227,21 +227,21 @@ export default function PanelContactsPage() {
           </div>
 
           {/* Messages List Area */}
-          <div className="flex-1 overflow-y-auto max-h-[460px] divide-y">
+          <div className="flex-1 overflow-y-auto max-h-[460px] divide-y divide-slate-100">
             {loading ? (
               [...Array(4)].map((_, i) => (
-                <div key={i} className="p-4 space-y-2.5 animate-pulse">
+                <div key={i} className="p-4 space-y-2.5 animate-pulse bg-white">
                   <div className="flex justify-between">
-                    <div className="h-3 rounded w-1/3"></div>
-                    <div className="h-2.5 rounded w-10"></div>
+                    <div className="h-3 bg-slate-200 rounded w-1/3"></div>
+                    <div className="h-2.5 bg-slate-200 rounded w-10"></div>
                   </div>
-                  <div className="h-3 rounded w-3/4"></div>
-                  <div className="h-2.5 rounded w-full"></div>
+                  <div className="h-3 bg-slate-200 rounded w-3/4 mt-2"></div>
+                  <div className="h-2.5 bg-slate-200 rounded w-full mt-2"></div>
                 </div>
               ))
             ) : filteredMessages.length === 0 ? (
-              <div className="text-center py-20">
-                <svg className="w-10 h-10 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="text-center py-20 text-slate-400">
+                <svg className="w-10 h-10 mx-auto mb-2 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0a2 2 0 01-2 2H6a2 2 0 01-2-2m16 0V9a2 2 0 00-2-2H6a2 2 0 00-2 2v2m16 4h-2m-10 0H4" />
                 </svg>
                 <p className="text-xs font-semibold uppercase tracking-wide">No messages match</p>
@@ -256,18 +256,18 @@ export default function PanelContactsPage() {
                   <button
                     key={msg.id}
                     onClick={() => handleSelectMessage(msg)}
-                    className={`w-full text-left p-4 hover:bg-neutral-900/40 border-l-2 transition-all duration-150 flex flex-col gap-1 items-stretch cursor-pointer
+                    className={`w-full text-left p-4 border-l-2 transition-all duration-150 flex flex-col gap-1 items-stretch cursor-pointer
                       ${isActive 
-                        ? 'bg-neutral-900/30 border-l-violet-600' 
+                        ? 'bg-slate-50 border-l-violet-650' 
                         : isUnread 
-                        ? 'border-l-sky-500 bg-neutral-900/10' 
-                        : 'border-l-transparent'
+                        ? 'border-l-sky-500 bg-sky-50/30 hover:bg-slate-55' 
+                        : 'border-l-transparent hover:bg-slate-50/50'
                       }
                     `}
                   >
                     <div className="flex justify-between items-center">
-                      <span className="font-bold text-white text-xs truncate max-w-[150px]">{msg.name}</span>
-                      <span className="text-[9px] font-medium">
+                      <span className="font-bold text-slate-800 text-xs truncate max-w-[150px]">{msg.name}</span>
+                      <span className="text-[9px] font-medium text-slate-400">
                         {msg.created_at
                           ? new Date(msg.created_at).toLocaleDateString('en-US', {
                               month: 'short',
@@ -279,7 +279,7 @@ export default function PanelContactsPage() {
                     </div>
 
                     <div className="flex items-center gap-1.5">
-                      <span className={`text-xs font-semibold truncate flex-1 ${isUnread ? 'text-white font-bold' : 'text-neutral-300'}`}>
+                      <span className={`text-xs font-semibold truncate flex-1 ${isUnread ? 'text-slate-900 font-bold' : 'text-slate-500'}`}>
                         {msg.subject}
                       </span>
                       <div className="flex gap-1">
@@ -287,14 +287,14 @@ export default function PanelContactsPage() {
                           <span className="w-1.5 h-1.5 bg-sky-500 rounded-full flex-shrink-0" title="Unread Message"></span>
                         )}
                         {isReplied && (
-                          <svg className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" title="Replied">
+                          <svg className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" title="Replied">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                           </svg>
                         )}
                       </div>
                     </div>
 
-                    <p className="text-[11px] truncate line-clamp-1 mt-0.5">{msg.message}</p>
+                    <p className="text-[11px] text-slate-400 truncate line-clamp-1 mt-0.5">{msg.message}</p>
                   </button>
                 );
               })
@@ -303,7 +303,7 @@ export default function PanelContactsPage() {
         </div>
 
         {/* Right Side: Message Details, History Thread & Reply Panel (col-span-7) */}
-        <div className="lg:col-span-7 border rounded-2xl p-6 flex flex-col justify-between overflow-hidden">
+        <div className="lg:col-span-7 border border-slate-200 bg-white rounded-2xl p-6 flex flex-col justify-between overflow-hidden shadow-xs">
           {activeMessage ? (
             <div className="flex flex-col justify-between h-full space-y-4">
               
@@ -311,11 +311,11 @@ export default function PanelContactsPage() {
               <div className="space-y-4 overflow-y-auto max-h-[350px] pr-1">
                 <div className="flex justify-between items-start gap-4">
                   <div>
-                    <h2 className="text-base font-black tracking-tight text-white leading-tight">{activeMessage.subject}</h2>
-                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1 text-xs">
-                      <span className="font-bold text-white">{activeMessage.name}</span>
+                    <h2 className="text-base font-black tracking-tight text-slate-900 leading-tight">{activeMessage.subject}</h2>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1 text-xs text-slate-400">
+                      <span className="font-bold text-slate-800">{activeMessage.name}</span>
                       <span className="">&bull;</span>
-                      <a href={`mailto:${activeMessage.email}`} className="hover:text-violet-400 transition-colors">
+                      <a href={`mailto:${activeMessage.email}`} className="text-slate-500 hover:text-violet-650 transition-colors">
                         {activeMessage.email}
                       </a>
                     </div>
@@ -324,7 +324,7 @@ export default function PanelContactsPage() {
                   <div className="flex gap-2 flex-shrink-0">
                     <button
                       onClick={() => setDeleteConfirmId(activeMessage.id)}
-                      className="p-2 rounded-lg hover:bg-rose-500/10 hover:text-rose-400 border transition-colors cursor-pointer"
+                      className="p-2 rounded-lg text-slate-400 hover:bg-rose-50 hover:text-rose-600 border border-slate-200 transition-all cursor-pointer shadow-xs"
                       title="Delete Message"
                     >
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -334,7 +334,7 @@ export default function PanelContactsPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 text-slate-400">
                   <span className="text-[10px]">
                     Received on {new Date(activeMessage.created_at).toLocaleString('en-US', {
                       year: 'numeric',
@@ -345,7 +345,7 @@ export default function PanelContactsPage() {
                     })}
                   </span>
                   {activeMessage.replied_at && (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-600/10 text-emerald-400 border border-emerald-500/20">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-50 text-emerald-600 border border-emerald-200">
                       <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
@@ -355,25 +355,25 @@ export default function PanelContactsPage() {
                 </div>
 
                 {/* Message Body */}
-                <div className="border rounded-xl p-4 min-h-[100px]">
+                <div className="border border-slate-150 bg-slate-50/50 rounded-xl p-4 min-h-[100px] text-slate-700">
                   <p className="text-xs whitespace-pre-wrap leading-relaxed">{activeMessage.message}</p>
                 </div>
 
                 {/* Reply Threads logs */}
                 {repliesLoading ? (
                   <div className="space-y-2 animate-pulse mt-4">
-                    <div className="h-2.5 rounded w-16"></div>
-                    <div className="h-12 rounded w-full"></div>
+                    <div className="h-2.5 bg-slate-200 rounded w-16"></div>
+                    <div className="h-12 bg-slate-200 rounded w-full mt-2"></div>
                   </div>
                 ) : replies.length > 0 ? (
-                  <div className="space-y-2 mt-4">
-                    <span className="text-[10px] font-bold uppercase tracking-widest block">Reply Thread Log ({replies.length})</span>
+                  <div className="space-y-2 mt-4 text-slate-650">
+                    <span className="text-[10px] font-bold text-slate-800 uppercase tracking-widest block">Reply Thread Log ({replies.length})</span>
                     <div className="space-y-2.5">
                       {replies.map((rep) => (
-                        <div key={rep.id} className="bg-violet-950/15 border border-violet-900/20 rounded-xl p-3 space-y-1">
-                          <div className="flex justify-between items-center text-[9px] text-violet-400 font-bold">
+                        <div key={rep.id} className="bg-violet-50/35 border border-violet-100 rounded-xl p-3 space-y-1">
+                          <div className="flex justify-between items-center text-[9px] text-violet-600 font-bold">
                             <span>REPLY DISPATCHED</span>
-                            <span>
+                            <span className="text-violet-500">
                               {new Date(rep.sent_at).toLocaleString('en-US', {
                                 month: 'short',
                                 day: 'numeric',
@@ -382,7 +382,7 @@ export default function PanelContactsPage() {
                               })}
                             </span>
                           </div>
-                          <p className="text-xs whitespace-pre-wrap leading-relaxed">{rep.message}</p>
+                          <p className="text-xs text-slate-650 whitespace-pre-wrap leading-relaxed">{rep.message}</p>
                         </div>
                       ))}
                     </div>
@@ -391,9 +391,9 @@ export default function PanelContactsPage() {
               </div>
 
               {/* Reply Drafting Composer */}
-              <div className="space-y-3 pt-4 border-t">
-                <div className="flex justify-between items-center">
-                  <span className="text-[10px] font-bold uppercase tracking-wider">Reply Draft</span>
+              <div className="space-y-3 pt-4 border-t border-slate-100">
+                <div className="flex justify-between items-center text-slate-400">
+                  <span className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Reply Draft</span>
                   <span className="text-[10px] font-medium italic">Dispatched via backend SMTP mailer</span>
                 </div>
                 <textarea
@@ -401,7 +401,7 @@ export default function PanelContactsPage() {
                   value={replyText}
                   onChange={(e) => setReplyText(e.target.value)}
                   placeholder={`Compose email response to ${activeMessage.name}...`}
-                  className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all resize-none"
+                  className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all resize-none"
                 />
 
                 <div className="flex justify-end">
@@ -427,11 +427,11 @@ export default function PanelContactsPage() {
             </div>
           ) : (
             /* Empty State Details Pane */
-            <div className="flex flex-col items-center justify-center h-full text-center py-20">
-              <svg className="w-12 h-12 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="flex flex-col items-center justify-center h-full text-center py-20 text-slate-400">
+              <svg className="w-12 h-12 mb-3 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
-              <p className="text-xs font-semibold uppercase tracking-widest">Inbox Detail View</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">Inbox Detail View</p>
               <p className="text-[11px] mt-1 max-w-[200px]">Select any message from the list to read content and dispatch responses.</p>
             </div>
           )}
@@ -441,17 +441,17 @@ export default function PanelContactsPage() {
 
       {/* Delete Confirmation Modal */}
       {deleteConfirmId && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="border rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="border border-slate-200 bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">
             
-            <div className="w-12 h-12 bg-rose-600/10 rounded-full flex items-center justify-center mx-auto text-rose-500 mb-4 border border-rose-500/20">
+            <div className="w-12 h-12 bg-rose-50 rounded-full flex items-center justify-center mx-auto text-rose-600 mb-4 border border-rose-100">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
             </div>
 
-            <h3 className="font-bold text-lg text-white mb-2">Delete Message</h3>
-            <p className="text-xs leading-relaxed mb-6">
+            <h3 className="font-bold text-lg text-slate-900 mb-2">Delete Message</h3>
+            <p className="text-xs text-slate-500 leading-relaxed mb-6">
               Are you sure you want to delete this message? This action is permanent and will remove it from the database.
             </p>
 
@@ -459,7 +459,7 @@ export default function PanelContactsPage() {
               <button
                 type="button"
                 onClick={() => setDeleteConfirmId(null)}
-                className="px-4 py-2 rounded-xl text-xs font-bold hover:text-white transition-colors flex-1"
+                className="px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors flex-1"
               >
                 Cancel
               </button>

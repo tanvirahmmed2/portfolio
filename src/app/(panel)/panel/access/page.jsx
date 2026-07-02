@@ -124,25 +124,25 @@ export default function PanelAccessPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-black tracking-tight text-white">Access Control</h1>
-        <p className="text-sm mt-1">Verify new accounts, promote users, and manage administrative privileges.</p>
+        <h1 className="text-2xl font-black tracking-tight text-slate-900">Access Control</h1>
+        <p className="text-sm mt-1 text-slate-500">Verify new accounts, promote users, and manage administrative privileges.</p>
       </div>
 
       {/* Query Filters */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border p-4 rounded-2xl relative overflow-hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border border-slate-200 bg-white p-4 rounded-2xl relative overflow-hidden shadow-xs">
         
         {/* Search */}
-        <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] font-bold uppercase tracking-widest">Search Users</label>
+        <div className="flex flex-col gap-1.5 text-slate-400">
+          <label className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">Search Users</label>
           <div className="relative">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by name or email..."
-              className="w-full border rounded-xl pl-9 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all"
+              className="w-full border border-slate-200 rounded-xl pl-9 pr-4 py-2.5 text-xs text-slate-900 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
             />
-            <svg className="w-4 h-4 absolute left-3 top-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 absolute left-3 top-3 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
@@ -150,64 +150,64 @@ export default function PanelAccessPage() {
 
         {/* Role Filter */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] font-bold uppercase tracking-widest">Filter Role</label>
+          <label className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">Filter Role</label>
           <select
             value={roleFilter}
             onChange={(e) => setRoleFilter(e.target.value)}
-            className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
+            className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
           >
             <option value="All">All Roles</option>
-            <option value="admin">Administrators</option>
-            <option value="user">Standard Users</option>
+            <option value="admin" className="text-slate-900 bg-white">Administrators</option>
+            <option value="user" className="text-slate-900 bg-white">Standard Users</option>
           </select>
         </div>
 
         {/* Verification Filter */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] font-bold uppercase tracking-widest">Filter Status</label>
+          <label className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">Filter Status</label>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-violet-500 transition-all"
+            className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
           >
             <option value="All">All Statuses</option>
-            <option value="Verified">Verified Only</option>
-            <option value="Unverified">Pending Approval</option>
+            <option value="Verified" className="text-slate-900 bg-white">Verified Only</option>
+            <option value="Unverified" className="text-slate-900 bg-white">Pending Approval</option>
           </select>
         </div>
       </div>
 
       {/* Users Table / List */}
       {loading ? (
-        <div className="border rounded-2xl overflow-hidden divide-y animate-pulse">
+        <div className="border border-slate-200 bg-white rounded-2xl overflow-hidden divide-y divide-slate-100 animate-pulse shadow-xs">
           {[...Array(5)].map((_, i) => (
             <div key={i} className="flex flex-col sm:flex-row items-center justify-between p-6 gap-4">
               <div className="flex items-center gap-3 w-1/3">
-                <div className="w-9 h-9 rounded-full"></div>
-                <div className="space-y-2 flex-1">
-                  <div className="h-3 rounded w-2/3"></div>
-                  <div className="h-2.5 rounded w-1/2"></div>
+                <div className="w-9 h-9 bg-slate-200 rounded-full"></div>
+                <div className="space-y-2 flex-1 mt-2">
+                  <div className="h-3 bg-slate-200 rounded w-2/3"></div>
+                  <div className="h-2.5 bg-slate-200 rounded w-1/2 mt-1"></div>
                 </div>
               </div>
-              <div className="h-6 rounded w-20"></div>
-              <div className="h-6 rounded w-24"></div>
-              <div className="h-6 rounded w-12"></div>
+              <div className="h-6 bg-slate-200 rounded w-20"></div>
+              <div className="h-6 bg-slate-200 rounded w-24"></div>
+              <div className="h-6 bg-slate-200 rounded w-12"></div>
             </div>
           ))}
         </div>
       ) : filteredUsers.length === 0 ? (
-        <div className="text-center py-20 border border-dashed rounded-2xl">
-          <svg className="w-12 h-12 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="text-center py-20 border border-dashed border-slate-200 bg-white text-slate-500 rounded-2xl shadow-xs">
+          <svg className="w-12 h-12 mx-auto mb-3 text-slate-350" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
           <p className="font-medium">No users match your criteria.</p>
         </div>
       ) : (
-        <div className="border rounded-2xl shadow-sm overflow-hidden">
+        <div className="border border-slate-200 bg-white rounded-2xl shadow-xs overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b text-[10px] font-bold uppercase tracking-widest">
+                <tr className="border-b border-slate-150 bg-slate-50/70 text-[10px] text-slate-500 font-bold uppercase tracking-widest">
                   <th className="py-4 px-6">User</th>
                   <th className="py-4 px-6">Joined Date</th>
                   <th className="py-4 px-6 text-center">Verification Status</th>
@@ -215,37 +215,37 @@ export default function PanelAccessPage() {
                   <th className="py-4 px-6 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y text-sm">
+              <tbody className="divide-y divide-slate-100 text-sm">
                 {filteredUsers.map((user) => {
                   const isSelf = user.id === currentUser?.id;
                   const verifyLoading = actionLoading[`${user.id}-is_verified`];
                   const roleLoading = actionLoading[`${user.id}-role`];
 
                   return (
-                    <tr key={user.id} className="transition-colors duration-150">
+                    <tr key={user.id} className="transition-colors duration-150 hover:bg-slate-50/30 text-slate-700">
                       
                       {/* User Info */}
                       <td className="py-4 px-6">
                         <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 rounded-full flex items-center justify-center font-bold border uppercase">
+                          <div className="w-9 h-9 rounded-full flex items-center justify-center font-bold border border-slate-200 bg-slate-50 text-slate-700 uppercase">
                             {user.name ? user.name[0] : 'U'}
                           </div>
                           <div className="flex flex-col min-w-0">
-                            <span className="font-bold text-white flex items-center gap-1.5 truncate">
+                            <span className="font-bold text-slate-800 flex items-center gap-1.5 truncate">
                               {user.name || 'Anonymous User'}
                               {isSelf && (
-                                <span className="inline-block px-1.5 py-0.5 text-[9px] font-black tracking-wide uppercase bg-violet-600/20 border border-violet-500/30 text-violet-400 rounded">
+                                <span className="inline-block px-1.5 py-0.5 text-[9px] font-black tracking-wide uppercase bg-violet-50 border border-violet-200 text-violet-650 rounded">
                                   You
                                 </span>
                               )}
                             </span>
-                            <span className="text-xs truncate mt-0.5">{user.email}</span>
+                            <span className="text-xs text-slate-450 truncate mt-0.5">{user.email}</span>
                           </div>
                         </div>
                       </td>
 
                       {/* Created At */}
-                      <td className="py-4 px-6 text-xs font-medium">
+                      <td className="py-4 px-6 text-xs font-medium text-slate-500">
                         {user.created_at 
                           ? new Date(user.created_at).toLocaleDateString('en-US', {
                               year: 'numeric',
@@ -263,8 +263,8 @@ export default function PanelAccessPage() {
                           disabled={verifyLoading || isSelf}
                           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold select-none border transition-all duration-200
                             ${user.is_verified
-                              ? 'bg-emerald-600/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-600/20'
-                              : 'bg-amber-600/10 text-amber-400 border-amber-500/20 hover:bg-amber-600/20'
+                              ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100/70'
+                              : 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100/70'
                             }
                             ${isSelf ? 'opacity-80 cursor-not-allowed' : 'cursor-pointer'}
                           `}
@@ -296,8 +296,8 @@ export default function PanelAccessPage() {
                           disabled={roleLoading || isSelf}
                           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold select-none border transition-all duration-200
                             ${user.role === 'admin'
-                              ? 'bg-violet-600/10 text-violet-400 border-violet-500/20 hover:bg-violet-600/20'
-                              : 'bg-neutral-800 text-neutral-400 border-neutral-700/60 hover:bg-neutral-700 hover:text-white'
+                              ? 'bg-violet-50 text-violet-750 border-violet-200 hover:bg-violet-100/70'
+                              : 'bg-slate-100 text-slate-650 border-slate-200 hover:bg-slate-200/80 hover:text-slate-800'
                             }
                             ${isSelf ? 'opacity-80 cursor-not-allowed' : 'cursor-pointer'}
                           `}
@@ -317,10 +317,10 @@ export default function PanelAccessPage() {
                         <button
                           onClick={() => setDeleteConfirmId(user.id)}
                           disabled={isSelf}
-                          className={`p-2 rounded-lg transition-colors
+                          className={`p-2 rounded-lg transition-colors border
                             ${isSelf 
-                              ? 'text-neutral-700 cursor-not-allowed bg-transparent' 
-                              : 'text-neutral-500 hover:text-rose-400 bg-neutral-800/10 hover:bg-rose-500/10'
+                              ? 'text-slate-350 border-slate-100 cursor-not-allowed bg-slate-50/50' 
+                              : 'text-slate-400 hover:text-rose-600 hover:bg-rose-50 border-slate-200 shadow-xs cursor-pointer'
                             }
                           `}
                           title="Delete User Account"
@@ -342,17 +342,17 @@ export default function PanelAccessPage() {
 
       {/* Delete User Confirmation Modal */}
       {deleteConfirmId && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="border rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="border border-slate-200 bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">
             
-            <div className="w-12 h-12 bg-rose-600/10 rounded-full flex items-center justify-center mx-auto text-rose-500 mb-4 border border-rose-500/20">
+            <div className="w-12 h-12 bg-rose-50 rounded-full flex items-center justify-center mx-auto text-rose-600 mb-4 border border-rose-100">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
             </div>
 
-            <h3 className="font-bold text-lg text-white mb-2">Delete User Account</h3>
-            <p className="text-xs leading-relaxed mb-6">
+            <h3 className="font-bold text-lg text-slate-900 mb-2">Delete User Account</h3>
+            <p className="text-xs text-slate-500 leading-relaxed mb-6">
               Are you sure you want to delete this user? This will permanently remove their profile, comments, reviews, and all associated items from the database.
             </p>
 
@@ -360,7 +360,7 @@ export default function PanelAccessPage() {
               <button
                 type="button"
                 onClick={() => setDeleteConfirmId(null)}
-                className="px-4 py-2 rounded-xl text-xs font-bold hover:text-white transition-colors flex-1"
+                className="px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors flex-1"
               >
                 Cancel
               </button>

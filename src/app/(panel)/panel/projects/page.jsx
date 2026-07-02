@@ -62,8 +62,8 @@ export default function PanelProjectsPage() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black tracking-tight text-white">Project Catalog</h1>
-          <p className="text-sm mt-1">Manage and present your case studies, web applications, and repositories.</p>
+          <h1 className="text-2xl font-black tracking-tight text-slate-900">Project Catalog</h1>
+          <p className="text-sm mt-1 text-slate-500">Manage and present your case studies, web applications, and repositories.</p>
         </div>
         
         <Link
@@ -81,25 +81,25 @@ export default function PanelProjectsPage() {
         /* Skeleton Loading Grid */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(6)].map((_, i) => (
-            <div key={i} className="h-72 border rounded-2xl p-5 flex flex-col justify-between animate-pulse">
-              <div className="w-full h-36 rounded-xl mb-4"></div>
+            <div key={i} className="h-72 border border-slate-200 bg-white rounded-2xl p-5 flex flex-col justify-between animate-pulse shadow-xs">
+              <div className="w-full h-36 bg-slate-100 rounded-xl mb-4"></div>
               <div className="space-y-2 flex-1">
-                <div className="h-4 rounded-md w-3/4"></div>
-                <div className="h-3 rounded-md w-1/2"></div>
+                <div className="h-4 bg-slate-200 rounded-md w-3/4"></div>
+                <div className="h-3 bg-slate-200 rounded-md w-1/2 mt-2"></div>
               </div>
             </div>
           ))}
         </div>
       ) : projects.length === 0 ? (
         /* Empty State */
-        <div className="text-center py-20 border border-dashed rounded-2xl">
-          <svg className="w-12 h-12 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="text-center py-20 border border-dashed border-slate-200 bg-white rounded-2xl shadow-xs text-slate-500">
+          <svg className="w-12 h-12 mx-auto mb-3 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
           <p className="font-medium">No projects in your catalog yet.</p>
           <Link
             href="/panel/projects/new"
-            className="mt-3 inline-block text-xs font-bold text-violet-400 hover:text-violet-300 transition-colors"
+            className="mt-3 inline-block text-xs font-bold text-violet-600 hover:text-violet-700 transition-colors"
           >
             Add your first case study &rarr;
           </Link>
@@ -110,11 +110,11 @@ export default function PanelProjectsPage() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group border hover:border-violet-500/20 rounded-2xl overflow-hidden flex flex-col justify-between hover:-translate-y-0.5 transition-all duration-300 shadow-sm relative"
+              className="group border border-slate-200 bg-white hover:border-violet-500/30 rounded-2xl overflow-hidden flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 shadow-xs relative"
             >
               
               {/* Cover Image Showcase */}
-              <div className="w-full h-44 relative overflow-hidden flex items-center justify-center border-b">
+              <div className="w-full h-44 relative overflow-hidden flex items-center justify-center border-b border-slate-100 bg-slate-50">
                 {project.image ? (
                   <img
                     src={project.image}
@@ -122,7 +122,7 @@ export default function PanelProjectsPage() {
                     className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
                   />
                 ) : (
-                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-8 h-8 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                 )}
@@ -130,14 +130,14 @@ export default function PanelProjectsPage() {
                 {/* Status and Featured Badges */}
                 <div className="absolute top-3 left-3 z-10 flex flex-wrap gap-1.5">
                   {project.is_featured && (
-                    <span className="inline-block px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-violet-600/20 border border-violet-500/30 text-violet-400 shadow-sm">
+                    <span className="inline-block px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-violet-50 border border-violet-200 text-violet-600 shadow-xs">
                       Featured
                     </span>
                   )}
                   <span className={`inline-block px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider border
                     ${project.is_published
-                      ? 'bg-emerald-600/10 text-emerald-400 border-emerald-500/20'
-                      : 'bg-neutral-800/85 text-neutral-400 border-neutral-700/50'
+                      ? 'bg-emerald-50 text-emerald-600 border-emerald-200'
+                      : 'bg-slate-100 text-slate-500 border-slate-200'
                     }
                   `}>
                     {project.is_published ? 'Published' : 'Draft'}
@@ -145,10 +145,10 @@ export default function PanelProjectsPage() {
                 </div>
 
                 {/* Hover Controls Overlay */}
-                <div className="absolute inset-0 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                <div className="absolute inset-0 bg-white/70 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
                   <Link
                     href={`/panel/projects/${project.slug}`}
-                    className="p-3 rounded-xl border hover:text-white hover:border-violet-500/50 transition-all cursor-pointer"
+                    className="p-3 rounded-xl border border-slate-200 bg-white text-slate-700 hover:text-violet-600 hover:border-violet-300 transition-all cursor-pointer shadow-xs"
                     title="Edit Project"
                   >
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -157,7 +157,7 @@ export default function PanelProjectsPage() {
                   </Link>
                   <button
                     onClick={() => setDeleteConfirmId(project.id)}
-                    className="p-3 rounded-xl bg-rose-600/10 border border-rose-500/10 text-rose-400 hover:text-white hover:bg-rose-600 hover:border-transparent transition-all cursor-pointer"
+                    className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 hover:text-white hover:bg-rose-600 hover:border-transparent transition-all cursor-pointer shadow-xs"
                     title="Delete Project"
                   >
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -170,11 +170,11 @@ export default function PanelProjectsPage() {
               {/* Project Card Text */}
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
-                  <h3 className="font-bold text-white group-hover:text-violet-400 transition-colors line-clamp-1 leading-snug">{project.title}</h3>
-                  <p className="text-xs line-clamp-2 leading-relaxed">{project.summary}</p>
+                  <h3 className="font-bold text-slate-800 group-hover:text-violet-600 transition-colors line-clamp-1 leading-snug">{project.title}</h3>
+                  <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">{project.summary}</p>
                 </div>
 
-                <div className="flex justify-between items-center text-[10px] font-semibold border-t pt-3 mt-4">
+                <div className="flex justify-between items-center text-[10px] font-semibold border-t border-slate-100 pt-3 mt-4 text-slate-400">
                   <span>
                     {project.created_at
                       ? new Date(project.created_at).toLocaleDateString('en-US', {
@@ -187,10 +187,10 @@ export default function PanelProjectsPage() {
                   </span>
                   <div className="flex gap-2">
                     {project.url && (
-                      <span className="text-violet-500 font-black">LIVE DEMO</span>
+                      <span className="text-violet-600 font-black">LIVE DEMO</span>
                     )}
                     {project.github_url && (
-                      <span className="">GITHUB</span>
+                      <span className="text-slate-500">GITHUB</span>
                     )}
                   </div>
                 </div>
@@ -203,17 +203,17 @@ export default function PanelProjectsPage() {
 
       {/* Delete Confirmation Modal */}
       {deleteConfirmId && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="border rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="border border-slate-200 bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">
             
-            <div className="w-12 h-12 bg-rose-600/10 rounded-full flex items-center justify-center mx-auto text-rose-500 mb-4 border border-rose-500/20">
+            <div className="w-12 h-12 bg-rose-50 rounded-full flex items-center justify-center mx-auto text-rose-600 mb-4 border border-rose-100">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
             </div>
 
-            <h3 className="font-bold text-lg text-white mb-2">Delete Project</h3>
-            <p className="text-xs leading-relaxed mb-6">
+            <h3 className="font-bold text-lg text-slate-900 mb-2">Delete Project</h3>
+            <p className="text-xs text-slate-500 leading-relaxed mb-6">
               Are you sure you want to delete this project? This action will permanently remove it and all mapped skills associations.
             </p>
 
@@ -221,7 +221,7 @@ export default function PanelProjectsPage() {
               <button
                 type="button"
                 onClick={() => setDeleteConfirmId(null)}
-                className="px-4 py-2 rounded-xl text-xs font-bold hover:text-white transition-colors flex-1"
+                className="px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors flex-1"
               >
                 Cancel
               </button>

@@ -62,8 +62,8 @@ export default function PanelEventsPage() {
       {/* Header Row */}
       <div className="flex justify-between items-center gap-4">
         <div>
-          <h1 className="text-2xl font-black tracking-tight text-white">Events Portfolio</h1>
-          <p className="text-sm mt-1">Manage bootcamps, workshops, conferences, and livestream events.</p>
+          <h1 className="text-2xl font-black tracking-tight text-slate-900">Events Portfolio</h1>
+          <p className="text-sm mt-1 text-slate-500">Manage bootcamps, workshops, conferences, and livestream events.</p>
         </div>
 
         <Link
@@ -81,19 +81,19 @@ export default function PanelEventsPage() {
         /* Skeleton Cards */
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(3)].map((_, i) => (
-            <div key={i} className="border rounded-2xl p-5 space-y-4 animate-pulse">
-              <div className="h-28 rounded-xl"></div>
+            <div key={i} className="border border-slate-200 bg-white rounded-2xl p-5 space-y-4 animate-pulse shadow-xs">
+              <div className="h-28 bg-slate-100 rounded-xl"></div>
               <div className="space-y-2">
-                <div className="h-3.5 rounded w-1/3"></div>
-                <div className="h-4 rounded w-full"></div>
+                <div className="h-3.5 bg-slate-200 rounded w-1/3"></div>
+                <div className="h-4 bg-slate-200 rounded w-full mt-2"></div>
               </div>
             </div>
           ))}
         </div>
       ) : events.length === 0 ? (
         /* Empty State */
-        <div className="text-center py-20 border border-dashed rounded-2xl">
-          <svg className="w-12 h-12 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="text-center py-20 border border-dashed border-slate-200 bg-white rounded-2xl text-slate-500 shadow-xs">
+          <svg className="w-12 h-12 mx-auto mb-3 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
           <p className="font-medium">No events logged yet.</p>
@@ -105,10 +105,10 @@ export default function PanelEventsPage() {
           {events.map((ev) => (
             <div
               key={ev.id}
-              className="border rounded-2xl overflow-hidden flex flex-col justify-between group transition-all duration-300"
+              className="border border-slate-200 bg-white rounded-2xl overflow-hidden flex flex-col justify-between group hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 shadow-xs"
             >
               {/* Event Image Cover */}
-              <div className="relative h-40 border-b overflow-hidden">
+              <div className="relative h-40 border-b border-slate-100 bg-slate-50 overflow-hidden">
                 {ev.image ? (
                   <img
                     src={ev.image}
@@ -116,7 +116,7 @@ export default function PanelEventsPage() {
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center">
+                  <div className="w-full h-full flex items-center justify-center text-slate-300">
                     <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
@@ -126,7 +126,7 @@ export default function PanelEventsPage() {
                 {/* Badges Overlay */}
                 <div className="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5 pointer-events-none">
                   {ev.event_type && (
-                    <span className="px-2 py-0.5 rounded-md text-[9px] font-bold text-violet-400 border backdrop-blur-sm uppercase tracking-wide">
+                    <span className="px-2 py-0.5 rounded-md text-[9px] font-bold bg-violet-50 text-violet-650 border border-violet-200/60 uppercase tracking-wide">
                       {ev.event_type}
                     </span>
                   )}
@@ -142,9 +142,9 @@ export default function PanelEventsPage() {
               <div className="p-4 space-y-3 flex-1 flex flex-col justify-between">
                 <div className="space-y-1.5">
                   {/* Event Date & Location */}
-                  <div className="flex flex-col text-[10px] font-medium gap-0.5">
+                  <div className="flex flex-col text-[10px] font-medium text-slate-450 gap-0.5">
                     <span className="flex items-center gap-1">
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                       {ev.event_date
@@ -160,7 +160,7 @@ export default function PanelEventsPage() {
                     </span>
                     {ev.location && (
                       <span className="flex items-center gap-1">
-                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
@@ -169,18 +169,18 @@ export default function PanelEventsPage() {
                     )}
                   </div>
 
-                  <h3 className="font-bold text-white text-xs leading-snug group-hover:text-violet-400 transition-colors line-clamp-2">
+                  <h3 className="font-bold text-slate-800 text-xs leading-snug group-hover:text-violet-600 transition-colors line-clamp-2">
                     {ev.title}
                   </h3>
                 </div>
 
                 {/* Bottom Action buttons row */}
-                <div className="flex justify-between items-center border-t pt-3.5">
+                <div className="flex justify-between items-center border-t border-slate-100 pt-3.5 text-slate-400">
                   <span className="text-[10px] font-mono select-all">/{ev.slug}</span>
                   <div className="flex items-center gap-2">
                     <Link
                       href={`/panel/events/${ev.slug}`}
-                      className="p-1.5 rounded-lg hover:bg-violet-600/10 hover:text-violet-400 border transition-all cursor-pointer"
+                      className="p-1.5 rounded-lg text-slate-400 hover:bg-violet-50 hover:text-violet-600 border border-slate-200 transition-all cursor-pointer shadow-xs"
                       title="Edit Event"
                     >
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -190,7 +190,7 @@ export default function PanelEventsPage() {
 
                     <button
                       onClick={() => setDeleteConfirmId(ev.id)}
-                      className="p-1.5 rounded-lg hover:bg-rose-500/10 hover:text-rose-400 border transition-all cursor-pointer"
+                      className="p-1.5 rounded-lg text-slate-400 hover:bg-rose-50 hover:text-rose-600 border border-slate-200 transition-all cursor-pointer shadow-xs"
                       title="Delete Event"
                     >
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -208,17 +208,17 @@ export default function PanelEventsPage() {
 
       {/* Delete Confirmation Modal */}
       {deleteConfirmId && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="border rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="border border-slate-200 bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">
             
-            <div className="w-12 h-12 bg-rose-600/10 rounded-full flex items-center justify-center mx-auto text-rose-500 mb-4 border border-rose-500/20">
+            <div className="w-12 h-12 bg-rose-50 rounded-full flex items-center justify-center mx-auto text-rose-600 mb-4 border border-rose-100">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
             </div>
 
-            <h3 className="font-bold text-lg text-white mb-2">Delete Event</h3>
-            <p className="text-xs leading-relaxed mb-6">
+            <h3 className="font-bold text-lg text-slate-900 mb-2">Delete Event</h3>
+            <p className="text-xs text-slate-500 leading-relaxed mb-6">
               Are you sure you want to delete this event? This action is permanent, will remove it from the dashboard, and clean up stored media.
             </p>
 
@@ -226,7 +226,7 @@ export default function PanelEventsPage() {
               <button
                 type="button"
                 onClick={() => setDeleteConfirmId(null)}
-                className="px-4 py-2 rounded-xl text-xs font-bold hover:text-white transition-colors flex-1"
+                className="px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors flex-1"
               >
                 Cancel
               </button>
@@ -234,7 +234,7 @@ export default function PanelEventsPage() {
                 type="button"
                 onClick={() => handleDeleteEvent(deleteConfirmId)}
                 disabled={deleteLoading}
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-rose-600 hover:bg-rose-500 text-white disabled:opacity-50 flex items-center justify-center gap-2 flex-1"
+                className="px-4 py-2 rounded-xl text-xs font-bold bg-rose-600 hover:bg-rose-50 text-white disabled:opacity-50 flex items-center justify-center gap-2 flex-1"
               >
                 {deleteLoading && (
                   <div className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>

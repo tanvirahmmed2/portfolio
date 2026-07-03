@@ -24,13 +24,13 @@ export default function LittleDescription() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 items-center justify-between">
         
         
-        <div className="md:w-1/3 space-y-2">
+        <div className="w-full space-y-2">
           <span className="text-[10px] font-black tracking-widest text-violet-600 uppercase">My Mission</span>
           <h2 className="text-2xl font-black text-slate-900 leading-tight">Simplicity in Engineering.</h2>
         </div>
 
         
-        <div className="md:w-2/3 border-l-2 border-violet-500/20 pl-6 py-2">
+        <div className="w-full border-l-2 border-violet-500/20 pl-6 py-2">
           <p className="text-xs leading-relaxed text-slate-500 italic">
             &ldquo;{settings?.bio || 'Building web applications with optimized pipelines, structured databases, and responsive client layouts. My goal is to engineer software that scales effectively and provides seamless, robust user experiences.'}&rdquo;
           </p>

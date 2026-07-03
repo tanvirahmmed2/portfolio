@@ -95,7 +95,7 @@ export default function Skills() {
                   
                   <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden mt-2">
                     <div
-                      className="bg-gradient-to-r from-violet-600 to-indigo-600 h-full rounded-full"
+                      className="bg-linear-to-r from-violet-600 to-indigo-600 h-full rounded-full"
                       style={{ width: `${skill.proficiency || 0}%` }}
                     ></div>
                   </div>

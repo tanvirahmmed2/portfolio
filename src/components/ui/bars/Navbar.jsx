@@ -36,12 +36,13 @@ export default function Navbar() {
           </Link>
 
         <nav className="flex items-center gap-8">
-          <Link href="/about" className="text-sm font-medium  transition-colors relative group py-2">
-            About
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-violet-500 to-indigo-500 transition-all duration-300 group-hover:w-full"></span>
-          </Link>
+          
           <Link href="/projects" className="text-sm font-medium  transition-colors relative group py-2">
             Projects
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-violet-500 to-indigo-500 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link href="/about" className="text-sm font-medium  transition-colors relative group py-2">
+            About
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-violet-500 to-indigo-500 transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link href="/contact" className="text-sm font-medium  transition-colors relative group py-2">

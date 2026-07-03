@@ -55,6 +55,18 @@ export default function PanelDashboardPage() {
       hoverBorder: 'hover:border-indigo-500/30'
     },
     {
+      name: 'Experience History',
+      value: stats?.works ?? 0,
+      path: '/panel/works',
+      icon: (
+        <svg className="w-6 h-6 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+      ),
+      bgGlow: 'bg-sky-600/5',
+      hoverBorder: 'hover:border-sky-500/30'
+    },
+    {
       name: 'Blog Articles',
       value: stats?.blogs ?? 0,
       path: '/panel/blogs',
@@ -110,8 +122,8 @@ export default function PanelDashboardPage() {
 
       {loading ? (
         /* Skeletons */
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-          {[...Array(5)].map((_, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+          {[...Array(6)].map((_, i) => (
             <div key={i} className="h-32 border border-slate-200 bg-white rounded-2xl p-5 flex flex-col justify-between animate-pulse shadow-xs">
               <div className="h-4 bg-slate-200 rounded w-1/2"></div>
               <div className="h-8 bg-slate-200 rounded w-1/3 mt-2"></div>
@@ -120,7 +132,7 @@ export default function PanelDashboardPage() {
         </div>
       ) : (
         /* Statistics Cards Grid */
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
           {cards.map((card) => {
             const isAlert = card.name === 'Pending Messages' && card.value > 0;
             return (

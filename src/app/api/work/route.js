@@ -6,7 +6,15 @@ import { isAdmin } from '@/lib/db/middleware.js';
 export async function GET(req) {
   try {
     const { rows } = await query('SELECT * FROM work ORDER BY start_date DESC');
-    return NextResponse.json({ workHistory: rows });
+    
+    // Map database columns to fields expected by public frontend pages
+    const mapped = rows.map(r => ({
+      ...r,
+      position: r.title,
+      currently_working: r.is_current
+    }));
+
+    return NextResponse.json({ success: true, works: mapped, workHistory: rows });
   } catch (error) {
     console.error('GET /api/work error:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

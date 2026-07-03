@@ -27,7 +27,7 @@ export default function AboutPage() {
     <div className="min-h-screen py-28 px-6 sm:px-8 relative overflow-hidden bg-white text-slate-600 selection:bg-violet-100 selection:text-violet-900">
       
  
-      <div className="w-full mx-auto relative z-10 space-y-16">
+      <div className="w-full max-w-7xl mx-auto relative z-10 space-y-16">
         
         <div className="space-y-4 text-center md:text-left">
           <span className="text-xs font-semibold tracking-widest text-violet-600 uppercase">Who I Am</span>

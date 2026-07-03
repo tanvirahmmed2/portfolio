@@ -107,6 +107,9 @@ export default function Footer() {
             <Link href="/" className="text-sm hover:text-white hover:translate-x-1 transition-all duration-200 block w-fit">
               Home
             </Link>
+            <Link href="/works" className="text-sm hover:text-white hover:translate-x-1 transition-all duration-200 block w-fit">
+              Work Life
+            </Link>
             <Link href="/about" className="text-sm hover:text-white hover:translate-x-1 transition-all duration-200 block w-fit">
               About
             </Link>

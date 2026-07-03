@@ -8,12 +8,13 @@ export async function GET(req) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
-    const [skillsRes, blogsRes, projectsRes, reviewsRes, contactRes] = await Promise.all([
+    const [skillsRes, blogsRes, projectsRes, reviewsRes, contactRes, workRes] = await Promise.all([
       query('SELECT COUNT(*) FROM skills'),
       query('SELECT COUNT(*) FROM blogs'),
       query('SELECT COUNT(*) FROM projects'),
       query('SELECT COUNT(*) FROM reviews'),
-      query('SELECT COUNT(*) FROM contact WHERE is_read = FALSE')
+      query('SELECT COUNT(*) FROM contact WHERE is_read = FALSE'),
+      query('SELECT COUNT(*) FROM work')
     ]);
 
     const stats = {
@@ -21,7 +22,8 @@ export async function GET(req) {
       blogs: parseInt(blogsRes.rows[0].count, 10),
       projects: parseInt(projectsRes.rows[0].count, 10),
       reviews: parseInt(reviewsRes.rows[0].count, 10),
-      pendingContacts: parseInt(contactRes.rows[0].count, 10)
+      pendingContacts: parseInt(contactRes.rows[0].count, 10),
+      works: parseInt(workRes.rows[0].count, 10)
     };
 
     return NextResponse.json({ success: true, stats });

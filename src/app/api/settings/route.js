@@ -65,7 +65,7 @@ async function getSettingsData() {
   }
 }
 
-// GET: Fetch website configuration metadata (Public)
+
 export async function GET(req) {
   try {
     const settings = await getSettingsData();
@@ -76,7 +76,7 @@ export async function GET(req) {
   }
 }
 
-// POST: Update website configuration metadata (Admin Only)
+
 export async function POST(req) {
   try {
     if (!isAdmin(req)) {
@@ -85,7 +85,7 @@ export async function POST(req) {
 
     const body = await req.json();
     
-    // Get existing settings row (to see if we have one to update)
+    
     const { rows } = await query('SELECT * FROM settings ORDER BY id ASC LIMIT 1');
     
     let updatedRow;
@@ -110,7 +110,7 @@ export async function POST(req) {
         instagramUrl = body.instagram_url || '';
       }
 
-      // Insert if empty
+      
       const insertRes = await query(
         `INSERT INTO settings (name, email, title, bio, resume_url, github_url, linkedin_url, twitter_url, facebook_url, instagram_url, theme)
          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
@@ -130,7 +130,7 @@ export async function POST(req) {
       );
       updatedRow = insertRes.rows[0];
     } else {
-      // Merge new fields with existing
+      
       const current = rows[0];
       const name = body.name !== undefined ? body.name : current.name;
       const email = body.email !== undefined ? body.email : current.email;
@@ -139,7 +139,7 @@ export async function POST(req) {
       const resumeUrl = body.resumeUrl !== undefined ? body.resumeUrl : current.resume_url;
       const theme = body.theme !== undefined ? body.theme : current.theme;
 
-      // Extract socials from either body.socials or flat body fields
+      
       let githubUrl = current.github_url;
       let linkedinUrl = current.linkedin_url;
       let twitterUrl = current.twitter_url;
@@ -176,7 +176,7 @@ export async function POST(req) {
   }
 }
 
-// PUT: Update website configuration metadata (Admin Only)
+
 export async function PUT(req) {
   return POST(req);
 }

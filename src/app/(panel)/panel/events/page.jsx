@@ -8,7 +8,7 @@ export default function PanelEventsPage() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Delete modal state
+  
   const [deleteConfirmId, setDeleteConfirmId] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
@@ -59,7 +59,7 @@ export default function PanelEventsPage() {
   return (
     <div className="space-y-6">
       
-      {/* Header Row */}
+      
       <div className="flex justify-between items-center gap-4">
         <div>
           <h1 className="text-2xl font-black tracking-tight text-slate-900">Events Portfolio</h1>
@@ -107,7 +107,7 @@ export default function PanelEventsPage() {
               key={ev.id}
               className="border border-slate-200 bg-white rounded-2xl overflow-hidden flex flex-col justify-between group hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 shadow-xs"
             >
-              {/* Event Image Cover */}
+              
               <div className="relative h-40 border-b border-slate-100 bg-slate-50 overflow-hidden">
                 {ev.image ? (
                   <img
@@ -123,7 +123,7 @@ export default function PanelEventsPage() {
                   </div>
                 )}
                 
-                {/* Badges Overlay */}
+                
                 <div className="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5 pointer-events-none">
                   {ev.event_type && (
                     <span className="px-2 py-0.5 rounded-md text-[9px] font-bold bg-violet-50 text-violet-650 border border-violet-200/60 uppercase tracking-wide">
@@ -138,10 +138,10 @@ export default function PanelEventsPage() {
                 </div>
               </div>
 
-              {/* Event Content details */}
+              
               <div className="p-4 space-y-3 flex-1 flex flex-col justify-between">
                 <div className="space-y-1.5">
-                  {/* Event Date & Location */}
+                  
                   <div className="flex flex-col text-[10px] font-medium text-slate-450 gap-0.5">
                     <span className="flex items-center gap-1">
                       <svg className="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -174,7 +174,7 @@ export default function PanelEventsPage() {
                   </h3>
                 </div>
 
-                {/* Bottom Action buttons row */}
+                
                 <div className="flex justify-between items-center border-t border-slate-100 pt-3.5 text-slate-400">
                   <span className="text-[10px] font-mono select-all">/{ev.slug}</span>
                   <div className="flex items-center gap-2">
@@ -206,7 +206,7 @@ export default function PanelEventsPage() {
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
+      
       {deleteConfirmId && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="border border-slate-200 bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">

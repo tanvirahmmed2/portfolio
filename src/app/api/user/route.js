@@ -5,7 +5,7 @@ import { query } from '@/lib/db/database.js';
 import { JWT_SECRET } from '@/lib/db/secret.js';
 import { verifyAuth, isAdmin } from '@/lib/db/middleware.js';
 
-// GET: Fetch current user profile OR all users (Admin Only)
+
 export async function GET(req) {
   try {
     const userPayload = verifyAuth(req);
@@ -16,7 +16,7 @@ export async function GET(req) {
     const { searchParams } = new URL(req.url);
     const all = searchParams.get('all');
 
-    // Admin fetch all users
+    
     if (all === 'true') {
       if (userPayload.role !== 'admin') {
         return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
@@ -27,7 +27,7 @@ export async function GET(req) {
       return NextResponse.json({ users: rows });
     }
 
-    // Default: Fetch current profile
+    
     const { rows } = await query(
       'SELECT id, email, name, role, is_verified, created_at, updated_at FROM "users" WHERE id = $1',
       [userPayload.id]
@@ -44,7 +44,7 @@ export async function GET(req) {
   }
 }
 
-// POST: Manage Auth actions (forgot-password, reset-password)
+
 export async function POST(req) {
   try {
     const body = await req.json();
@@ -121,7 +121,7 @@ export async function POST(req) {
   }
 }
 
-// PUT: Update user role and verification status (Admin Only)
+
 export async function PUT(req) {
   try {
     if (!isAdmin(req)) {
@@ -157,7 +157,7 @@ export async function PUT(req) {
   }
 }
 
-// DELETE: Delete user account (Admin Only)
+
 export async function DELETE(req) {
   try {
     if (!isAdmin(req)) {

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { query } from '@/lib/db/database.js';
 import { isAdmin, verifyAuth } from '@/lib/db/middleware.js';
 
-// GET: Retrieve all reviews. Public users only see approved ones, admins see all.
+
 export async function GET(req) {
   try {
     const admin = isAdmin(req);
@@ -21,10 +21,10 @@ export async function GET(req) {
   }
 }
 
-// POST: Submit a review (Public or Authenticated user)
+
 export async function POST(req) {
   try {
-    const userPayload = verifyAuth(req); // Optional auth
+    const userPayload = verifyAuth(req); 
     const body = await req.json();
     const { name, email, title, company, rating, review } = body;
 
@@ -43,7 +43,7 @@ export async function POST(req) {
       `INSERT INTO reviews (user_id, name, email, title, company, rating, review, is_approved) 
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8) 
        RETURNING *`,
-      [userId, name, email, title || null, company || null, ratingVal, review, false] // Default to unapproved for moderation
+      [userId, name, email, title || null, company || null, ratingVal, review, false] 
     );
 
     return NextResponse.json({
@@ -57,7 +57,7 @@ export async function POST(req) {
   }
 }
 
-// PUT: Moderate (approve/disapprove) review (Admin Only)
+
 export async function PUT(req) {
   try {
     if (!isAdmin(req)) {
@@ -94,7 +94,7 @@ export async function PUT(req) {
   }
 }
 
-// DELETE: Delete review (Admin Only)
+
 export async function DELETE(req) {
   try {
     if (!isAdmin(req)) {

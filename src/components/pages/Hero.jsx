@@ -22,22 +22,23 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-200 flex items-center justify-center pt-16 px-6 sm:px-8 overflow-hidden">
-
+    <section className="relative min-h-200 flex items-center justify-center pt-24 px-6 sm:px-8 overflow-hidden bg-white text-slate-600 selection:bg-violet-100 selection:text-violet-900">
       
-      <div className="w-full flex flex-col items-center justify-center gap-6">
+      
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-100/30 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-100/30 rounded-full blur-[100px] pointer-events-none"></div>
 
+      <div className="max-w-7xl w-full flex flex-col items-center justify-center gap-6 relative z-10">
 
-
-        <h2 className="text-4xl md:text-6xl font-semibold">
+        <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight text-center leading-tight">
           {settings?.title || 'Senior Full-Stack Developer'}
-        </h2>
-        <p className="text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
+        </h1>
+        <p className="text-xs sm:text-sm max-w-xl mx-auto leading-relaxed text-slate-500 text-center">
           {settings?.bio || 'Crafting robust software solutions and modern web applications with precision, detail, and rich user experiences.'}
         </p>
 
         <div className='w-auto mx-auto'>
-          <Image src={'/tanvirahmmed.jpeg'} loading="eager" alt='tanvirahmmed' width={500} height={500} className='w-full max-w-52 rounded-full overflow-hidden object-cover'/>
+          <Image src={'/tanvirahmmed.jpeg'} loading="eager" alt='tanvirahmmed' width={500} height={500} className='w-full max-w-52 rounded-full overflow-hidden object-cover border border-slate-100 shadow-md'/>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
@@ -49,20 +50,20 @@ export default function Hero() {
           </Link>
           <Link
             href="/contact"
-            className="px-6 py-3 rounded-xl text-xs font-bold border hover:text-white transition-all hover:-translate-y-0.5"
+            className="px-6 py-3 rounded-xl text-xs font-bold border border-slate-200 hover:border-slate-800 text-slate-600 hover:text-slate-900 bg-white hover:-translate-y-0.5 transition-all"
           >
             Get In Touch
           </Link>
         </div>
 
-        {/* Social Icons */}
+        
         <div className="flex justify-center items-center gap-5 pt-8">
           {settings?.socials?.github && (
             <a
               href={settings.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="text-slate-400 hover:text-slate-800 transition-colors"
               title="GitHub"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -75,7 +76,7 @@ export default function Hero() {
               href={settings.socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="text-slate-400 hover:text-slate-800 transition-colors"
               title="LinkedIn"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -88,7 +89,7 @@ export default function Hero() {
               href={settings.socials.twitter}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="text-slate-400 hover:text-slate-800 transition-colors"
               title="Twitter"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

@@ -10,14 +10,14 @@ export default function RecoverForm() {
   const { showToast } = useToast();
   const router = useRouter();
 
-  const [activeTab, setActiveTab] = useState('request'); // 'request' or 'reset'
+  const [activeTab, setActiveTab] = useState('request'); 
   
-  // Request states
+  
   const [email, setEmail] = useState('');
   const [requestLoading, setRequestLoading] = useState(false);
   const [devToken, setDevToken] = useState('');
 
-  // Reset states
+  
   const [token, setToken] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -37,9 +37,9 @@ export default function RecoverForm() {
       showToast(data.message || "Reset token generated successfully.", "success");
       if (data.token) {
         setDevToken(data.token);
-        setToken(data.token); // auto-fill token in reset form
+        setToken(data.token); 
       }
-      // Switch tab to reset after success
+      
       setTimeout(() => {
         setActiveTab('reset');
       }, 1000);

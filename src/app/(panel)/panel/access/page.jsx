@@ -13,9 +13,9 @@ export default function PanelAccessPage() {
   const [roleFilter, setRoleFilter] = useState('All');
   const [statusFilter, setStatusFilter] = useState('All');
   
-  // Track loading state for each specific user action
+  
   const [actionLoading, setActionLoading] = useState({});
-  // User deletion state
+  
   const [deleteConfirmId, setDeleteConfirmId] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
@@ -42,7 +42,7 @@ export default function PanelAccessPage() {
   }, []);
 
   const handleUpdateUser = async (id, field, value) => {
-    // Prevent self-demotion
+    
     if (id === currentUser?.id && field === 'role' && value === 'user') {
       showToast('You cannot demote yourself from admin access!', 'warning');
       return;
@@ -122,16 +122,16 @@ export default function PanelAccessPage() {
   return (
     <div className="space-y-6">
       
-      {/* Header */}
+      
       <div>
         <h1 className="text-2xl font-black tracking-tight text-slate-900">Access Control</h1>
         <p className="text-sm mt-1 text-slate-500">Verify new accounts, promote users, and manage administrative privileges.</p>
       </div>
 
-      {/* Query Filters */}
+      
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border border-slate-200 bg-white p-4 rounded-2xl relative overflow-hidden shadow-xs">
         
-        {/* Search */}
+        
         <div className="flex flex-col gap-1.5 text-slate-400">
           <label className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">Search Users</label>
           <div className="relative">
@@ -148,7 +148,7 @@ export default function PanelAccessPage() {
           </div>
         </div>
 
-        {/* Role Filter */}
+        
         <div className="flex flex-col gap-1.5">
           <label className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">Filter Role</label>
           <select
@@ -162,7 +162,7 @@ export default function PanelAccessPage() {
           </select>
         </div>
 
-        {/* Verification Filter */}
+        
         <div className="flex flex-col gap-1.5">
           <label className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">Filter Status</label>
           <select
@@ -177,7 +177,7 @@ export default function PanelAccessPage() {
         </div>
       </div>
 
-      {/* Users Table / List */}
+      
       {loading ? (
         <div className="border border-slate-200 bg-white rounded-2xl overflow-hidden divide-y divide-slate-100 animate-pulse shadow-xs">
           {[...Array(5)].map((_, i) => (
@@ -224,7 +224,7 @@ export default function PanelAccessPage() {
                   return (
                     <tr key={user.id} className="transition-colors duration-150 hover:bg-slate-50/30 text-slate-700">
                       
-                      {/* User Info */}
+                      
                       <td className="py-4 px-6">
                         <div className="flex items-center gap-3">
                           <div className="w-9 h-9 rounded-full flex items-center justify-center font-bold border border-slate-200 bg-slate-50 text-slate-700 uppercase">
@@ -244,7 +244,7 @@ export default function PanelAccessPage() {
                         </div>
                       </td>
 
-                      {/* Created At */}
+                      
                       <td className="py-4 px-6 text-xs font-medium text-slate-500">
                         {user.created_at 
                           ? new Date(user.created_at).toLocaleDateString('en-US', {
@@ -256,7 +256,7 @@ export default function PanelAccessPage() {
                         }
                       </td>
 
-                      {/* Verification Status */}
+                      
                       <td className="py-4 px-6 text-center">
                         <button
                           onClick={() => handleUpdateUser(user.id, 'is_verified', !user.is_verified)}
@@ -289,7 +289,7 @@ export default function PanelAccessPage() {
                         </button>
                       </td>
 
-                      {/* Administrative Access */}
+                      
                       <td className="py-4 px-6 text-center">
                         <button
                           onClick={() => handleUpdateUser(user.id, 'role', user.role === 'admin' ? 'user' : 'admin')}
@@ -312,7 +312,7 @@ export default function PanelAccessPage() {
                         </button>
                       </td>
 
-                      {/* Delete Action */}
+                      
                       <td className="py-4 px-6 text-right">
                         <button
                           onClick={() => setDeleteConfirmId(user.id)}
@@ -340,7 +340,7 @@ export default function PanelAccessPage() {
         </div>
       )}
 
-      {/* Delete User Confirmation Modal */}
+      
       {deleteConfirmId && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="border border-slate-200 bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">

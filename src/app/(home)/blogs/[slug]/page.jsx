@@ -3,7 +3,7 @@ import React, { useState, useEffect, use } from 'react';
 import Link from 'next/link';
 
 export default function BlogDetailPage({ params }) {
-  // Resolve dynamic URL parameters in Next.js 15+
+  
   const resolvedParams = use(params);
   const { slug } = resolvedParams;
 
@@ -51,14 +51,14 @@ export default function BlogDetailPage({ params }) {
 
   if (error || !blog) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6">
+      <div className="min-h-screen flex items-center justify-center bg-white p-6">
         <div className="max-w-md w-full text-center space-y-4">
-          <h2 className="text-lg font-bold text-white">Oops! Fetching Error</h2>
-          <p className="text-xs">{error || 'Unable to locate article'}</p>
+          <h2 className="text-lg font-bold text-slate-900">Oops! Fetching Error</h2>
+          <p className="text-xs text-slate-500">{error || 'Unable to locate article'}</p>
           <div className="pt-2">
             <Link
               href="/blogs"
-              className="inline-flex items-center gap-1.5 px-4 py-2 border rounded-xl text-xs font-bold text-white"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-bold transition-all"
             >
               Back to Articles
             </Link>
@@ -69,51 +69,51 @@ export default function BlogDetailPage({ params }) {
   }
 
   return (
-    <article className="min-h-screen py-24 px-6 sm:px-8 relative overflow-hidden">
+    <article className="min-h-screen py-28 px-6 sm:px-8 relative overflow-hidden bg-white text-slate-650">
       
-      {/* Background glow effects */}
-      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-violet-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+      
+      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-violet-100/30 rounded-full blur-[100px] pointer-events-none"></div>
 
-      <div className="max-w-3xl mx-auto relative z-10 space-y-8">
+      <div className="max-w-7xl mx-auto relative z-10 space-y-8">
         
-        {/* Navigation Breadcrumbs */}
+        
         <div>
           <Link
             href="/blogs"
-            className="text-xs font-bold hover:text-white transition-colors flex items-center gap-1.5"
+            className="text-xs font-bold text-violet-600 hover:text-violet-500 transition-colors flex items-center gap-1.5 group"
           >
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-3.5 h-3.5 transform group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
             </svg>
             Back to articles index
           </Link>
         </div>
 
-        {/* Article Metadata */}
+        
         <div className="space-y-4">
           
-          <div className="flex flex-wrap items-center gap-4 text-[9px] font-bold uppercase tracking-widest">
+          <div className="flex flex-wrap items-center gap-4 text-[9px] font-black uppercase tracking-widest text-slate-400">
             {blog.created_at && (
               <span>
                 Posted: {new Date(blog.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </span>
             )}
             {blog.category && (
-              <span className="border px-2 py-0.5 rounded">
+              <span className="border border-slate-200 px-2 py-0.5 rounded text-slate-500">
                 {blog.category}
               </span>
             )}
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-black text-white leading-tight">
+          <h1 className="text-3xl sm:text-4xl font-black text-slate-900 leading-tight tracking-tight">
             {blog.title}
           </h1>
 
         </div>
 
-        {/* Cover Photo */}
+        
         {blog.image && (
-          <div className="relative aspect-video w-full rounded-3xl overflow-hidden border shadow-2xl">
+          <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200 shadow-xl bg-slate-50">
             <img
               src={blog.image}
               alt={blog.title}
@@ -122,11 +122,11 @@ export default function BlogDetailPage({ params }) {
           </div>
         )}
 
-        {/* Rich HTML body contents */}
-        <div className="prose prose-invert prose-sm max-w-none prose-neutral prose-p:leading-relaxed prose-headings:font-bold prose-headings:tracking-tight prose-a:text-violet-400 hover:prose-a:text-violet-300 pt-4">
+        
+        <div className="prose prose-slate max-w-none pt-4 text-slate-650 prose-a:text-violet-600 hover:prose-a:text-violet-500">
           <div
             dangerouslySetInnerHTML={{ __html: blog.description }}
-            className="text-xs sm:text-sm space-y-4 whitespace-normal"
+            className="text-sm sm:text-base space-y-4 leading-relaxed whitespace-normal"
           />
         </div>
 

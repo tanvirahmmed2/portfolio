@@ -24,7 +24,7 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 400 });
     }
 
-    // Block unverified logins unless they are admin
+    
     if (!user.is_verified && user.role !== 'admin') {
       return NextResponse.json({ 
         error: 'Account not verified. Please wait for administrator approval.' 

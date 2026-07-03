@@ -5,11 +5,11 @@ import { useToast } from '@/components/helper/ToastProvider.jsx';
 export default function PanelProfilePage() {
   const { showToast } = useToast();
 
-  // Profile states
+  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   
-  // Password change states
+  
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -48,7 +48,7 @@ export default function PanelProfilePage() {
       return;
     }
 
-    // Password validation if entered
+    
     if (password) {
       if (password.length < 6) {
         showToast('Password must be at least 6 characters long.', 'warning');
@@ -82,7 +82,7 @@ export default function PanelProfilePage() {
         showToast('Profile updated successfully!', 'success');
         setPassword('');
         setConfirmPassword('');
-        // Update credentials if email changed
+        
         if (data.user) {
           setName(data.user.name || '');
           setEmail(data.user.email || '');
@@ -101,7 +101,7 @@ export default function PanelProfilePage() {
   return (
     <div className="space-y-6">
       
-      {/* Header Info */}
+      
       <div>
         <h1 className="text-2xl font-black tracking-tight text-slate-900">Account Profile Settings</h1>
         <p className="text-sm mt-1 text-slate-500">Configure your personal admin details, email addresses, and security passwords.</p>
@@ -143,7 +143,7 @@ export default function PanelProfilePage() {
             />
           </div>
 
-          {/* Divider */}
+          
           <div className="border-t border-slate-100 my-4 pt-4 text-slate-650">
             <span className="text-[10px] font-bold text-slate-800 uppercase tracking-wider block mb-2">Change Password</span>
             <span className="text-[9px] text-slate-400 block mb-4">Leave fields blank if you do not want to alter your password credentials.</span>
@@ -173,7 +173,7 @@ export default function PanelProfilePage() {
             </div>
           </div>
 
-          {/* Submit Action Button */}
+          
           <div className="flex justify-end pt-2">
             <button
               type="submit"

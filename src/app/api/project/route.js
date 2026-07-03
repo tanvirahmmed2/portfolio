@@ -8,13 +8,13 @@ function slugify(text) {
     .toString()
     .toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, '')   // Remove non-word characters except spaces/hyphens
-    .replace(/[\s_]+/g, '-')    // Replace spaces/underscores with hyphens
-    .replace(/-+/g, '-')        // Remove duplicate hyphens
-    .replace(/^-+|-+$/g, '');   // Trim hyphens from start and end
+    .replace(/[^\w\s-]/g, '')   
+    .replace(/[\s_]+/g, '-')    
+    .replace(/-+/g, '-')        
+    .replace(/^-+|-+$/g, '');   
 }
 
-// GET: Fetch all projects or single project by id/slug
+
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
@@ -22,7 +22,7 @@ export async function GET(req) {
     const slug = searchParams.get('slug');
     const admin = isAdmin(req);
 
-    // 1. Single Project fetch (by ID or Slug)
+    
     if (id || slug) {
       let projectRes;
       if (id) {
@@ -37,12 +37,12 @@ export async function GET(req) {
 
       const project = projectRes.rows[0];
 
-      // Security check: if not published and caller is not admin, deny
+      
       if (!project.is_published && !admin) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
 
-      // Fetch associated skills
+      
       const skillsRes = await query(
         `SELECT s.* FROM skills s 
          JOIN project_skills ps ON s.id = ps.skill_id 
@@ -53,7 +53,7 @@ export async function GET(req) {
       return NextResponse.json({ project, skills: skillsRes.rows });
     }
 
-    // 2. Fetch all projects
+    
     let projectsRes;
     if (admin) {
       projectsRes = await query('SELECT * FROM projects ORDER BY created_at DESC');
@@ -63,7 +63,7 @@ export async function GET(req) {
 
     const projects = projectsRes.rows;
 
-    // Fetch skills mapping for all projects
+    
     const projectSkillsRes = await query(
       `SELECT ps.project_id, s.* FROM skills s 
        JOIN project_skills ps ON s.id = ps.skill_id`
@@ -90,7 +90,7 @@ export async function GET(req) {
   }
 }
 
-// POST: Add new project (Admin Only)
+
 export async function POST(req) {
   try {
     if (!isAdmin(req)) {
@@ -116,7 +116,7 @@ export async function POST(req) {
 
     const generatedSlug = slugify(title);
 
-    // Check slug uniqueness
+    
     const slugCheck = await query('SELECT id FROM projects WHERE slug = $1', [generatedSlug]);
     if (slugCheck.rows.length > 0) {
       return NextResponse.json({ error: 'Project title yields a duplicate slug. Please use a unique title.' }, { status: 400 });
@@ -141,7 +141,7 @@ export async function POST(req) {
 
     const newProject = insertProjectRes.rows[0];
 
-    // Insert skill relationships if provided
+    
     if (Array.isArray(skill_ids) && skill_ids.length > 0) {
       for (const skillId of skill_ids) {
         await query('INSERT INTO project_skills (project_id, skill_id) VALUES ($1, $2)', [newProject.id, skillId]);
@@ -155,7 +155,7 @@ export async function POST(req) {
   }
 }
 
-// PUT: Update an existing project (Admin Only)
+
 export async function PUT(req) {
   try {
     if (!isAdmin(req)) {
@@ -186,7 +186,7 @@ export async function PUT(req) {
       return NextResponse.json({ error: 'Title and description are required' }, { status: 400 });
     }
 
-    // Check current project to handle image change
+    
     const currentProjRes = await query('SELECT image_id, slug FROM projects WHERE id = $1', [id]);
     if (currentProjRes.rows.length === 0) {
       return NextResponse.json({ error: 'Project not found' }, { status: 404 });
@@ -195,7 +195,7 @@ export async function PUT(req) {
     const currentProj = currentProjRes.rows[0];
     const generatedSlug = slugify(title);
 
-    // Check slug uniqueness if it was changed
+    
     if (currentProj.slug !== generatedSlug) {
       const slugCheck = await query('SELECT id FROM projects WHERE slug = $1 AND id != $2', [generatedSlug, id]);
       if (slugCheck.rows.length > 0) {
@@ -203,7 +203,7 @@ export async function PUT(req) {
       }
     }
 
-    // Clean up old image if updated
+    
     if (currentProj.image_id && image_id && currentProj.image_id !== image_id) {
       try {
         await deleteImage(currentProj.image_id);
@@ -212,7 +212,7 @@ export async function PUT(req) {
       }
     }
 
-    // Update project
+    
     const updateRes = await query(
       `UPDATE projects 
        SET title = $1, slug = $2, description = $3, image = $4, image_id = $5, url = $6, github_url = $7, is_featured = $8, is_published = $9
@@ -232,11 +232,11 @@ export async function PUT(req) {
       ]
     );
 
-    // Sync skill relationships if array is provided
+    
     if (Array.isArray(skill_ids)) {
-      // 1. Clear old mappings
+      
       await query('DELETE FROM project_skills WHERE project_id = $1', [id]);
-      // 2. Insert new mappings
+      
       for (const skillId of skill_ids) {
         await query('INSERT INTO project_skills (project_id, skill_id) VALUES ($1, $2)', [id, skillId]);
       }
@@ -249,7 +249,7 @@ export async function PUT(req) {
   }
 }
 
-// DELETE: Delete project (Admin Only)
+
 export async function DELETE(req) {
   try {
     if (!isAdmin(req)) {
@@ -263,7 +263,7 @@ export async function DELETE(req) {
       return NextResponse.json({ error: 'Project ID is required' }, { status: 400 });
     }
 
-    // Get current project to delete image
+    
     const projRes = await query('SELECT image_id FROM projects WHERE id = $1', [id]);
     if (projRes.rows.length === 0) {
       return NextResponse.json({ error: 'Project not found' }, { status: 404 });
@@ -278,7 +278,7 @@ export async function DELETE(req) {
       }
     }
 
-    // Cascade delete handles project_skills and comments deletion
+    
     await query('DELETE FROM projects WHERE id = $1', [id]);
 
     return NextResponse.json({ success: true, message: 'Project deleted successfully' });

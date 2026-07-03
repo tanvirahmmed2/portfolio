@@ -27,7 +27,7 @@ export default function Skills() {
   if (loading) {
     return (
       <section className="py-20 px-6 sm:px-8 bg-white text-slate-600">
-        <div className="max-w-4xl mx-auto space-y-6 animate-pulse">
+        <div className="max-w-7xl mx-auto space-y-6 animate-pulse">
           <div className="h-6 w-36 bg-slate-100 rounded"></div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="h-16 bg-slate-50 rounded-xl"></div>
@@ -44,9 +44,9 @@ export default function Skills() {
 
   return (
     <section className="py-20 px-6 sm:px-8 border-t border-slate-100 bg-white text-slate-600 selection:bg-violet-100 selection:text-violet-900">
-      <div className="max-w-4xl mx-auto space-y-12">
+      <div className="max-w-7xl mx-auto space-y-12">
         
-        {/* Section Header */}
+        
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div className="space-y-2">
             <span className="text-xs font-black tracking-widest text-violet-600 uppercase">Core Competencies</span>
@@ -63,7 +63,7 @@ export default function Skills() {
           </Link>
         </div>
 
-        {/* Skills Grid */}
+        
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           {skills.map((skill) => {
             const slug = skill.name.toLowerCase().replace(/ /g, '-');
@@ -92,7 +92,7 @@ export default function Skills() {
                     {skill.name}
                   </span>
                   
-                  {/* Progress meter */}
+                  
                   <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden mt-2">
                     <div
                       className="bg-gradient-to-r from-violet-600 to-indigo-600 h-full rounded-full"

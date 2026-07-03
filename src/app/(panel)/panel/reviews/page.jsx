@@ -6,11 +6,11 @@ export default function PanelReviewsPage() {
   const { showToast } = useToast();
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('pending'); // 'pending' or 'approved'
+  const [activeTab, setActiveTab] = useState('pending'); 
   
-  // Moderate action loaders (mapped by review ID)
+  
   const [actionLoading, setActionLoading] = useState({});
-  // Deletion confirm modal state
+  
   const [deleteConfirmId, setDeleteConfirmId] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
@@ -83,12 +83,12 @@ export default function PanelReviewsPage() {
     }
   };
 
-  // Split reviews
+  
   const pendingReviews = reviews.filter((r) => !r.is_approved);
   const approvedReviews = reviews.filter((r) => r.is_approved);
   const displayedReviews = activeTab === 'pending' ? pendingReviews : approvedReviews;
 
-  // Star renderer helper
+  
   const renderStars = (count, size = "w-3.5 h-3.5") => {
     return (
       <div className="flex gap-0.5 text-amber-400">
@@ -109,13 +109,13 @@ export default function PanelReviewsPage() {
   return (
     <div className="space-y-6">
       
-      {/* Page Header */}
+      
       <div>
         <h1 className="text-2xl font-black tracking-tight text-slate-900">Review Moderation</h1>
         <p className="text-sm mt-1 text-slate-500">Approve client reviews, draft testimonials, and manage recommendation lists.</p>
       </div>
 
-      {/* Tab Selectors */}
+      
       <div className="flex gap-4 border-b border-slate-200 pb-px">
         <button
           onClick={() => setActiveTab('pending')}
@@ -180,7 +180,7 @@ export default function PanelReviewsPage() {
                 className="border border-slate-200 bg-white rounded-2xl p-5 flex flex-col justify-between gap-4 relative overflow-hidden shadow-xs hover:shadow-md transition-shadow duration-200"
               >
                 
-                {/* Header Rating & Email */}
+                
                 <div className="flex justify-between items-center flex-wrap gap-2">
                   {renderStars(rev.rating)}
                   {rev.email && (
@@ -188,12 +188,12 @@ export default function PanelReviewsPage() {
                   )}
                 </div>
 
-                {/* Body Text */}
+                
                 <div className="flex-1 border border-slate-100 bg-slate-50/50 p-3.5 rounded-xl">
                   <p className="text-xs italic text-slate-650 whitespace-pre-wrap leading-relaxed">&ldquo;{rev.review}&rdquo;</p>
                 </div>
 
-                {/* Reviewer Meta & Action Buttons */}
+                
                 <div className="flex justify-between items-center border-t border-slate-100 pt-3 flex-wrap gap-3">
                   <div>
                     <span className="text-xs font-bold text-slate-800 block">{rev.name}</span>
@@ -205,7 +205,7 @@ export default function PanelReviewsPage() {
                   </div>
 
                   <div className="flex gap-2">
-                    {/* Approve / Disapprove Switch */}
+                    
                     {rev.is_approved ? (
                       <button
                         onClick={() => handleToggleApproval(rev.id, false)}
@@ -224,7 +224,7 @@ export default function PanelReviewsPage() {
                       </button>
                     )}
 
-                    {/* Delete Trigger */}
+                    
                     <button
                       onClick={() => setDeleteConfirmId(rev.id)}
                       className="p-1.5 rounded-xl text-slate-400 hover:bg-rose-50 hover:text-rose-600 border border-slate-200 transition-all cursor-pointer shadow-xs"
@@ -243,7 +243,7 @@ export default function PanelReviewsPage() {
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
+      
       {deleteConfirmId && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="border border-slate-200 bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">

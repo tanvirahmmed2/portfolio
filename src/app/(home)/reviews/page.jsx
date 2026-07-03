@@ -7,7 +7,7 @@ export default function PublicReviewsPage() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Form states
+  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [title, setTitle] = useState('');
@@ -79,7 +79,7 @@ export default function PublicReviewsPage() {
     }
   };
 
-  // Star renderer helper
+  
   const renderStars = (count, size = "w-4 h-4") => {
     return (
       <div className="flex gap-0.5 text-amber-400">
@@ -98,20 +98,20 @@ export default function PublicReviewsPage() {
   };
 
   return (
-    <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen py-28 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative overflow-hidden bg-white text-slate-600 selection:bg-violet-100 selection:text-violet-900">
       
-      {/* Background Orbs */}
-      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-violet-600/5 rounded-full blur-[100px] pointer-events-none"></div>
-      <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-fuchsia-600/5 rounded-full blur-[100px] pointer-events-none"></div>
+      
+      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-violet-100/30 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-fuchsia-100/30 rounded-full blur-[100px] pointer-events-none"></div>
 
-      <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-10 relative z-10">
+      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-10 relative z-10">
         
-        {/* Left Side: Submit Card (col-span-5) */}
-        <div className="lg:col-span-5 p-6 sm:p-8 border rounded-3xl backdrop-blur-md flex flex-col gap-6">
+        
+        <div className="lg:col-span-5 p-6 sm:p-8 border border-slate-200 bg-slate-50/20 rounded-3xl backdrop-blur-md flex flex-col gap-6">
           <div>
-            <span className="text-[10px] font-black tracking-widest text-violet-400 uppercase">Testimonials</span>
-            <h1 className="text-2xl font-black tracking-tight text-white mt-1">Leave a Review</h1>
-            <p className="text-xs mt-2 leading-relaxed">
+            <span className="text-[10px] font-black tracking-widest text-violet-600 uppercase">Testimonials</span>
+            <h1 className="text-2xl font-black tracking-tight text-slate-900 mt-1">Leave a Review</h1>
+            <p className="text-xs mt-2 leading-relaxed text-slate-500">
               Your feedback is valuable! Shares your experience collaborating or working with me.
             </p>
           </div>
@@ -119,57 +119,57 @@ export default function PublicReviewsPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1">
-                <label className="text-[9px] font-bold uppercase tracking-wider">Your Name</label>
+                <label className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Your Name</label>
                 <input
                   type="text"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. John Doe"
-                  className="w-full border rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
+                  className="w-full border border-slate-200 bg-white rounded-xl px-3.5 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-650 transition-all"
                 />
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-[9px] font-bold uppercase tracking-wider">Email Address</label>
+                <label className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Email Address</label>
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="e.g. john@example.com"
-                  className="w-full border rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
+                  className="w-full border border-slate-200 bg-white rounded-xl px-3.5 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-655 transition-all"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1">
-                <label className="text-[9px] font-bold uppercase tracking-wider">Designation / Role</label>
+                <label className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Designation / Role</label>
                 <input
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. Tech Lead (Optional)"
-                  className="w-full border rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
+                  className="w-full border border-slate-200 bg-white rounded-xl px-3.5 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-650 transition-all"
                 />
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-[9px] font-bold uppercase tracking-wider">Company</label>
+                <label className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Company</label>
                 <input
                   type="text"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
                   placeholder="e.g. Google (Optional)"
-                  className="w-full border rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
+                  className="w-full border border-slate-200 bg-white rounded-xl px-3.5 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-650 transition-all"
                 />
               </div>
             </div>
 
-            {/* Interactive Rating Star Select */}
-            <div className="flex flex-col gap-1 border p-3 rounded-xl">
-              <span className="text-[9px] font-bold uppercase tracking-wider">Select Rating</span>
+            
+            <div className="flex flex-col gap-1 border border-slate-200 bg-white p-3 rounded-xl">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Select Rating</span>
               <div className="flex gap-1.5 mt-1.5">
                 {[1, 2, 3, 4, 5].map((star) => {
                   const isGold = hoverRating ? star <= hoverRating : star <= rating;
@@ -183,7 +183,7 @@ export default function PublicReviewsPage() {
                       className="hover:scale-110 active:scale-95 transition-all duration-150 cursor-pointer"
                     >
                       <svg
-                        className={`w-7 h-7 transition-colors ${isGold ? 'text-amber-400 fill-current' : 'text-neutral-700'}`}
+                        className={`w-7 h-7 transition-colors ${isGold ? 'text-amber-400 fill-current' : 'text-slate-200'}`}
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -196,14 +196,14 @@ export default function PublicReviewsPage() {
             </div>
 
             <div className="flex flex-col gap-1">
-              <label className="text-[9px] font-bold uppercase tracking-wider">Review Message</label>
+              <label className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Review Message</label>
               <textarea
                 required
                 rows={4}
                 value={reviewText}
                 onChange={(e) => setReviewText(e.target.value)}
                 placeholder="Share your detailed feedback here..."
-                className="w-full border rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all resize-none"
+                className="w-full border border-slate-200 bg-white rounded-xl px-3.5 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-650 transition-all resize-none"
               />
             </div>
 
@@ -221,26 +221,26 @@ export default function PublicReviewsPage() {
           </form>
         </div>
 
-        {/* Right Side: Reviews Library Feed (col-span-7) */}
+        
         <div className="lg:col-span-7 flex flex-col gap-6">
           <div>
-            <span className="text-[10px] font-black tracking-widest text-violet-400 uppercase">Approved Library</span>
-            <h2 className="text-2xl font-black tracking-tight text-white mt-1">Recommendations</h2>
+            <span className="text-[10px] font-black tracking-widest text-violet-600 uppercase">Approved Library</span>
+            <h2 className="text-2xl font-black tracking-tight text-slate-900 mt-1">Recommendations</h2>
           </div>
 
           {loading ? (
             <div className="space-y-4">
               {[...Array(3)].map((_, i) => (
-                <div key={i} className="border rounded-2xl p-5 space-y-3 animate-pulse">
-                  <div className="h-4 rounded w-20"></div>
-                  <div className="h-3.5 rounded w-full"></div>
-                  <div className="h-3 rounded w-1/3"></div>
+                <div key={i} className="border border-slate-200 bg-slate-50/50 rounded-2xl p-5 space-y-3 animate-pulse">
+                  <div className="h-4 rounded w-20 bg-slate-200"></div>
+                  <div className="h-3.5 rounded w-full bg-slate-200"></div>
+                  <div className="h-3 rounded w-1/3 bg-slate-200"></div>
                 </div>
               ))}
             </div>
           ) : reviews.length === 0 ? (
-            <div className="text-center py-20 border border-dashed rounded-2xl">
-              <svg className="w-10 h-10 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="text-center py-20 border border-dashed border-slate-300 bg-slate-50/20 text-slate-400 rounded-2xl">
+              <svg className="w-10 h-10 mx-auto mb-2 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
               <p className="text-xs font-semibold uppercase tracking-wider">No reviews approved yet</p>
@@ -251,30 +251,30 @@ export default function PublicReviewsPage() {
               {reviews.map((rev) => (
                 <div
                   key={rev.id}
-                  className="border rounded-2xl p-5 flex flex-col justify-between gap-4 transition-all duration-300 relative overflow-hidden"
+                  className="border border-slate-200 bg-white shadow-xs rounded-2xl p-5 flex flex-col justify-between gap-4 transition-all duration-300 relative overflow-hidden"
                 >
-                  {/* Rating & Quote Icon */}
+                  
                   <div className="flex justify-between items-center">
                     {renderStars(rev.rating)}
-                    <span className="text-3xl font-serif leading-none select-none">“</span>
+                    <span className="text-3xl font-serif leading-none select-none text-slate-200">“</span>
                   </div>
 
-                  {/* Review Text */}
-                  <p className="text-xs leading-relaxed whitespace-pre-wrap italic">
+                  
+                  <p className="text-xs leading-relaxed whitespace-pre-wrap italic text-slate-650">
                     {rev.review}
                   </p>
 
-                  {/* Reviewer Meta */}
-                  <div className="border-t pt-3 flex justify-between items-center text-[10px] font-semibold">
+                  
+                  <div className="border-t border-slate-100 pt-3 flex justify-between items-center text-[10px] font-semibold">
                     <div>
-                      <span className="text-white block font-bold">{rev.name}</span>
+                      <span className="text-slate-900 block font-bold">{rev.name}</span>
                       {(rev.title || rev.company) && (
-                        <span className="text-[9px] mt-0.5 block">
+                        <span className="text-[9px] mt-0.5 block text-slate-400">
                           {rev.title || ''}{rev.title && rev.company ? ' at ' : ''}{rev.company || ''}
                         </span>
                       )}
                     </div>
-                    <span className="font-medium">
+                    <span className="font-medium text-slate-400">
                       {rev.created_at
                         ? new Date(rev.created_at).toLocaleDateString('en-US', {
                             year: 'numeric',

@@ -3,7 +3,7 @@ import React, { useState, useEffect, use } from 'react';
 import Link from 'next/link';
 
 export default function SkillDetailPage({ params }) {
-  // Resolve dynamic parameters in Next.js 15+
+  
   const resolvedParams = use(params);
   const { slug } = resolvedParams;
 
@@ -16,12 +16,12 @@ export default function SkillDetailPage({ params }) {
     async function loadSkillAndProjects() {
       try {
         setLoading(true);
-        // 1. Fetch all skills to find the matching name slug
+        
         const skillRes = await fetch('/api/skill');
         const skillData = await skillRes.json();
         const list = skillData.skills || [];
         
-        // Find matching skill slug
+        
         const found = list.find(s => s.name.toLowerCase().replace(/ /g, '-') === slug);
         if (!found) {
           setError('Skill profile not found');
@@ -30,7 +30,7 @@ export default function SkillDetailPage({ params }) {
         }
         setSkill(found);
 
-        // 2. Fetch all projects and filter the ones containing this skill
+        
         const projectRes = await fetch('/api/project');
         const projectData = await projectRes.json();
         
@@ -68,14 +68,14 @@ export default function SkillDetailPage({ params }) {
 
   if (error || !skill) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6">
+      <div className="min-h-screen flex items-center justify-center bg-white p-6">
         <div className="max-w-md w-full text-center space-y-4">
-          <h2 className="text-lg font-bold text-white">Oops! Skill Error</h2>
-          <p className="text-xs">{error || 'Skill details not found'}</p>
+          <h2 className="text-lg font-bold text-slate-900">Oops! Skill Error</h2>
+          <p className="text-xs text-slate-500">{error || 'Skill details not found'}</p>
           <div className="pt-2">
             <Link
               href="/skills"
-              className="inline-flex items-center gap-1.5 px-4 py-2 border rounded-xl text-xs font-bold text-white"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-bold transition-all"
             >
               Back to Skill Stack
             </Link>
@@ -86,28 +86,28 @@ export default function SkillDetailPage({ params }) {
   }
 
   return (
-    <div className="min-h-screen py-24 px-6 sm:px-8 relative overflow-hidden">
+    <div className="min-h-screen py-28 px-6 sm:px-8 relative overflow-hidden bg-white text-slate-650">
       
-      {/* Background Glow */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-600/5 rounded-full blur-[100px] pointer-events-none"></div>
+      
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-100/30 rounded-full blur-[100px] pointer-events-none"></div>
 
-      <div className="max-w-4xl mx-auto relative z-10 space-y-12">
+      <div className="max-w-7xl mx-auto relative z-10 space-y-12">
         
-        {/* Navigation Link */}
+        
         <div>
           <Link
             href="/skills"
-            className="text-xs font-bold hover:text-white transition-colors flex items-center gap-1.5"
+            className="text-xs font-bold text-violet-600 hover:text-violet-500 transition-colors flex items-center gap-1.5 group"
           >
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-3.5 h-3.5 transform group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
             </svg>
             Back to skill stacks
           </Link>
         </div>
 
-        {/* Skill Profile Card */}
-        <div className="p-6 sm:p-8 border rounded-3xl flex flex-col sm:flex-row items-center gap-6">
+        
+        <div className="p-6 sm:p-8 border border-slate-200 bg-slate-50/20 rounded-3xl flex flex-col sm:flex-row items-center gap-6">
           {skill.image ? (
             <img
               src={skill.image}
@@ -115,23 +115,23 @@ export default function SkillDetailPage({ params }) {
               className="w-16 h-16 object-contain"
             />
           ) : (
-            <div className="w-16 h-16 rounded-2xl border flex items-center justify-center text-lg font-bold">
+            <div className="w-16 h-16 rounded-2xl border border-slate-200 bg-white flex items-center justify-center text-lg font-bold text-slate-700">
               {skill.name.slice(0, 2).toUpperCase()}
             </div>
           )}
           
           <div className="flex-1 w-full space-y-3">
             <div className="space-y-1 text-center sm:text-left">
-              <h1 className="text-2xl font-black text-white">{skill.name}</h1>
+              <h1 className="text-2xl font-black text-slate-900">{skill.name}</h1>
             </div>
             
-            {/* Proficiency progress bar */}
+            
             <div className="space-y-1.5">
-              <div className="flex items-center justify-between text-[9px] font-bold uppercase tracking-wider">
+              <div className="flex items-center justify-between text-[9px] font-bold uppercase tracking-wider text-slate-400">
                 <span>Skill Mastery</span>
-                <span>{skill.proficiency || 0}% Proficiency</span>
+                <span className="text-slate-700">{skill.proficiency || 0}% Proficiency</span>
               </div>
-              <div className="w-full h-2 rounded-full overflow-hidden border">
+              <div className="w-full h-2 rounded-full overflow-hidden border border-slate-100 bg-slate-100">
                 <div
                   className="bg-violet-600 h-full rounded-full"
                   style={{ width: `${skill.proficiency || 0}%` }}
@@ -141,16 +141,16 @@ export default function SkillDetailPage({ params }) {
           </div>
         </div>
 
-        {/* Associated Projects Section */}
+        
         <div className="space-y-6">
-          <div className="border-b pb-3">
-            <h2 className="text-sm font-bold text-white uppercase tracking-wider">
+          <div className="border-b border-slate-100 pb-3">
+            <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
               Projects built using {skill.name} ({associatedProjects.length})
             </h2>
           </div>
 
           {associatedProjects.length === 0 ? (
-            <div className="p-8 text-center border rounded-2xl">
+            <div className="p-12 text-center border border-slate-200 bg-slate-50/20 rounded-2xl text-slate-400">
               <p className="text-xs">No project listings associated with this skill stack yet.</p>
             </div>
           ) : (
@@ -158,31 +158,31 @@ export default function SkillDetailPage({ params }) {
               {associatedProjects.map((project) => (
                 <div
                   key={project.id}
-                  className="group p-5 border rounded-2xl transition-all duration-300 flex flex-col justify-between"
+                  className="group p-5 border border-slate-200 bg-white hover:border-violet-500/30 rounded-2xl transition-all duration-300 flex flex-col justify-between hover:shadow-md"
                 >
                   <div className="space-y-2">
-                    <h3 className="text-xs font-bold text-white group-hover:text-violet-400 transition-colors">
+                    <h3 className="text-xs font-bold text-slate-900 group-hover:text-violet-600 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-[10px] leading-relaxed line-clamp-3">
-                      {project.description}
+                    <p className="text-[10px] leading-relaxed text-slate-500 line-clamp-3">
+                      {project.description ? project.description.replace(/<[^>]*>/g, '') : ''}
                     </p>
                   </div>
 
                   <div className="pt-4 flex items-center gap-3">
-                    {project.project_url && (
+                    {project.url && (
                       <a
-                        href={project.project_url}
+                        href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[9px] font-bold text-white px-3 py-1.5 rounded"
+                        className="text-[9px] font-bold text-white bg-violet-600 hover:bg-violet-500 px-3 py-1.5 rounded-lg transition-all"
                       >
                         Live Demo
                       </a>
                     )}
                     <Link
-                      href="/projects"
-                      className="text-[9px] font-bold hover:text-white transition-colors"
+                      href={`/projects/${project.slug}`}
+                      className="text-[9px] font-bold text-slate-500 hover:text-slate-800 transition-colors"
                     >
                       Specifications &rarr;
                     </Link>

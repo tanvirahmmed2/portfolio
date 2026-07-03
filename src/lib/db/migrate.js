@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 async function migrate() {
   console.log('Starting full database migration and setup...');
   
-  // 1. Read default settings in case no table exists
+  
   const settingsFilePath = path.join(process.cwd(), 'src/lib/db/settings.json');
   let settingsData = {
     name: "Disibin",
@@ -36,7 +36,7 @@ async function migrate() {
   try {
     await client.query('BEGIN');
 
-    // 2. Create custom user_role type if not exists
+    
     console.log('Creating user_role enum type...');
     await client.query(`
       DO $$
@@ -47,10 +47,10 @@ async function migrate() {
       END$$;
     `);
 
-    // 3. Create all tables from schema.psql
+    
     console.log('Creating database tables...');
 
-    // Users
+    
     await client.query(`
       CREATE TABLE IF NOT EXISTS "users" (
         id SERIAL PRIMARY KEY,
@@ -66,7 +66,7 @@ async function migrate() {
       );
     `);
 
-    // Skills
+    
     await client.query(`
       CREATE TABLE IF NOT EXISTS skills (
         id SERIAL PRIMARY KEY,
@@ -80,7 +80,7 @@ async function migrate() {
       );
     `);
 
-    // Projects
+    
     await client.query(`
       CREATE TABLE IF NOT EXISTS projects (
         id SERIAL PRIMARY KEY,
@@ -98,7 +98,7 @@ async function migrate() {
       );
     `);
 
-    // Comments
+    
     await client.query(`
       CREATE TABLE IF NOT EXISTS comments (
         id SERIAL PRIMARY KEY,
@@ -114,7 +114,7 @@ async function migrate() {
       );
     `);
 
-    // Reviews
+    
     await client.query(`
       CREATE TABLE IF NOT EXISTS reviews (
         id SERIAL PRIMARY KEY,
@@ -131,7 +131,7 @@ async function migrate() {
       );
     `);
 
-    // Blogs
+    
     await client.query(`
       CREATE TABLE IF NOT EXISTS blogs (
         id SERIAL PRIMARY KEY,
@@ -147,7 +147,7 @@ async function migrate() {
       );
     `);
 
-    // Work
+    
     await client.query(`
       CREATE TABLE IF NOT EXISTS work (
         id SERIAL PRIMARY KEY,
@@ -164,7 +164,7 @@ async function migrate() {
       );
     `);
 
-    // Contact
+    
     await client.query(`
       CREATE TABLE IF NOT EXISTS contact (
         id SERIAL PRIMARY KEY,
@@ -178,7 +178,7 @@ async function migrate() {
       );
     `);
 
-    // Contact Replies
+    
     await client.query(`
       CREATE TABLE IF NOT EXISTS contact_replies (
         id SERIAL PRIMARY KEY,
@@ -188,7 +188,7 @@ async function migrate() {
       );
     `);
 
-    // Events
+    
     await client.query(`
       CREATE TABLE IF NOT EXISTS events (
         id SERIAL PRIMARY KEY,
@@ -208,7 +208,7 @@ async function migrate() {
       );
     `);
 
-    // Project Skills (junction)
+    
     await client.query(`
       CREATE TABLE IF NOT EXISTS project_skills (
         project_id INTEGER NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
@@ -217,7 +217,7 @@ async function migrate() {
       );
     `);
 
-    // Blog Skills (junction)
+    
     await client.query(`
       CREATE TABLE IF NOT EXISTS blog_skills (
         blog_id INTEGER NOT NULL REFERENCES blogs(id) ON DELETE CASCADE,
@@ -226,7 +226,7 @@ async function migrate() {
       );
     `);
 
-    // Settings
+    
     await client.query(`
       CREATE TABLE IF NOT EXISTS settings (
         id SERIAL PRIMARY KEY,
@@ -246,7 +246,7 @@ async function migrate() {
       );
     `);
 
-    // 4. Create Indexes
+    
     console.log('Creating database indexes...');
     await client.query('CREATE INDEX IF NOT EXISTS idx_user_email ON "users"(email);');
 
@@ -264,10 +264,10 @@ async function migrate() {
     await client.query('CREATE INDEX IF NOT EXISTS idx_blog_skills_skill_id ON blog_skills(skill_id);');
     await client.query('CREATE INDEX IF NOT EXISTS idx_contact_replies_contact_id ON contact_replies(contact_id);');
 
-    // Safe schema alterations
+    
     await client.query('ALTER TABLE reviews ADD COLUMN IF NOT EXISTS email VARCHAR(255);');
 
-    // 5. Create trigger function for updated_at
+    
     console.log('Creating update_updated_at_column trigger function...');
     await client.query(`
       CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -279,7 +279,7 @@ async function migrate() {
       $$ LANGUAGE plpgsql;
     `);
 
-    // 6. Setup triggers on tables
+    
     console.log('Setting up updated_at triggers...');
     const tablesWithUpdatedAt = ['users', 'projects', 'comments', 'reviews', 'blogs', 'work', 'events', 'settings'];
     for (const t of tablesWithUpdatedAt) {
@@ -292,7 +292,7 @@ async function migrate() {
       `);
     }
 
-    // 7. Seed settings table if empty
+    
     console.log('Checking settings seeding status...');
     const checkSettings = await client.query('SELECT COUNT(*)::int as count FROM settings');
     if (checkSettings.rows[0].count === 0) {
@@ -318,7 +318,7 @@ async function migrate() {
       console.log('Settings table already contains data. Seeding skipped.');
     }
 
-    // 8. Seed default admin user if empty
+    
     console.log('Checking users table seeding status...');
     const checkUsers = await client.query('SELECT COUNT(*)::int as count FROM "users"');
     if (checkUsers.rows[0].count === 0) {

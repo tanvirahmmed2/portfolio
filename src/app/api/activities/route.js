@@ -3,7 +3,7 @@ import { query } from '@/lib/db/database.js';
 import { isAdmin } from '@/lib/db/middleware.js';
 import { deleteImage } from '@/lib/db/cloudinary.js';
 
-// GET: Retrieve all events (activities) or a single event by id/slug
+
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
@@ -32,7 +32,7 @@ export async function GET(req) {
   }
 }
 
-// POST: Add new event (Admin Only)
+
 export async function POST(req) {
   try {
     if (!isAdmin(req)) {
@@ -58,7 +58,7 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Title, slug, and event_date are required' }, { status: 400 });
     }
 
-    // Check slug uniqueness
+    
     const slugCheck = await query('SELECT id FROM events WHERE slug = $1', [slug]);
     if (slugCheck.rows.length > 0) {
       return NextResponse.json({ error: 'Slug must be unique' }, { status: 400 });
@@ -90,7 +90,7 @@ export async function POST(req) {
   }
 }
 
-// PUT: Update an existing event (Admin Only)
+
 export async function PUT(req) {
   try {
     if (!isAdmin(req)) {
@@ -123,7 +123,7 @@ export async function PUT(req) {
       return NextResponse.json({ error: 'Title, slug, and event_date are required' }, { status: 400 });
     }
 
-    // Get current event to check slug and image updates
+    
     const currentEventRes = await query('SELECT image_id, slug FROM events WHERE id = $1', [id]);
     if (currentEventRes.rows.length === 0) {
       return NextResponse.json({ error: 'Event not found' }, { status: 404 });
@@ -131,7 +131,7 @@ export async function PUT(req) {
 
     const currentEvent = currentEventRes.rows[0];
 
-    // Check slug uniqueness if changed
+    
     if (currentEvent.slug !== slug) {
       const slugCheck = await query('SELECT id FROM events WHERE slug = $1 AND id != $2', [slug, id]);
       if (slugCheck.rows.length > 0) {
@@ -139,7 +139,7 @@ export async function PUT(req) {
       }
     }
 
-    // Clean up old image if updated
+    
     if (currentEvent.image_id && image_id && currentEvent.image_id !== image_id) {
       try {
         await deleteImage(currentEvent.image_id);
@@ -176,7 +176,7 @@ export async function PUT(req) {
   }
 }
 
-// DELETE: Delete an event (Admin Only)
+
 export async function DELETE(req) {
   try {
     if (!isAdmin(req)) {
@@ -190,7 +190,7 @@ export async function DELETE(req) {
       return NextResponse.json({ error: 'Event ID is required' }, { status: 400 });
     }
 
-    // Get current event to delete image
+    
     const eventRes = await query('SELECT image_id FROM events WHERE id = $1', [id]);
     if (eventRes.rows.length === 0) {
       return NextResponse.json({ error: 'Event not found' }, { status: 404 });

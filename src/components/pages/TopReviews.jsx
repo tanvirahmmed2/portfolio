@@ -12,9 +12,9 @@ export default function TopReviews() {
         const res = await fetch('/api/review');
         if (res.ok) {
           const data = await res.json();
-          // Filter approved ones just in case (the public api filters them already, but it's safe)
+          
           const list = (data.reviews || []).filter(r => r.status === 'approved');
-          setReviews(list.slice(0, 3)); // show top 3 recommendations
+          setReviews(list.slice(0, 3)); 
         }
       } catch (err) {
         console.error(err);
@@ -27,12 +27,13 @@ export default function TopReviews() {
 
   if (loading) {
     return (
-      <section className="py-20 px-6 sm:px-8">
-        <div className="max-w-4xl mx-auto space-y-6 animate-pulse">
-          <div className="h-6 w-36 rounded"></div>
+      <section className="py-20 px-6 sm:px-8 bg-white text-slate-600">
+        <div className="max-w-7xl mx-auto space-y-6 animate-pulse">
+          <div className="h-6 w-36 rounded bg-slate-100"></div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="h-40 rounded-2xl"></div>
-            <div className="h-40 rounded-2xl"></div>
+            <div className="h-40 rounded-2xl bg-slate-50"></div>
+            <div className="h-40 rounded-2xl bg-slate-50"></div>
+            <div className="h-40 rounded-2xl bg-slate-50"></div>
           </div>
         </div>
       </section>
@@ -42,36 +43,36 @@ export default function TopReviews() {
   if (reviews.length === 0) return null;
 
   return (
-    <section className="py-20 px-6 sm:px-8 border-t">
-      <div className="max-w-5xl mx-auto space-y-12">
+    <section className="py-20 px-6 sm:px-8 border-t border-slate-105 bg-white text-slate-650 selection:bg-violet-100 selection:text-violet-900">
+      <div className="max-w-7xl mx-auto space-y-12">
         
-        {/* Section Header */}
+        
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div className="space-y-2">
-            <span className="text-[10px] font-black tracking-widest text-violet-400 uppercase">Recommendations</span>
-            <h2 className="text-3xl font-black text-white">Client Feedback</h2>
+            <span className="text-[10px] font-black tracking-widest text-violet-600 uppercase">Recommendations</span>
+            <h2 className="text-3xl font-black text-slate-900 tracking-tight">Client Feedback</h2>
           </div>
           <Link
             href="/reviews"
-            className="text-xs font-bold text-violet-400 hover:text-violet-300 transition-colors flex items-center gap-1.5 self-start sm:self-auto"
+            className="text-xs font-bold text-violet-600 hover:text-violet-500 transition-colors flex items-center gap-1.5 self-start sm:self-auto group"
           >
             Submit a review
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
             </svg>
           </Link>
         </div>
 
-        {/* Testimonials List */}
+        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {reviews.map((review) => (
             <div
               key={review.id}
-              className="p-6 border rounded-3xl transition-all duration-300 flex flex-col justify-between"
+              className="p-6 border border-slate-200 bg-white rounded-3xl transition-all duration-300 flex flex-col justify-between hover:shadow-md hover:border-violet-500/20"
             >
               <div className="space-y-4">
                 
-                {/* Stars Indicator */}
+                
                 <div className="flex items-center gap-0.5 text-amber-400">
                   {Array.from({ length: review.rating || 5 }).map((_, i) => (
                     <svg key={i} className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
@@ -80,20 +81,20 @@ export default function TopReviews() {
                   ))}
                 </div>
 
-                {/* Review Text */}
-                <p className="text-[11px] leading-relaxed italic">
+                
+                <p className="text-[11px] leading-relaxed italic text-slate-500">
                   &ldquo;{review.review}&rdquo;
                 </p>
               </div>
 
-              {/* Author Details */}
+              
               <div className="mt-6 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-violet-600/10 border border-violet-500/20 text-violet-400 font-black text-xs uppercase flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-violet-50 border border-violet-100 text-violet-600 font-black text-xs uppercase flex items-center justify-center">
                   {review.name ? review.name[0] : 'U'}
                 </div>
                 <div className="flex flex-col min-w-0">
-                  <span className="text-[11px] font-bold text-white truncate">{review.name || 'Anonymous client'}</span>
-                  <span className="text-[9px] truncate">{review.email || ''}</span>
+                  <span className="text-[11px] font-bold text-slate-800 truncate">{review.name || 'Anonymous client'}</span>
+                  <span className="text-[9px] text-slate-400 truncate">{review.email || ''}</span>
                 </div>
               </div>
 

@@ -55,7 +55,7 @@ export default function AboutPage() {
         ) : (
           <div className="space-y-16">
             
-            {/* Core Profile Card: Intro & Photo */}
+            
             <div className="p-8 md:p-10 border border-slate-200/80 rounded-3xl bg-white/70 backdrop-blur-xl flex flex-col md:flex-row gap-10 items-center justify-between shadow-xl shadow-slate-100">
               
               <div className="space-y-6 flex-1 text-center md:text-left">
@@ -71,7 +71,7 @@ export default function AboutPage() {
                   Over the past four years, my journey has evolved from writing clean UI components to architecting complex, production-ready systems. I specialize in building multi-tenant platforms, advanced e-commerce architectures with isolated inventory logic, corporate automation hubs, and community-driven networks.
                 </p>
 
-                {/* Micro Stats Grid */}
+                
                 <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-100">
                   <div>
                     <span className="block text-xl md:text-2xl font-semibold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">4+ Yrs</span>
@@ -88,7 +88,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              {/* Profile Image Container */}
+              
               <div className="relative group shrink-0">
                <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-slate-200 p-1.5 bg-white shadow-lg">
                   <Image 
@@ -103,7 +103,7 @@ export default function AboutPage() {
 
             </div>
 
-            {/* The Database Paradigm: MERN & PERN Stack Mastery */}
+            
             <div className="space-y-6">
               <div className="text-center md:text-left space-y-2">
                 <span className="text-[10px] font-semibold tracking-widest text-indigo-600 uppercase">Dual-Lens Database Ecosystem</span>
@@ -115,7 +115,7 @@ export default function AboutPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
-                {/* PERN Card */}
+                
                 <div className="p-6 md:p-8 border border-slate-200 bg-slate-50/30 rounded-2xl hover:border-violet-500/40 hover:bg-white hover:shadow-lg transition-all duration-300 relative group overflow-hidden">
                   <div className="absolute top-0 right-0 w-24 h-24 bg-violet-100/20 rounded-full blur-2xl pointer-events-none group-hover:bg-violet-100/35 transition-colors duration-300"></div>
                   <div className="flex items-center gap-3 mb-4">
@@ -134,7 +134,7 @@ export default function AboutPage() {
                   </p>
                 </div>
 
-                {/* MERN Card */}
+                
                 <div className="p-6 md:p-8 border border-slate-200 bg-slate-50/30 rounded-2xl hover:border-indigo-500/40 hover:bg-white hover:shadow-lg transition-all duration-300 relative group overflow-hidden">
                   <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-100/20 rounded-full blur-2xl pointer-events-none group-hover:bg-indigo-100/35 transition-colors duration-300"></div>
                   <div className="flex items-center gap-3 mb-4">
@@ -156,7 +156,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Deep-Dive Technical Expertise Section */}
+            
             <div className="space-y-6">
               <div className="text-center md:text-left space-y-2">
                 <span className="text-[10px] font-semibold tracking-widest text-fuchsia-600 uppercase">Core Capability Pillars</span>
@@ -168,7 +168,7 @@ export default function AboutPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
-                {/* Backend Card */}
+                
                 <div className="p-6 border border-slate-200/80 bg-white rounded-2xl space-y-4 hover:shadow-md hover:border-slate-300 transition-all duration-300">
                   <div className="p-3 w-fit rounded-xl bg-violet-50 text-violet-600">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -196,7 +196,7 @@ export default function AboutPage() {
                   </ul>
                 </div>
 
-                {/* Frontend Card */}
+                
                 <div className="p-6 border border-slate-200/80 bg-white rounded-2xl space-y-4 hover:shadow-md hover:border-slate-300 transition-all duration-300">
                   <div className="p-3 w-fit rounded-xl bg-indigo-50 text-indigo-600">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -224,7 +224,7 @@ export default function AboutPage() {
                   </ul>
                 </div>
 
-                {/* IoT Automation Card */}
+                
                 <div className="p-6 border border-slate-200/80 bg-white rounded-2xl space-y-4 hover:shadow-md hover:border-slate-300 transition-all duration-300">
                   <div className="p-3 w-fit rounded-xl bg-fuchsia-50 text-fuchsia-600">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -255,7 +255,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Core Engineering Philosophy */}
+            
             <div className="space-y-6">
               <div className="text-center md:text-left space-y-2">
                 <span className="text-[10px] font-semibold tracking-widest text-violet-600 uppercase">Core Philosophy</span>
@@ -267,7 +267,7 @@ export default function AboutPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
-                {/* Philosophy 1 */}
+                
                 <div className="p-6 border-l-4 border-violet-500 bg-slate-50 rounded-r-2xl space-y-2.5">
                   
                   <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider">Write for Humans, Optimize for Machines</h4>
@@ -276,7 +276,7 @@ export default function AboutPage() {
                   </p>
                 </div>
 
-                {/* Philosophy 2 */}
+                
                 <div className="p-6 border-l-4 border-indigo-500 bg-slate-50 rounded-r-2xl space-y-2.5">
                   
                   <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider">Data-Driven Performance</h4>
@@ -285,7 +285,7 @@ export default function AboutPage() {
                   </p>
                 </div>
 
-                {/* Philosophy 3 */}
+                
                 <div className="p-6 border-l-4 border-fuchsia-500 bg-slate-50 rounded-r-2xl space-y-2.5">
                   
                   <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider">User-Centric Engineering</h4>
@@ -297,7 +297,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Resume Download Call to Action */}
+            
             {settings?.resumeUrl && (
               <div className="p-6 sm:p-8 border border-slate-200 rounded-3xl bg-slate-50/60 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div className="space-y-1.5 text-center sm:text-left">

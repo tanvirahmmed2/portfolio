@@ -12,7 +12,7 @@ export default function BlogsPage() {
         const res = await fetch('/api/blog');
         if (res.ok) {
           const data = await res.json();
-          // Filter published blogs
+          
           const list = (data.blogs || []).filter(b => b.is_published);
           setBlogs(list);
         }
@@ -28,13 +28,13 @@ export default function BlogsPage() {
   return (
     <div className="min-h-screen py-28 px-6 sm:px-8 relative overflow-hidden bg-white text-slate-600 selection:bg-violet-100 selection:text-violet-900">
       
-      {/* Background Glows */}
+      
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-100/30 rounded-full blur-[100px] pointer-events-none"></div>
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-100/30 rounded-full blur-[100px] pointer-events-none"></div>
 
-      <div className="max-w-5xl mx-auto relative z-10 space-y-12">
+      <div className="max-w-7xl mx-auto relative z-10 space-y-12">
         
-        {/* Header */}
+        
         <div className="space-y-3 border-b border-slate-100 pb-8 text-center sm:text-left">
           <span className="text-xs font-black tracking-widest text-violet-600 uppercase">My Writing</span>
           <h1 className="text-4xl font-black text-slate-900 leading-tight tracking-tight">Articles & Guides</h1>
@@ -43,7 +43,7 @@ export default function BlogsPage() {
           </p>
         </div>
 
-        {/* Blogs grid */}
+        
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-pulse">
             <div className="h-64 bg-slate-50 rounded-3xl"></div>
@@ -63,7 +63,7 @@ export default function BlogsPage() {
                 className="group border border-slate-200 bg-white rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between hover:shadow-lg hover:border-violet-400/40"
               >
                 <div>
-                  {/* Cover */}
+                  
                   <div className="relative aspect-video w-full overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center">
                     {blog.image ? (
                       <img
@@ -81,10 +81,10 @@ export default function BlogsPage() {
                     )}
                   </div>
 
-                  {/* Content summary */}
+                  
                   <div className="p-5 space-y-2">
                     
-                    {/* Timestamp */}
+                    
                     <span className="text-[8px] font-black uppercase tracking-widest text-slate-400 block">
                       {blog.created_at ? new Date(blog.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : ''}
                     </span>
@@ -99,7 +99,7 @@ export default function BlogsPage() {
                   </div>
                 </div>
 
-                {/* Footer read button */}
+                
                 <div className="p-5 pt-0">
                   <span className="text-[9px] font-extrabold text-violet-600 group-hover:text-violet-500 transition-colors flex items-center gap-1">
                     Read Article

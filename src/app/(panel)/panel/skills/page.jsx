@@ -7,7 +7,7 @@ export default function PanelSkillsPage() {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  // Modal form states
+  
   const [modalOpen, setModalOpen] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
   const [editingId, setEditingId] = useState(null);
@@ -17,12 +17,12 @@ export default function PanelSkillsPage() {
   const [displayOrder, setDisplayOrder] = useState(0);
   const [isFeatured, setIsFeatured] = useState(false);
   
-  // Cloudinary image upload states
+  
   const [imageUrl, setImageUrl] = useState('');
   const [imageId, setImageId] = useState('');
   const [uploadingImage, setUploadingImage] = useState(false);
 
-  // Delete confirmation modal states
+  
   const [deleteConfirmId, setDeleteConfirmId] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
@@ -48,12 +48,12 @@ export default function PanelSkillsPage() {
     fetchSkills();
   }, []);
 
-  // Upload icon/logo to Cloudinary via /api/upload
+  
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    // Check size limit (e.g., 4MB)
+    
     if (file.size > 4 * 1024 * 1024) {
       showToast('Image size should be less than 4MB', 'error');
       return;
@@ -175,7 +175,7 @@ export default function PanelSkillsPage() {
   return (
     <div className="space-y-6">
       
-      {/* Page Header */}
+      
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black tracking-tight text-slate-900">Skills Library</h1>
@@ -192,7 +192,7 @@ export default function PanelSkillsPage() {
         </button>
       </div>
 
-      {/* Loading Skeleton */}
+      
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(6)].map((_, i) => (
@@ -236,7 +236,7 @@ export default function PanelSkillsPage() {
 
               <div className="flex items-start justify-between gap-4 relative z-10">
                 <div className="flex items-start gap-4">
-                  {/* Skill Icon */}
+                  
                   {skill.image ? (
                     <img
                       src={skill.image}
@@ -253,7 +253,7 @@ export default function PanelSkillsPage() {
                   </div>
                 </div>
 
-                {/* Actions */}
+                
                 <div className="flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   <button
                     onClick={() => handleOpenEditModal(skill)}
@@ -276,7 +276,7 @@ export default function PanelSkillsPage() {
                 </div>
               </div>
 
-              {/* Progress Slider Display */}
+              
               <div className="mt-6 relative z-10">
                 <div className="flex justify-between items-center text-xs mb-1.5">
                   <span className="font-semibold text-slate-600">Proficiency</span>
@@ -303,12 +303,12 @@ export default function PanelSkillsPage() {
         </div>
       )}
 
-      {/* CRUD Form Modal */}
+      
       {modalOpen && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="border border-slate-200 bg-white rounded-2xl w-full max-w-lg p-6 sm:p-8 shadow-2xl relative overflow-y-auto max-h-[90vh]">
             
-            {/* Header */}
+            
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-black tracking-wider text-slate-850 uppercase">
                 {editingId ? 'Edit Skill Profile' : 'Add New Skill'}
@@ -323,10 +323,10 @@ export default function PanelSkillsPage() {
               </button>
             </div>
 
-            {/* Form */}
+            
             <form onSubmit={handleSubmit} className="space-y-5">
               
-              {/* Skill Name */}
+              
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Skill Name</label>
                 <input
@@ -338,7 +338,7 @@ export default function PanelSkillsPage() {
                 />
               </div>
 
-              {/* Display Order */}
+              
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Display Order</label>
                 <input
@@ -351,7 +351,7 @@ export default function PanelSkillsPage() {
                 />
               </div>
 
-              {/* Proficiency Slider */}
+              
               <div className="flex flex-col gap-1.5">
                 <div className="flex justify-between items-center">
                   <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Proficiency</label>
@@ -367,7 +367,7 @@ export default function PanelSkillsPage() {
                 />
               </div>
 
-              {/* Featured Toggle */}
+              
               <div className="flex items-center gap-3 border border-slate-200 bg-slate-50/50 p-3.5 rounded-xl">
                 <input
                   type="checkbox"
@@ -381,12 +381,12 @@ export default function PanelSkillsPage() {
                 </label>
               </div>
 
-              {/* Icon Uploader */}
+              
               <div className="flex flex-col gap-2 border border-slate-200 bg-slate-50/50 p-4 rounded-xl">
                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Skill Icon / Logo</label>
                 
                 <div className="flex items-center gap-4 mt-1">
-                  {/* Preview Container */}
+                  
                   <div className="w-16 h-16 rounded-xl border border-slate-200 bg-white flex items-center justify-center relative overflow-hidden flex-shrink-0">
                     {uploadingImage ? (
                       <div className="absolute inset-0 flex items-center justify-center">
@@ -420,7 +420,7 @@ export default function PanelSkillsPage() {
                 </div>
               </div>
 
-              {/* Submit Buttons */}
+              
               <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
                 <button
                   type="button"
@@ -445,7 +445,7 @@ export default function PanelSkillsPage() {
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
+      
       {deleteConfirmId && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="border border-slate-200 bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">

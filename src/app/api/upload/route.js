@@ -4,7 +4,7 @@ import { isAdmin } from '@/lib/db/middleware.js';
 
 export async function POST(req) {
   try {
-    // Authenticate admin user
+    
     if (!isAdmin(req)) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
@@ -16,7 +16,7 @@ export async function POST(req) {
       return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
     }
 
-    // Convert file to buffer for Cloudinary upload stream
+    
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 

@@ -5,21 +5,21 @@ import { useToast } from '@/components/helper/ToastProvider.jsx';
 export default function PanelSettingsPage() {
   const { showToast } = useToast();
   
-  // Settings form states
+  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [title, setTitle] = useState('');
   const [bio, setBio] = useState('');
   const [resumeUrl, setResumeUrl] = useState('');
   
-  // Social links states
+  
   const [github, setGithub] = useState('');
   const [linkedin, setLinkedin] = useState('');
   const [twitter, setTwitter] = useState('');
   const [facebook, setFacebook] = useState('');
   const [instagram, setInstagram] = useState('');
   
-  // Theme state
+  
   const [theme, setTheme] = useState('dark');
 
   const [loading, setLoading] = useState(true);
@@ -110,7 +110,7 @@ export default function PanelSettingsPage() {
   return (
     <div className="space-y-6">
       
-      {/* Page Header */}
+      
       <div>
         <h1 className="text-2xl font-black tracking-tight text-slate-900">System Settings</h1>
         <p className="text-sm mt-1 text-slate-500">Configure profile summaries, theme views, resume links, and social metadata.</p>
@@ -131,7 +131,7 @@ export default function PanelSettingsPage() {
         /* Settings Update Form */
         <form onSubmit={handleSubmit} className="max-w-4xl border border-slate-200 bg-white rounded-3xl p-6 sm:p-8 space-y-8 shadow-xs">
           
-          {/* Section 1: Developer Information */}
+          
           <div className="space-y-5">
             <h2 className="text-xs font-bold text-violet-600 uppercase tracking-widest border-b border-slate-100 pb-2">Developer Profile</h2>
             
@@ -196,7 +196,7 @@ export default function PanelSettingsPage() {
             </div>
           </div>
 
-          {/* Section 2: Online URLs & Assets */}
+          
           <div className="space-y-5">
             <h2 className="text-xs font-bold text-violet-600 uppercase tracking-widest border-b border-slate-100 pb-2">Social & Asset URLs</h2>
             
@@ -269,7 +269,7 @@ export default function PanelSettingsPage() {
             </div>
           </div>
 
-          {/* Action Row */}
+          
           <div className="flex justify-end pt-4 border-t border-slate-100">
             <button
               type="submit"

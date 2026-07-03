@@ -10,7 +10,7 @@ export default function EventForm({ initialData }) {
 
   const isEdit = !!initialData;
 
-  // Form states
+  
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
   const [description, setDescription] = useState('');
@@ -26,7 +26,7 @@ export default function EventForm({ initialData }) {
   const [submitLoading, setSubmitLoading] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
 
-  // Helper: Format ISO date string for datetime-local input
+  
   const formatDateForInput = (dateString) => {
     if (!dateString) return '';
     const d = new Date(dateString);
@@ -40,7 +40,7 @@ export default function EventForm({ initialData }) {
     return `${yyyy}-${mm}-${dd}T${hh}:${min}`;
   };
 
-  // Prefill states when editing
+  
   useEffect(() => {
     if (initialData) {
       setTitle(initialData.title || '');
@@ -57,7 +57,7 @@ export default function EventForm({ initialData }) {
     }
   }, [initialData]);
 
-  // Handle title auto slugification
+  
   const handleTitleChange = (val) => {
     setTitle(val);
     if (!isEdit) {
@@ -70,7 +70,7 @@ export default function EventForm({ initialData }) {
     }
   };
 
-  // Handle image upload
+  
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -100,7 +100,7 @@ export default function EventForm({ initialData }) {
     }
   };
 
-  // Handle form submission
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -152,10 +152,10 @@ export default function EventForm({ initialData }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6 max-w-4xl border border-slate-200 bg-white rounded-3xl p-6 sm:p-8 shadow-xs">
       
-      {/* 2-Column Inputs Grid */}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
-        {/* Title */}
+        
         <div className="flex flex-col gap-1.5">
           <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Event Title</label>
           <input
@@ -168,7 +168,7 @@ export default function EventForm({ initialData }) {
           />
         </div>
 
-        {/* Slug */}
+        
         <div className="flex flex-col gap-1.5">
           <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">URL Slug</label>
           <input
@@ -181,7 +181,7 @@ export default function EventForm({ initialData }) {
           />
         </div>
 
-        {/* Event Date */}
+        
         <div className="flex flex-col gap-1.5">
           <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Event Date & Time</label>
           <input
@@ -193,7 +193,7 @@ export default function EventForm({ initialData }) {
           />
         </div>
 
-        {/* Event Type */}
+        
         <div className="flex flex-col gap-1.5">
           <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Event Type / Tag</label>
           <input
@@ -205,7 +205,7 @@ export default function EventForm({ initialData }) {
           />
         </div>
 
-        {/* Location */}
+        
         <div className="flex flex-col gap-1.5">
           <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Location / Streaming Link</label>
           <input
@@ -217,7 +217,7 @@ export default function EventForm({ initialData }) {
           />
         </div>
 
-        {/* Featured Toggle */}
+        
         <div className="flex flex-col justify-end">
           <label className="flex items-center gap-3 border border-slate-200 bg-slate-50/50 p-3.5 rounded-xl cursor-pointer select-none">
             <input
@@ -233,7 +233,7 @@ export default function EventForm({ initialData }) {
           </label>
         </div>
 
-        {/* Registration URL */}
+        
         <div className="flex flex-col gap-1.5">
           <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Registration Link</label>
           <input
@@ -245,7 +245,7 @@ export default function EventForm({ initialData }) {
           />
         </div>
 
-        {/* Event details page link */}
+        
         <div className="flex flex-col gap-1.5">
           <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Join / Details Link</label>
           <input
@@ -259,7 +259,7 @@ export default function EventForm({ initialData }) {
 
       </div>
 
-      {/* Image Cover Upload block */}
+      
       <div className="flex flex-col gap-1.5">
         <span className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Cover Image</span>
         <div className="flex items-center gap-6 p-5 border border-slate-200 bg-slate-50/50 rounded-2xl flex-col sm:flex-row">
@@ -304,13 +304,13 @@ export default function EventForm({ initialData }) {
         </div>
       </div>
 
-      {/* Description Rich-Text Editor */}
+      
       <div className="flex flex-col gap-1.5">
         <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider font-semibold">Event Description</label>
         <Editor content={description} onChange={setDescription} />
       </div>
 
-      {/* Action Row */}
+      
       <div className="flex justify-end gap-4 pt-4 border-t border-slate-100">
         <button
           type="button"

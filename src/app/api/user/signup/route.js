@@ -13,7 +13,7 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Email and password are required' }, { status: 400 });
     }
 
-    // Check duplicate registrations
+    
     const existingUser = await query('SELECT id FROM "users" WHERE email = $1', [email.trim().toLowerCase()]);
     if (existingUser.rows.length > 0) {
       return NextResponse.json({ error: 'Email already registered' }, { status: 400 });
@@ -21,7 +21,7 @@ export async function POST(req) {
 
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // Default: role = 'user', is_verified = false (moderated by admin)
+    
     const insertRes = await query(
       `INSERT INTO "users" (email, password_hash, name, role, is_verified) 
        VALUES ($1, $2, $3, $4, $5) 

@@ -8,13 +8,13 @@ function slugify(text) {
     .toString()
     .toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, '')   // Remove non-word characters except spaces/hyphens
-    .replace(/[\s_]+/g, '-')    // Replace spaces/underscores with hyphens
-    .replace(/-+/g, '-')        // Remove duplicate hyphens
-    .replace(/^-+|-+$/g, '');   // Trim hyphens from start and end
+    .replace(/[^\w\s-]/g, '')   
+    .replace(/[\s_]+/g, '-')    
+    .replace(/-+/g, '-')        
+    .replace(/^-+|-+$/g, '');   
 }
 
-// GET: Retrieve all blog posts or a single post by id/slug
+
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
@@ -22,7 +22,7 @@ export async function GET(req) {
     const slug = searchParams.get('slug');
     const admin = isAdmin(req);
 
-    // 1. Single Blog post detail
+    
     if (id || slug) {
       let blogRes;
       if (id) {
@@ -37,12 +37,12 @@ export async function GET(req) {
 
       const blog = blogRes.rows[0];
 
-      // Security check
+      
       if (!blog.is_published && !admin) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
 
-      // Fetch associated skills
+      
       const skillsRes = await query(
         `SELECT s.* FROM skills s 
          JOIN blog_skills bs ON s.id = bs.skill_id 
@@ -53,7 +53,7 @@ export async function GET(req) {
       return NextResponse.json({ blog, skills: skillsRes.rows });
     }
 
-    // 2. Fetch all blogs
+    
     let blogsRes;
     if (admin) {
       blogsRes = await query(
@@ -72,7 +72,7 @@ export async function GET(req) {
   }
 }
 
-// POST: Add new blog post (Admin Only)
+
 export async function POST(req) {
   try {
     const adminUser = isAdmin(req);
@@ -89,7 +89,7 @@ export async function POST(req) {
 
     const generatedSlug = slugify(title);
 
-    // Check slug uniqueness
+    
     const slugCheck = await query('SELECT id FROM blogs WHERE slug = $1', [generatedSlug]);
     if (slugCheck.rows.length > 0) {
       return NextResponse.json({ error: 'Blog title yields a duplicate slug. Please use a unique title.' }, { status: 400 });
@@ -107,7 +107,7 @@ export async function POST(req) {
 
     const newBlog = insertRes.rows[0];
 
-    // Map skill associations if present
+    
     if (Array.isArray(skill_ids) && skill_ids.length > 0) {
       for (const skillId of skill_ids) {
         await query('INSERT INTO blog_skills (blog_id, skill_id) VALUES ($1, $2)', [newBlog.id, skillId]);
@@ -121,7 +121,7 @@ export async function POST(req) {
   }
 }
 
-// PUT: Update an existing blog post (Admin Only)
+
 export async function PUT(req) {
   try {
     const adminUser = isAdmin(req);
@@ -143,7 +143,7 @@ export async function PUT(req) {
       return NextResponse.json({ error: 'Title and description are required' }, { status: 400 });
     }
 
-    // Get current blog to handle images/publishing dates
+    
     const currentBlogRes = await query('SELECT image_id, slug, is_published, published_at FROM blogs WHERE id = $1', [id]);
     if (currentBlogRes.rows.length === 0) {
       return NextResponse.json({ error: 'Blog post not found' }, { status: 404 });
@@ -152,7 +152,7 @@ export async function PUT(req) {
     const currentBlog = currentBlogRes.rows[0];
     const generatedSlug = slugify(title);
 
-    // Check slug uniqueness if changed
+    
     if (currentBlog.slug !== generatedSlug) {
       const slugCheck = await query('SELECT id FROM blogs WHERE slug = $1 AND id != $2', [generatedSlug, id]);
       if (slugCheck.rows.length > 0) {
@@ -160,7 +160,7 @@ export async function PUT(req) {
       }
     }
 
-    // Clean up old image if updated
+    
     if (currentBlog.image_id && image_id && currentBlog.image_id !== image_id) {
       try {
         await deleteImage(currentBlog.image_id);
@@ -169,12 +169,12 @@ export async function PUT(req) {
       }
     }
 
-    // Handle published_at logic
+    
     let publishedAt = currentBlog.published_at;
     if (is_published === true && !currentBlog.is_published) {
-      publishedAt = new Date(); // set publication date now
+      publishedAt = new Date(); 
     } else if (is_published === false) {
-      publishedAt = null; // take offline
+      publishedAt = null; 
     }
 
     const updateRes = await query(
@@ -185,11 +185,11 @@ export async function PUT(req) {
       [title, generatedSlug, description, image || null, image_id || null, is_published === true, publishedAt, id]
     );
 
-    // Sync skill mappings if array is provided
+    
     if (Array.isArray(skill_ids)) {
-      // Clear old mappings
+      
       await query('DELETE FROM blog_skills WHERE blog_id = $1', [id]);
-      // Insert new mappings
+      
       for (const skillId of skill_ids) {
         await query('INSERT INTO blog_skills (blog_id, skill_id) VALUES ($1, $2)', [id, skillId]);
       }
@@ -202,7 +202,7 @@ export async function PUT(req) {
   }
 }
 
-// DELETE: Delete an existing blog post (Admin Only)
+
 export async function DELETE(req) {
   try {
     if (!isAdmin(req)) {
@@ -216,7 +216,7 @@ export async function DELETE(req) {
       return NextResponse.json({ error: 'Blog ID is required' }, { status: 400 });
     }
 
-    // Get current blog to delete image
+    
     const blogRes = await query('SELECT image_id FROM blogs WHERE id = $1', [id]);
     if (blogRes.rows.length === 0) {
       return NextResponse.json({ error: 'Blog post not found' }, { status: 404 });
@@ -231,7 +231,7 @@ export async function DELETE(req) {
       }
     }
 
-    // Cascade deletes handle blog_skills automatically
+    
     await query('DELETE FROM blogs WHERE id = $1', [id]);
 
     return NextResponse.json({ success: true, message: 'Blog post deleted successfully' });

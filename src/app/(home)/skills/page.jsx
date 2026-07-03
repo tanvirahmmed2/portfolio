@@ -23,18 +23,18 @@ export default function SkillsPage() {
     loadSkills();
   }, []);
 
-  // Grouping by category removed
+  
 
   return (
     <div className="min-h-screen py-28 px-6 sm:px-8 relative overflow-hidden bg-white text-slate-600 selection:bg-violet-100 selection:text-violet-900">
       
-      {/* Background Soft Glows */}
+      
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-100/30 rounded-full blur-[100px] pointer-events-none"></div>
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-100/30 rounded-full blur-[100px] pointer-events-none"></div>
 
-      <div className="max-w-4xl mx-auto relative z-10 space-y-12">
+      <div className="max-w-7xl mx-auto relative z-10 space-y-12">
         
-        {/* Header */}
+        
         <div className="space-y-3 border-b border-slate-100 pb-8 text-center sm:text-left">
           <span className="text-xs font-black tracking-widest text-violet-600 uppercase">My Tools</span>
           <h1 className="text-4xl font-black text-slate-900 leading-tight tracking-tight">Technology Stack</h1>
@@ -43,7 +43,7 @@ export default function SkillsPage() {
           </p>
         </div>
 
-        {/* Group lists */}
+        
         {loading ? (
           <div className="space-y-8 animate-pulse">
             <div className="h-6 w-36 bg-slate-100 rounded"></div>
@@ -85,7 +85,7 @@ export default function SkillsPage() {
                       {skill.name}
                     </span>
                     
-                    {/* Progress meter */}
+                    
                     <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden mt-2">
                       <div
                         className="bg-gradient-to-r from-violet-600 to-indigo-600 h-full rounded-full"

@@ -18,7 +18,7 @@ export default function BlogForm({ blog, onCancel, onSuccess }) {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
 
-  // Avoid hydration mismatch by waiting for mount
+  
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -38,7 +38,7 @@ export default function BlogForm({ blog, onCancel, onSuccess }) {
     
     fetchSkills();
 
-    // If editing, fetch currently mapped skills
+    
     if (blog) {
       async function fetchBlogSkills() {
         try {
@@ -147,7 +147,7 @@ export default function BlogForm({ blog, onCancel, onSuccess }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6 max-w-7xl mx-auto p-2 sm:p-6 border border-slate-200 bg-white rounded-3xl shadow-xs">
       
-      {/* Title */}
+      
       <div className="flex flex-col gap-1.5">
         <label className="text-xs font-bold text-slate-755 uppercase tracking-wide">Post Title</label>
         <input
@@ -159,18 +159,18 @@ export default function BlogForm({ blog, onCancel, onSuccess }) {
         />
       </div>
 
-      {/* Editor Description Content */}
+      
       <div className="flex flex-col gap-1.5">
         <label className="text-xs font-bold text-slate-750 uppercase tracking-wide">Post Content</label>
         <Editor content={description} onChange={setDescription} />
       </div>
 
-      {/* Image Uploader */}
+      
       <div className="flex flex-col gap-2 border border-slate-200 bg-slate-50/50 p-4 rounded-xl">
         <label className="text-xs font-bold text-slate-750 uppercase tracking-wide">Cover Thumbnail</label>
         
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-1">
-          {/* Cover Preview */}
+          
           <div className="w-40 h-24 rounded-xl border border-slate-200 bg-white flex items-center justify-center relative overflow-hidden flex-shrink-0 text-slate-400">
             {uploadingImage ? (
               <div className="absolute inset-0 flex items-center justify-center bg-white/80">
@@ -207,7 +207,7 @@ export default function BlogForm({ blog, onCancel, onSuccess }) {
         </div>
       </div>
 
-      {/* Published Toggle */}
+      
       <div className="flex items-center gap-3 border border-slate-200 bg-slate-50/50 p-3.5 rounded-xl">
         <input
           type="checkbox"
@@ -221,7 +221,7 @@ export default function BlogForm({ blog, onCancel, onSuccess }) {
         </label>
       </div>
 
-      {/* Associated Skills */}
+      
       <div className="flex flex-col gap-2.5">
         <label className="text-xs font-bold text-slate-750 uppercase tracking-wide">Associated Skills (Click to toggle)</label>
         {skills.length === 0 ? (
@@ -256,7 +256,7 @@ export default function BlogForm({ blog, onCancel, onSuccess }) {
         )}
       </div>
 
-      {/* Action Buttons */}
+      
       <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
         <button
           type="button"

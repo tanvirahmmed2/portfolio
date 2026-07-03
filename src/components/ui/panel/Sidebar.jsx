@@ -114,7 +114,7 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile Top Header */}
+      
       <div className="md:hidden flex items-center justify-between border-b border-slate-200 bg-white px-6 py-4 w-full relative z-30 shadow-xs">
         <Link href="/panel" className="text-lg font-black tracking-wider text-slate-900">
           ADMIN PANEL
@@ -136,21 +136,21 @@ export default function Sidebar() {
         </button>
       </div>
 
-      {/* Sidebar Component */}
+      
       <aside
         className={`fixed inset-y-0 left-0 z-20 flex flex-col justify-between w-64 bg-white border-r border-slate-200 pt-16 md:pt-0 transform transition-transform duration-300 ease-in-out md:translate-x-0 md:relative
           ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
       >
         <div className="flex flex-col flex-1 px-4 py-6 overflow-y-auto">
-          {/* Logo / Title */}
+          
           <div className="hidden md:flex items-center gap-2 mb-8 px-2">
             <Link href="/panel" className="text-lg font-black tracking-wider text-slate-900">
               ADMIN PANEL
             </Link>
           </div>
 
-          {/* Navigation Links */}
+          
           <nav className="flex-1 space-y-1">
             {menuItems.map((item) => {
               const isActive = pathname === item.path;
@@ -178,7 +178,7 @@ export default function Sidebar() {
           </nav>
         </div>
 
-        {/* User Info / Action Buttons */}
+        
         <div className="p-4 border-t border-slate-100">
           <div className="flex items-center gap-3 px-2 py-2 mb-4">
             <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold border border-slate-200 bg-slate-50 text-slate-700 uppercase">

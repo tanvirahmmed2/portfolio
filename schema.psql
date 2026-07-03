@@ -1,30 +1,30 @@
--- PostgreSQL Database Schema for Portfolio Website
 
--- Define Custom ENUM for User Roles
+
+
 CREATE TYPE user_role AS ENUM ('user', 'admin');
 
--- 1. USER TABLE
--- Note: users is a reserved word in PostgreSQL.
--- In SQL queries, this table MUST be enclosed in double quotes: SELECT * FROM users;
+
+
+
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     name VARCHAR(100),
     role user_role NOT NULL DEFAULT 'user',
-    is_verified BOOLEAN DEFAULT FALSE, -- verified manually by admin
+    is_verified BOOLEAN DEFAULT FALSE, 
     forget_password_token VARCHAR(255),
     forget_password_sent_at TIMESTAMP WITH TIME ZONE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 2. SKILLS TABLE
+
 CREATE TABLE skills (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL,
 
-    proficiency INTEGER CHECK (proficiency BETWEEN 0 AND 100), -- 0-100 percentage
+    proficiency INTEGER CHECK (proficiency BETWEEN 0 AND 100), 
     image VARCHAR(255),
     image_id TEXT,
     display_order INTEGER DEFAULT 0,
@@ -32,7 +32,7 @@ CREATE TABLE skills (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 3. PROJECTS TABLE
+
 CREATE TABLE projects (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -48,35 +48,35 @@ CREATE TABLE projects (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 4. COMMENTS TABLE (for Projects)
+
 CREATE TABLE comments (
     id SERIAL PRIMARY KEY,
     project_id INTEGER NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
-    user_id INTEGER REFERENCES users(id) ON DELETE SET NULL, -- Nullable if guest comments are allowed
-    guest_name VARCHAR(100), -- Used if user_id is null (guest commenting)
-    guest_email VARCHAR(255), -- Used if user_id is null
+    user_id INTEGER REFERENCES users(id) ON DELETE SET NULL, 
+    guest_name VARCHAR(100), 
+    guest_email VARCHAR(255), 
     content TEXT NOT NULL,
-    parent_id INTEGER REFERENCES comments(id) ON DELETE CASCADE, -- For threaded replies
-    is_approved BOOLEAN DEFAULT TRUE, -- Can be FALSE by default for moderation
+    parent_id INTEGER REFERENCES comments(id) ON DELETE CASCADE, 
+    is_approved BOOLEAN DEFAULT TRUE, 
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 5. REVIEWS TABLE (Testimonials)
+
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id) ON DELETE SET NULL, -- If reviewer is a registered user
-    name VARCHAR(100) NOT NULL, -- Client/Reviewer name
-    title VARCHAR(100), -- e.g., 'CEO at Acme Corp' or 'Senior Engineer'
+    user_id INTEGER REFERENCES users(id) ON DELETE SET NULL, 
+    name VARCHAR(100) NOT NULL, 
+    title VARCHAR(100), 
     company VARCHAR(100),
     rating INTEGER CHECK (rating BETWEEN 1 AND 5) NOT NULL,
     review TEXT NOT NULL,
-    is_approved BOOLEAN DEFAULT FALSE, -- Requires admin approval to show on portfolio
+    is_approved BOOLEAN DEFAULT FALSE, 
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 6. BLOGS TABLE
+
 CREATE TABLE blogs (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE blogs (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 7. WORK TABLE (Employment/Work History)
+
 CREATE TABLE work (
     id SERIAL PRIMARY KEY,
     company_name VARCHAR(150) NOT NULL,
@@ -105,7 +105,7 @@ CREATE TABLE work (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 8. CONTACT TABLE (Contact Form Messages)
+
 CREATE TABLE contact (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -117,7 +117,7 @@ CREATE TABLE contact (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 9. EVENTS TABLE (Speaking, Hackathons, Webinars, Meetups)
+
 CREATE TABLE events (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -125,31 +125,31 @@ CREATE TABLE events (
     description TEXT,
     image TEXT, 
     image_id TEXT,
-    event_type VARCHAR(100), -- e.g., 'Hackathon', 'Webinar', 'Meetup', 'Conference'
-    location VARCHAR(255), -- e.g., 'Online', 'San Francisco, CA'
+    event_type VARCHAR(100), 
+    location VARCHAR(255), 
     event_date TIMESTAMP WITH TIME ZONE NOT NULL,
     registration_url VARCHAR(255),
-    event_url VARCHAR(255), -- Info or link to event site
+    event_url VARCHAR(255), 
     is_featured BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 10. PROJECT_SKILLS TABLE (Junction table for Projects and Skills)
+
 CREATE TABLE project_skills (
     project_id INTEGER NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
     skill_id INTEGER NOT NULL REFERENCES skills(id) ON DELETE CASCADE,
     PRIMARY KEY (project_id, skill_id)
 );
 
--- 11. BLOG_SKILLS TABLE (Junction table for Blogs and Skills)
+
 CREATE TABLE blog_skills (
     blog_id INTEGER NOT NULL REFERENCES blogs(id) ON DELETE CASCADE,
     skill_id INTEGER NOT NULL REFERENCES skills(id) ON DELETE CASCADE,
     PRIMARY KEY (blog_id, skill_id)
 );
 
--- 12. SETTINGS TABLE (Website Configuration Metadata)
+
 CREATE TABLE settings (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -167,7 +167,7 @@ CREATE TABLE settings (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- INDEXES FOR PERFORMANCE OPTIMIZATION
+
 CREATE INDEX idx_user_email ON users(email);
 
 CREATE INDEX idx_projects_slug ON projects(slug);
@@ -183,7 +183,7 @@ CREATE INDEX idx_events_event_date ON events(event_date);
 CREATE INDEX idx_project_skills_skill_id ON project_skills(skill_id);
 CREATE INDEX idx_blog_skills_skill_id ON blog_skills(skill_id);
 
--- AUTOMATIC UPDATED_AT TRIGGER FUNCTION
+
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -192,7 +192,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- APPLY UPDATED_AT TRIGGERS
+
 CREATE TRIGGER set_updated_at_user BEFORE UPDATE ON users FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 CREATE TRIGGER set_updated_at_projects BEFORE UPDATE ON projects FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 CREATE TRIGGER set_updated_at_comments BEFORE UPDATE ON comments FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();

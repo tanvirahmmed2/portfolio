@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { query } from '@/lib/db/database.js';
 import { isAdmin, verifyAuth } from '@/lib/db/middleware.js';
 
-// GET: Fetch comments for a specific project
+
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
@@ -43,7 +43,7 @@ export async function GET(req) {
   }
 }
 
-// POST: Post a new comment (Public / Registered Users)
+
 export async function POST(req) {
   try {
     const userPayload = verifyAuth(req);
@@ -54,13 +54,13 @@ export async function POST(req) {
       return NextResponse.json({ error: 'project_id and content are required' }, { status: 400 });
     }
 
-    // Verify project exists
+    
     const projCheck = await query('SELECT id FROM projects WHERE id = $1', [project_id]);
     if (projCheck.rows.length === 0) {
       return NextResponse.json({ error: 'Project not found' }, { status: 404 });
     }
 
-    // Verify parent comment exists if parent_id is specified
+    
     if (parent_id) {
       const parentCheck = await query('SELECT id FROM comments WHERE id = $1 AND project_id = $2', [parent_id, project_id]);
       if (parentCheck.rows.length === 0) {
@@ -96,7 +96,7 @@ export async function POST(req) {
   }
 }
 
-// PUT: Moderate (approve/disapprove) comment (Admin Only)
+
 export async function PUT(req) {
   try {
     if (!isAdmin(req)) {
@@ -133,7 +133,7 @@ export async function PUT(req) {
   }
 }
 
-// DELETE: Delete a comment (Admin or comment Owner)
+
 export async function DELETE(req) {
   try {
     const userPayload = verifyAuth(req);
@@ -148,7 +148,7 @@ export async function DELETE(req) {
       return NextResponse.json({ error: 'Comment ID is required' }, { status: 400 });
     }
 
-    // Check if comment exists
+    
     const commentRes = await query('SELECT user_id FROM comments WHERE id = $1', [id]);
     if (commentRes.rows.length === 0) {
       return NextResponse.json({ error: 'Comment not found' }, { status: 404 });
@@ -156,7 +156,7 @@ export async function DELETE(req) {
 
     const comment = commentRes.rows[0];
 
-    // Allowed if admin OR if the logged-in user is the owner of the comment
+    
     const admin = userPayload.role === 'admin';
     const isOwner = comment.user_id === userPayload.id;
 

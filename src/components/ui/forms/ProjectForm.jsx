@@ -22,7 +22,7 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
 
-  // Avoid hydration issues
+  
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -42,7 +42,7 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
     
     fetchSkills();
 
-    // If editing, fetch currently mapped project skills
+    
     if (project) {
       async function fetchProjectSkills() {
         try {
@@ -154,7 +154,7 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6 max-w-7xl mx-auto p-4 sm:p-8 bg-white border border-slate-200 rounded-2xl shadow-xs">
       
-      {/* Title */}
+      
       <div className="flex flex-col gap-1.5">
         <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Project Title</label>
         <input
@@ -166,7 +166,7 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
         />
       </div>
 
-      {/* Demo & GitHub URLs */}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex flex-col gap-1.5">
           <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Live Demo Link</label>
@@ -193,18 +193,18 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
 
 
 
-      {/* Description Content Editor */}
+      
       <div className="flex flex-col gap-1.5">
         <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Detailed Description</label>
         <Editor content={description} onChange={setDescription} />
       </div>
 
-      {/* Thumbnail Cover Uploader */}
+      
       <div className="flex flex-col gap-2 border border-slate-200 bg-slate-50/50 p-4 rounded-xl">
         <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Project Showcase Image</label>
         
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-1">
-          {/* Cover Preview */}
+          
           <div className="w-40 h-24 rounded-xl border border-slate-200 bg-white flex items-center justify-center relative overflow-hidden flex-shrink-0">
             {uploadingImage ? (
               <div className="absolute inset-0 flex items-center justify-center">
@@ -241,7 +241,7 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
         </div>
       </div>
 
-      {/* Featured & Published Toggles */}
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="flex items-center gap-3 border border-slate-200 bg-slate-50/50 p-3.5 rounded-xl">
           <input
@@ -270,7 +270,7 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
         </div>
       </div>
 
-      {/* Associated Skills (At the bottom) */}
+      
       <div className="flex flex-col gap-2.5">
         <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Associated Skills (Click to toggle)</label>
         {skills.length === 0 ? (
@@ -305,7 +305,7 @@ export default function ProjectForm({ project, onCancel, onSuccess }) {
         )}
       </div>
 
-      {/* Action Buttons */}
+      
       <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
         <button
           type="button"

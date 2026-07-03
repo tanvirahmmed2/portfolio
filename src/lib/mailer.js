@@ -1,9 +1,6 @@
 import nodemailer from 'nodemailer';
 
-/**
- * Dispatches an email to the recipient.
- * If SMTP keys are missing in environment variables, it logs to the console as a mock helper.
- */
+
 export async function sendEmail({ to, subject, text, html }) {
   const host = process.env.SMTP_HOST;
   const port = process.env.SMTP_PORT || 587;

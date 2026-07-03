@@ -108,7 +108,7 @@ export default function PanelDashboardPage() {
   return (
     <div className="space-y-8 text-slate-600">
       
-      {/* Header */}
+      
       <div>
         <h1 className="text-2xl font-black tracking-tight text-slate-900">Dashboard Overview</h1>
         <p className="text-sm mt-1 text-slate-500">Real-time platform statistics, analytics, and inbound communication logs.</p>
@@ -142,10 +142,10 @@ export default function PanelDashboardPage() {
                 className={`group border border-slate-200 bg-white rounded-2xl p-5 flex flex-col justify-between relative overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-0.5 shadow-xs hover:shadow-md ${card.hoverBorder}`}
               >
                 
-                {/* Glow Backdrop */}
+                
                 <div className={`absolute top-0 right-0 w-16 h-16 rounded-full blur-xl pointer-events-none group-hover:scale-110 transition-transform ${card.bgGlow}`} />
 
-                {/* Card Top Block */}
+                
                 <div className="flex items-center justify-between gap-3">
                   <span className="text-[10px] font-black tracking-wider uppercase text-slate-400 block truncate max-w-[120px]">
                     {card.name}
@@ -155,7 +155,7 @@ export default function PanelDashboardPage() {
                   </div>
                 </div>
 
-                {/* Card Bottom Block */}
+                
                 <div className="mt-4 flex items-end justify-between">
                   <span className={`text-3xl font-black leading-none text-slate-900 tracking-tight ${isAlert ? 'text-rose-600' : ''}`}>
                     {card.value}
@@ -174,7 +174,7 @@ export default function PanelDashboardPage() {
         </div>
       )}
 
-      {/* Quick Links Section */}
+      
       <div className="p-6 border border-slate-200 bg-white rounded-2xl space-y-4 shadow-xs">
         <h3 className="text-xs font-black text-slate-800 uppercase tracking-wider">Control Panel Quick Actions</h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">

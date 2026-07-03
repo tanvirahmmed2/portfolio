@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
-// Reusable toolbar menu bar
+
 const MenuBar = ({ editor }) => {
   if (!editor) return null;
 

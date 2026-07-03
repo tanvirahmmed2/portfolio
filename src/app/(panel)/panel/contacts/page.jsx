@@ -8,19 +8,19 @@ export default function PanelContactsPage() {
   const [loading, setLoading] = useState(true);
   const [activeMessage, setActiveMessage] = useState(null);
   
-  // Message replies thread state
+  
   const [replies, setReplies] = useState([]);
   const [repliesLoading, setRepliesLoading] = useState(false);
 
-  // Search and filters
+  
   const [searchQuery, setSearchQuery] = useState('');
-  const [statusFilter, setStatusFilter] = useState('All'); // 'All', 'Unread', 'Replied'
+  const [statusFilter, setStatusFilter] = useState('All'); 
 
-  // Reply compose state
+  
   const [replyText, setReplyText] = useState('');
   const [replyLoading, setReplyLoading] = useState(false);
 
-  // Deletion confirm modal state
+  
   const [deleteConfirmId, setDeleteConfirmId] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
@@ -63,10 +63,10 @@ export default function PanelContactsPage() {
 
   const handleSelectMessage = async (msg) => {
     setActiveMessage(msg);
-    setReplyText(''); // Clear draft text
-    fetchReplies(msg.id); // Load thread history
+    setReplyText(''); 
+    fetchReplies(msg.id); 
 
-    // Auto mark as read in database if unread
+    
     if (!msg.is_read) {
       try {
         const res = await fetch(`/api/contact?id=${msg.id}`, {
@@ -76,7 +76,7 @@ export default function PanelContactsPage() {
         });
         const data = await res.json();
         if (res.ok && data.success) {
-          // Update local status in the messages sidebar list
+          
           setMessages((prev) =>
             prev.map((m) => (m.id === msg.id ? { ...m, is_read: true } : m))
           );
@@ -98,7 +98,7 @@ export default function PanelContactsPage() {
     try {
       setReplyLoading(true);
       
-      // Dispatch email reply and save response log via the backend mailer API
+      
       const res = await fetch('/api/contact/reply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -112,10 +112,10 @@ export default function PanelContactsPage() {
       if (res.ok && data.success) {
         showToast('Reply sent and logged successfully!', 'success');
         
-        // Append the new reply log to the thread list state
+        
         setReplies((prev) => [...prev, data.reply]);
         
-        // Update main message state inside the messages list sidebar
+        
         const updatedMsg = data.message;
         setMessages((prev) =>
           prev.map((m) => (m.id === activeMessage.id ? updatedMsg : m))
@@ -159,7 +159,7 @@ export default function PanelContactsPage() {
     }
   };
 
-  // Filter messages list
+  
   const filteredMessages = messages.filter((m) => {
     const matchesSearch =
       m.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -180,19 +180,19 @@ export default function PanelContactsPage() {
   return (
     <div className="space-y-6">
       
-      {/* Page Header */}
+      
       <div>
         <h1 className="text-2xl font-black tracking-tight text-slate-900">Inbox Messages</h1>
         <p className="text-sm mt-1 text-slate-500">Read submissions from your contact form and draft responses.</p>
       </div>
 
-      {/* Inbox Split Layout */}
+      
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[550px] items-stretch">
         
-        {/* Left Side: Inbox List (col-span-5) */}
+        
         <div className="lg:col-span-5 border border-slate-200 bg-white rounded-2xl flex flex-col overflow-hidden shadow-xs">
           
-          {/* Header Search & Filter */}
+          
           <div className="p-4 border-b border-slate-150 space-y-3">
             <div className="relative text-slate-400">
               <input
@@ -207,7 +207,7 @@ export default function PanelContactsPage() {
               </svg>
             </div>
 
-            {/* Quick Status Buttons */}
+            
             <div className="flex gap-1.5 p-1 rounded-lg border border-slate-100 bg-slate-50/50">
               {['All', 'Unread', 'Replied'].map((st) => (
                 <button
@@ -226,7 +226,7 @@ export default function PanelContactsPage() {
             </div>
           </div>
 
-          {/* Messages List Area */}
+          
           <div className="flex-1 overflow-y-auto max-h-[460px] divide-y divide-slate-100">
             {loading ? (
               [...Array(4)].map((_, i) => (
@@ -302,12 +302,12 @@ export default function PanelContactsPage() {
           </div>
         </div>
 
-        {/* Right Side: Message Details, History Thread & Reply Panel (col-span-7) */}
+        
         <div className="lg:col-span-7 border border-slate-200 bg-white rounded-2xl p-6 flex flex-col justify-between overflow-hidden shadow-xs">
           {activeMessage ? (
             <div className="flex flex-col justify-between h-full space-y-4">
               
-              {/* Message content details & replies thread */}
+              
               <div className="space-y-4 overflow-y-auto max-h-[350px] pr-1">
                 <div className="flex justify-between items-start gap-4">
                   <div>
@@ -354,12 +354,12 @@ export default function PanelContactsPage() {
                   )}
                 </div>
 
-                {/* Message Body */}
+                
                 <div className="border border-slate-150 bg-slate-50/50 rounded-xl p-4 min-h-[100px] text-slate-700">
                   <p className="text-xs whitespace-pre-wrap leading-relaxed">{activeMessage.message}</p>
                 </div>
 
-                {/* Reply Threads logs */}
+                
                 {repliesLoading ? (
                   <div className="space-y-2 animate-pulse mt-4">
                     <div className="h-2.5 bg-slate-200 rounded w-16"></div>
@@ -390,7 +390,7 @@ export default function PanelContactsPage() {
                 ) : null}
               </div>
 
-              {/* Reply Drafting Composer */}
+              
               <div className="space-y-3 pt-4 border-t border-slate-100">
                 <div className="flex justify-between items-center text-slate-400">
                   <span className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Reply Draft</span>
@@ -439,7 +439,7 @@ export default function PanelContactsPage() {
 
       </div>
 
-      {/* Delete Confirmation Modal */}
+      
       {deleteConfirmId && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="border border-slate-200 bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { query } from '@/lib/db/database.js';
 import { isAdmin } from '@/lib/db/middleware.js';
 
-// GET: Fetch all contact messages (Admin Only)
+
 export async function GET(req) {
   try {
     if (!isAdmin(req)) {
@@ -17,7 +17,7 @@ export async function GET(req) {
   }
 }
 
-// POST: Submit a new contact message (Public)
+
 export async function POST(req) {
   try {
     const body = await req.json();
@@ -41,7 +41,7 @@ export async function POST(req) {
   }
 }
 
-// PUT: Mark message as read/replied (Admin Only)
+
 export async function PUT(req) {
   try {
     if (!isAdmin(req)) {
@@ -74,12 +74,12 @@ export async function PUT(req) {
       updateQuery += `replied_at = NULL, `;
     }
 
-    // Remove trailing comma and space
+    
     if (params.length === 0 && replied === undefined) {
       return NextResponse.json({ error: 'No fields to update' }, { status: 400 });
     }
 
-    // Slice off trailing comma and add WHERE clause
+    
     updateQuery = updateQuery.trim().replace(/,$/, '') + ` WHERE id = $${count} RETURNING *`;
     params.push(id);
 
@@ -95,7 +95,7 @@ export async function PUT(req) {
   }
 }
 
-// DELETE: Delete a message (Admin Only)
+
 export async function DELETE(req) {
   try {
     if (!isAdmin(req)) {

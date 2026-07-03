@@ -12,9 +12,9 @@ export default function FeaturedProjects() {
         const res = await fetch('/api/project');
         if (res.ok) {
           const data = await res.json();
-          // Filter published & featured projects
+          
           const list = (data.projects || []).filter(p => p.is_published && p.is_featured);
-          setProjects(list.slice(0, 3)); // show top 3 featured
+          setProjects(list.slice(0, 3)); 
         }
       } catch (err) {
         console.error(err);
@@ -28,7 +28,7 @@ export default function FeaturedProjects() {
   if (loading) {
     return (
       <section className="py-20 px-6 sm:px-8">
-        <div className="max-w-6xl mx-auto space-y-6">
+        <div className="max-w-7xl mx-auto space-y-6">
           <div className="h-6 w-36 rounded animate-pulse"></div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="h-64 rounded-3xl animate-pulse"></div>
@@ -44,9 +44,9 @@ export default function FeaturedProjects() {
 
   return (
     <section className="py-20 px-6 sm:px-8 border-t">
-      <div className="max-w-6xl mx-auto space-y-12">
+      <div className="max-w-7xl mx-auto space-y-12">
         
-        {/* Section Header */}
+        
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div className="space-y-2">
             <span className="text-[10px] font-black tracking-widest text-violet-400 uppercase">Selected Work</span>
@@ -63,7 +63,7 @@ export default function FeaturedProjects() {
           </Link>
         </div>
 
-        {/* Projects Grid */}
+        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {projects.map((project) => (
             <div
@@ -71,57 +71,59 @@ export default function FeaturedProjects() {
               className="group border rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between"
             >
               <div>
-                {/* Cover Image */}
-                <div className="relative aspect-video w-full overflow-hidden border-b">
-                  {project.image ? (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-xs font-bold uppercase tracking-wider">
-                      No Preview Image
-                    </div>
-                  )}
-                  {project.is_featured && (
-                    <span className="absolute top-3 left-3 bg-violet-600 text-[8px] font-black text-white px-2.5 py-1 rounded-full uppercase tracking-wider">
-                      Featured
-                    </span>
-                  )}
-                </div>
+                <Link href={`/projects/${project.slug}`} className="block cursor-pointer">
+                  
+                  <div className="relative aspect-video w-full overflow-hidden border-b">
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-xs font-bold uppercase tracking-wider">
+                        No Preview Image
+                      </div>
+                    )}
+                    {project.is_featured && (
+                      <span className="absolute top-3 left-3 bg-violet-600 text-[8px] font-black text-white px-2.5 py-1 rounded-full uppercase tracking-wider">
+                        Featured
+                      </span>
+                    )}
+                  </div>
 
-                {/* Body Content */}
-                <div className="p-5 space-y-3">
-                  <h3 className="text-sm font-bold text-white group-hover:text-violet-400 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-[11px] leading-relaxed line-clamp-3">
-                    {project.description ? project.description.replace(/<[^>]*>/g, '') : ''}
-                  </p>
+                  
+                  <div className="p-5 space-y-3">
+                    <h3 className="text-sm font-bold text-white group-hover:text-violet-400 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-[11px] leading-relaxed line-clamp-3 text-slate-300">
+                      {project.description ? project.description.replace(/<[^>]*>/g, '') : ''}
+                    </p>
+                  </div>
+                </Link>
 
-                  {/* Skills tags */}
-                  {project.skills && project.skills.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 pt-2">
-                      {project.skills.slice(0, 3).map((skill) => (
-                        <span
-                          key={skill.id}
-                          className="text-[8px] font-bold px-2 py-0.5 rounded"
-                        >
-                          {skill.name}
-                        </span>
-                      ))}
-                      {project.skills.length > 3 && (
-                        <span className="text-[8px] font-bold">
-                          +{project.skills.length - 3}
-                        </span>
-                      )}
-                    </div>
-                  )}
-                </div>
+                
+                {project.skills && project.skills.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 px-5 pb-4">
+                    {project.skills.slice(0, 3).map((skill) => (
+                      <span
+                        key={skill.id}
+                        className="text-[8px] font-bold px-2 py-0.5 rounded border border-slate-700 bg-slate-800 text-slate-300 uppercase tracking-wide"
+                      >
+                        {skill.name}
+                      </span>
+                    ))}
+                    {project.skills.length > 3 && (
+                      <span className="text-[8px] font-bold text-slate-400">
+                        +{project.skills.length - 3}
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
 
-              {/* Action Buttons */}
+              
               <div className="p-5 pt-0 flex items-center gap-4">
                 {project.url && (
                   <a

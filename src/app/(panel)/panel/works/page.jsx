@@ -7,12 +7,12 @@ export default function PanelWorksPage() {
   const [works, setWorks] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Modal form states
+  
   const [modalOpen, setModalOpen] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
-  // Form fields
+  
   const [companyName, setCompanyName] = useState('');
   const [companyUrl, setCompanyUrl] = useState('');
   const [title, setTitle] = useState('');
@@ -22,19 +22,19 @@ export default function PanelWorksPage() {
   const [isCurrent, setIsCurrent] = useState(false);
   const [description, setDescription] = useState('');
 
-  // Delete modal states
+  
   const [deleteConfirmId, setDeleteConfirmId] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
-  // Fetch all works
+  
   const fetchWorks = async () => {
     try {
       setLoading(true);
       const res = await fetch('/api/work');
       if (res.ok) {
         const data = await res.json();
-        // The API maps title -> position and is_current -> currently_working, 
-        // but we'll fetch rows from data.workHistory or data.works
+        
+        
         setWorks(data.workHistory || data.works || []);
       } else {
         showToast('Failed to fetch work history list', 'error');
@@ -51,7 +51,7 @@ export default function PanelWorksPage() {
     fetchWorks();
   }, []);
 
-  // Helper: Format DB date string (ISO) to YYYY-MM-DD for date inputs safely using UTC
+  
   const formatDateForInput = (dateString) => {
     if (!dateString) return '';
     const d = new Date(dateString);
@@ -62,12 +62,12 @@ export default function PanelWorksPage() {
     return `${year}-${month}-${day}`;
   };
 
-  // Helper: Format date for displaying in timeline cards
+  
   const formatDateForDisplay = (dateString) => {
     if (!dateString) return '';
     const d = new Date(dateString);
     if (isNaN(d.getTime())) return '';
-    // Format to e.g. "Jun 2021" using UTC values to avoid timezone displacement
+    
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const monthStr = months[d.getUTCMonth()];
     const year = d.getUTCFullYear();
@@ -174,7 +174,7 @@ export default function PanelWorksPage() {
   return (
     <div className="space-y-6">
       
-      {/* Page Header */}
+      
       <div className="flex justify-between items-center gap-4 flex-wrap">
         <div>
           <h1 className="text-2xl font-black tracking-tight text-slate-900">Career & Work History</h1>
@@ -228,7 +228,7 @@ export default function PanelWorksPage() {
               className="border border-slate-200 bg-white rounded-2xl p-5 flex flex-col justify-between gap-4 relative overflow-hidden shadow-xs hover:shadow-md transition-shadow duration-200 border-l-4 border-l-violet-500"
             >
               
-              {/* Header Title & Date Info */}
+              
               <div className="space-y-1">
                 <div className="flex justify-between items-start gap-4">
                   <h3 className="text-sm font-black text-slate-900 leading-snug">{work.title}</h3>
@@ -262,14 +262,14 @@ export default function PanelWorksPage() {
                 </div>
               </div>
 
-              {/* Description Body */}
+              
               <div className="flex-1 bg-slate-50/50 border border-slate-100 p-3 rounded-xl">
                 <p className="text-xs text-slate-650 whitespace-pre-line leading-relaxed line-clamp-4">
                   {work.description}
                 </p>
               </div>
 
-              {/* Bottom Actions Row */}
+              
               <div className="flex justify-end gap-2 border-t border-slate-100 pt-3">
                 <button
                   onClick={() => handleOpenEditModal(work)}
@@ -297,7 +297,7 @@ export default function PanelWorksPage() {
         </div>
       )}
 
-      {/* Create / Edit Modal Form */}
+      
       {modalOpen && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
           <form
@@ -310,7 +310,7 @@ export default function PanelWorksPage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Job Title / Role */}
+              
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Job Title / Role</label>
                 <input
@@ -323,7 +323,7 @@ export default function PanelWorksPage() {
                 />
               </div>
 
-              {/* Company Name */}
+              
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Company Name</label>
                 <input
@@ -336,7 +336,7 @@ export default function PanelWorksPage() {
                 />
               </div>
 
-              {/* Company URL */}
+              
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Company URL (Optional)</label>
                 <input
@@ -348,7 +348,7 @@ export default function PanelWorksPage() {
                 />
               </div>
 
-              {/* Location */}
+              
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Location (Optional)</label>
                 <input
@@ -360,7 +360,7 @@ export default function PanelWorksPage() {
                 />
               </div>
 
-              {/* Start Date */}
+              
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Start Date</label>
                 <input
@@ -372,7 +372,7 @@ export default function PanelWorksPage() {
                 />
               </div>
 
-              {/* End Date */}
+              
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">End Date</label>
                 <input
@@ -386,7 +386,7 @@ export default function PanelWorksPage() {
               </div>
             </div>
 
-            {/* Currently Work Here Switch */}
+            
             <div className="flex items-center gap-2.5">
               <input
                 id="isCurrentCheckbox"
@@ -403,7 +403,7 @@ export default function PanelWorksPage() {
               </label>
             </div>
 
-            {/* Description Textarea */}
+            
             <div className="flex flex-col gap-1.5">
               <label className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">Role Description & Responsibilities</label>
               <textarea
@@ -416,7 +416,7 @@ export default function PanelWorksPage() {
               ></textarea>
             </div>
 
-            {/* Modal Actions */}
+            
             <div className="flex gap-3 justify-end pt-3 border-t border-slate-100">
               <button
                 type="button"
@@ -440,7 +440,7 @@ export default function PanelWorksPage() {
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
+      
       {deleteConfirmId && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="border border-slate-200 bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">

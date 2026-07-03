@@ -7,7 +7,7 @@ export default function ContactPage() {
   const { showToast } = useToast();
   const [settings, setSettings] = useState(null);
 
-  // Form states
+  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
@@ -69,63 +69,71 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="w-full flex min-h-screen items-center justify-center gap-5 py-20 px-4">
+    <div className="min-h-screen py-28 px-6 sm:px-8 relative overflow-hidden bg-white text-slate-650 selection:bg-violet-100 selection:text-violet-900 flex items-center justify-center">
+      
+      
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-100/30 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-100/30 rounded-full blur-[100px] pointer-events-none"></div>
 
+      <div className="max-w-7xl w-full relative z-10 flex flex-col items-center justify-center gap-6">
 
-      <div className="w-full flex flex-col items-center justify-center gap-6">
-
-        <div className='w-full flex flex-col items-center justify-center gap-3'>
-          <span className="text-3xl font-black tracking-widest text-violet-400 uppercase">Say Hello</span>
-          <p className=" mt-3 leading-relaxed">
+        <div className="w-full flex flex-col items-center justify-center gap-2 text-center max-w-2xl">
+          <span className="text-[10px] font-black tracking-widest text-violet-600 uppercase">Say Hello</span>
+          <h1 className="text-3xl font-black tracking-tight text-slate-900 mt-1">Get in Touch</h1>
+          <p className="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">
             Have a project idea, job opening, or simply want to chat? Send a message and let's construct something awesome together.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex w-full gap-8 flex-col max-w-6xl">
-          <div className="w-full flex flex-col items-center justify-center gap-4">
-            <div className="w-full flex flex-row items-center justify-center gap-3">
+        <form onSubmit={handleSubmit} className="w-full max-w-3xl mt-6 p-6 sm:p-8 border border-slate-200 bg-slate-50/20 rounded-3xl space-y-5 shadow-xl">
+          <div className="w-full flex flex-col gap-4">
+            <div className="w-full flex flex-col sm:flex-row items-center gap-4">
               <div className="flex flex-col gap-1.5 w-full">
-                <label className="text-[10px] font-bold uppercase tracking-wider">Your Name</label>
+                <label className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Your Name</label>
                 <input
                   type="text"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-2 border border-slate-400 rounded-2xl outline-none"
+                  placeholder="e.g. John Doe"
+                  className="w-full px-4 py-2.5 border border-slate-200 bg-white rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-650 transition-all"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5 w-full">
-                <label className="text-[10px] font-bold uppercase tracking-wider">Email Address</label>
+                <label className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Email Address</label>
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2 border border-slate-400 rounded-2xl outline-none"
+                  placeholder="e.g. john@example.com"
+                  className="w-full px-4 py-2.5 border border-slate-200 bg-white rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-650 transition-all"
                 />
               </div>
             </div>
 
-            <div className="w-full flex flex-col gap-2">
-              <label className="text-[10px] font-bold uppercase tracking-wider">Subject</label>
+            <div className="w-full flex flex-col gap-1.5">
+              <label className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Subject</label>
               <input
                 type="text"
                 required
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
-                className="w-full px-4 py-2 border border-slate-400 rounded-2xl outline-none"
+                placeholder="How can I help you?"
+                className="w-full px-4 py-2.5 border border-slate-200 bg-white rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-650 transition-all"
               />
             </div>
 
-            <div className="w-full flex flex-col gap-2">
-              <label className="text-[10px] font-bold uppercase tracking-wider">Message Content</label>
+            <div className="w-full flex flex-col gap-1.5">
+              <label className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Message Content</label>
               <textarea
                 required
                 rows={5}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full px-4 py-2 border border-slate-400 rounded-2xl outline-none"
+                placeholder="Tell me more about your requirements or questions..."
+                className="w-full px-4 py-2.5 border border-slate-200 bg-white rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-650 transition-all resize-none"
               />
             </div>
           </div>

@@ -16,7 +16,7 @@ export async function PUT(req) {
     const { name, email, password } = body;
     const targetUserId = userPayload.id;
 
-    // Check duplicate email if it is changing
+    
     if (email && email.trim().toLowerCase() !== userPayload.email.toLowerCase()) {
       const emailCheck = await query('SELECT id FROM "users" WHERE email = $1 AND id != $2', [email.trim().toLowerCase(), targetUserId]);
       if (emailCheck.rows.length > 0) {
@@ -29,7 +29,7 @@ export async function PUT(req) {
       passwordHash = await bcrypt.hash(password, 10);
     }
 
-    // Build dynamic query
+    
     let updateQuery = 'UPDATE "users" SET ';
     const params = [];
     let count = 1;
@@ -56,7 +56,7 @@ export async function PUT(req) {
       return NextResponse.json({ error: 'No fields to update' }, { status: 400 });
     }
 
-    // Strip trailing comma & append WHERE id
+    
     updateQuery = updateQuery.trim().replace(/,$/, '') + ` WHERE id = $${count} RETURNING id, email, name, role, is_verified`;
     params.push(targetUserId);
 
@@ -67,7 +67,7 @@ export async function PUT(req) {
 
     const updatedUser = updateRes.rows[0];
 
-    // Re-sign JWT session cookie with updated values
+    
     const token = jwt.sign(
       { id: updatedUser.id, email: updatedUser.email, role: updatedUser.role },
       JWT_SECRET,

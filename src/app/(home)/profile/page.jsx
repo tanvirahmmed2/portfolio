@@ -16,14 +16,14 @@ export default function HomeProfilePage() {
 
   const [submitLoading, setSubmitLoading] = useState(false);
 
-  // Redirect standard users if not authenticated
+  
   useEffect(() => {
     if (!authLoading && !user) {
       router.push('/signin');
     }
   }, [user, authLoading, router]);
 
-  // Set profile details when user is loaded
+  
   useEffect(() => {
     if (user) {
       setName(user.name || '');
@@ -72,7 +72,7 @@ export default function HomeProfilePage() {
         showToast('Profile credentials updated successfully!', 'success');
         setPassword('');
         setConfirmPassword('');
-        // Sync global authentication context
+        
         await refetch();
       } else {
         showToast(data.error || 'Failed to update credentials', 'error');
@@ -100,81 +100,81 @@ export default function HomeProfilePage() {
   }
 
   return (
-    <div className="min-h-screen py-24 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen py-28 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative overflow-hidden bg-white text-slate-650 selection:bg-violet-100 selection:text-violet-900">
       
-      {/* Background Gradients */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-600/5 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+      
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-100/30 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-100/30 rounded-full blur-[100px] pointer-events-none"></div>
 
-      <div className="max-w-md w-full relative z-10 space-y-6">
+      <div className="max-w-7xl w-full relative z-10 flex flex-col items-center">
         
-        {/* Profile Card Header */}
-        <div className="text-center">
-          <span className="text-[10px] font-black tracking-widest text-violet-400 uppercase">Manage Account</span>
-          <h1 className="text-3xl font-black tracking-tight text-white mt-1">Profile Settings</h1>
-          <p className="text-xs mt-2 leading-relaxed">
+        
+        <div className="text-center max-w-md w-full">
+          <span className="text-[10px] font-black tracking-widest text-violet-600 uppercase">Manage Account</span>
+          <h1 className="text-3xl font-black tracking-tight text-slate-900 mt-1">Profile Settings</h1>
+          <p className="text-xs mt-2 leading-relaxed text-slate-500">
             Update your credentials, name representation, and sign-in passwords.
           </p>
         </div>
 
-        {/* Profile Editor Card */}
-        <form onSubmit={handleSubmit} className="p-6 sm:p-8 border rounded-3xl backdrop-blur-md space-y-5 shadow-2xl">
+        
+        <form onSubmit={handleSubmit} className="max-w-md w-full mt-6 p-6 sm:p-8 border border-slate-200 bg-white rounded-3xl space-y-5 shadow-xl">
           
           <div className="flex flex-col gap-1.5">
-            <label className="text-[9px] font-bold uppercase tracking-wider">Username</label>
+            <label className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Username</label>
             <input
               type="text"
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. John Doe"
-              className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
+              className="w-full border border-slate-200 bg-white rounded-xl px-4 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-650 transition-all"
             />
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-[9px] font-bold uppercase tracking-wider">Email Address</label>
+            <label className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Email Address</label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="e.g. john@example.com"
-              className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
+              className="w-full border border-slate-200 bg-white rounded-xl px-4 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-650 transition-all"
             />
           </div>
 
-          {/* Password Toggles Section */}
-          <div className="border-t pt-4 mt-4 space-y-4">
+          
+          <div className="border-t border-slate-100 pt-4 mt-4 space-y-4">
             <div>
-              <span className="text-[9px] font-bold uppercase tracking-wider block">Security Credentials</span>
-              <span className="text-[8px] block mt-0.5">Leave blank to retain your current password.</span>
+              <span className="text-[9px] font-bold uppercase tracking-wider block text-slate-500">Security Credentials</span>
+              <span className="text-[8px] block mt-0.5 text-slate-400">Leave blank to retain your current password.</span>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-[9px] font-bold uppercase tracking-wider">New Password</label>
+              <label className="text-[9px] font-bold uppercase tracking-wider text-slate-500">New Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Min 6 characters (Optional)"
-                className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
+                className="w-full border border-slate-200 bg-white rounded-xl px-4 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-650 transition-all"
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-[9px] font-bold uppercase tracking-wider">Confirm New Password</label>
+              <label className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Confirm New Password</label>
               <input
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Confirm password credentials (Optional)"
-                className="w-full border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
+                className="w-full border border-slate-200 bg-white rounded-xl px-4 py-2.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-650 transition-all"
               />
             </div>
           </div>
 
-          {/* Submit Action */}
+          
           <div className="pt-2">
             <button
               type="submit"

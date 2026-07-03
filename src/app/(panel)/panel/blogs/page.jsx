@@ -8,7 +8,7 @@ export default function PanelBlogsPage() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Deletion confirm modal state
+  
   const [deleteConfirmId, setDeleteConfirmId] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
@@ -59,7 +59,7 @@ export default function PanelBlogsPage() {
   return (
     <div className="space-y-6">
       
-      {/* Page Header */}
+      
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black tracking-tight text-white">Blog Articles</h1>
@@ -113,7 +113,7 @@ export default function PanelBlogsPage() {
               className="group border hover:border-violet-500/20 rounded-2xl overflow-hidden flex flex-col justify-between hover:-translate-y-0.5 transition-all duration-300 shadow-sm relative"
             >
               
-              {/* Thumbnail Cover */}
+              
               <div className="w-full h-44 relative overflow-hidden flex items-center justify-center border-b">
                 {blog.image ? (
                   <img
@@ -127,7 +127,7 @@ export default function PanelBlogsPage() {
                   </svg>
                 )}
 
-                {/* Status Badge */}
+                
                 <div className="absolute top-3 left-3 z-10">
                   <span className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border
                     ${blog.is_published
@@ -139,7 +139,7 @@ export default function PanelBlogsPage() {
                   </span>
                 </div>
 
-                {/* Quick Hover Controls Overlay */}
+                
                 <div className="absolute inset-0 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
                   <Link
                     href={`/panel/blogs/${blog.slug}`}
@@ -162,7 +162,7 @@ export default function PanelBlogsPage() {
                 </div>
               </div>
 
-              {/* Card Details */}
+              
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="font-bold text-white group-hover:text-violet-400 transition-colors line-clamp-2 leading-snug">{blog.title}</h3>
@@ -192,7 +192,7 @@ export default function PanelBlogsPage() {
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
+      
       {deleteConfirmId && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="border rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">

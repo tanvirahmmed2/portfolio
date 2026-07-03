@@ -8,7 +8,7 @@ export default function PanelProjectsPage() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Deletion confirm modal state
+  
   const [deleteConfirmId, setDeleteConfirmId] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
@@ -59,7 +59,7 @@ export default function PanelProjectsPage() {
   return (
     <div className="space-y-6">
       
-      {/* Page Header */}
+      
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black tracking-tight text-slate-900">Project Catalog</h1>
@@ -113,7 +113,7 @@ export default function PanelProjectsPage() {
               className="group border border-slate-200 bg-white hover:border-violet-500/30 rounded-2xl overflow-hidden flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 shadow-xs relative"
             >
               
-              {/* Cover Image Showcase */}
+              
               <div className="w-full h-44 relative overflow-hidden flex items-center justify-center border-b border-slate-100 bg-slate-50">
                 {project.image ? (
                   <img
@@ -127,7 +127,7 @@ export default function PanelProjectsPage() {
                   </svg>
                 )}
 
-                {/* Status and Featured Badges */}
+                
                 <div className="absolute top-3 left-3 z-10 flex flex-wrap gap-1.5">
                   {project.is_featured && (
                     <span className="inline-block px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-violet-50 border border-violet-200 text-violet-600 shadow-xs">
@@ -144,7 +144,7 @@ export default function PanelProjectsPage() {
                   </span>
                 </div>
 
-                {/* Hover Controls Overlay */}
+                
                 <div className="absolute inset-0 bg-white/70 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
                   <Link
                     href={`/panel/projects/${project.slug}`}
@@ -167,7 +167,7 @@ export default function PanelProjectsPage() {
                 </div>
               </div>
 
-              {/* Project Card Text */}
+              
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
                   <h3 className="font-bold text-slate-800 group-hover:text-violet-600 transition-colors line-clamp-1 leading-snug">{project.title}</h3>
@@ -203,7 +203,7 @@ export default function PanelProjectsPage() {
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
+      
       {deleteConfirmId && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="border border-slate-200 bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl text-center">

@@ -8,12 +8,7 @@ cloudinary.config({
   secure: true
 });
 
-/**
- * Uploads an image (file path, base64 data URI, or remote URL) to Cloudinary.
- * @param {string} file - The file path, base64 data URI, or remote URL
- * @param {object} options - Additional Cloudinary upload options
- * @returns {Promise<object>} Upload result containing url and public_id (image_id)
- */
+
 export const uploadImage = (file, options = {}) => {
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload(file, {
@@ -29,12 +24,7 @@ export const uploadImage = (file, options = {}) => {
   });
 };
 
-/**
- * Uploads an image buffer directly using upload_stream.
- * @param {Buffer} buffer - File buffer
- * @param {object} options - Additional Cloudinary upload options
- * @returns {Promise<object>} Upload result containing url and public_id (image_id)
- */
+
 export const uploadImageBuffer = (buffer, options = {}) => {
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
@@ -54,11 +44,7 @@ export const uploadImageBuffer = (buffer, options = {}) => {
   });
 };
 
-/**
- * Deletes an image from Cloudinary using its public_id (image_id).
- * @param {string} imageId - The public_id of the image to delete
- * @returns {Promise<object>} Delete result
- */
+
 export const deleteImage = (imageId) => {
   return new Promise((resolve, reject) => {
     cloudinary.uploader.destroy(imageId, (error, result) => {

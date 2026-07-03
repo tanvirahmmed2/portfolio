@@ -2,12 +2,12 @@ import { NextResponse } from 'next/server';
 import { query } from '@/lib/db/database.js';
 import { isAdmin } from '@/lib/db/middleware.js';
 
-// GET: Fetch all work history entries (Public)
+
 export async function GET(req) {
   try {
     const { rows } = await query('SELECT * FROM work ORDER BY start_date DESC');
     
-    // Map database columns to fields expected by public frontend pages
+    
     const mapped = rows.map(r => ({
       ...r,
       position: r.title,
@@ -21,7 +21,7 @@ export async function GET(req) {
   }
 }
 
-// POST: Add new work history entry (Admin Only)
+
 export async function POST(req) {
   try {
     if (!isAdmin(req)) {
@@ -67,7 +67,7 @@ export async function POST(req) {
   }
 }
 
-// PUT: Update an existing work history entry (Admin Only)
+
 export async function PUT(req) {
   try {
     if (!isAdmin(req)) {
@@ -126,7 +126,7 @@ export async function PUT(req) {
   }
 }
 
-// DELETE: Delete a work history entry (Admin Only)
+
 export async function DELETE(req) {
   try {
     if (!isAdmin(req)) {

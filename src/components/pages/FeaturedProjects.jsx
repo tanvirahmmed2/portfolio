@@ -68,12 +68,12 @@ export default function FeaturedProjects() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group border rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between"
+              className="group bg-white rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between shadow-md hover:shadow-xl hover:-translate-y-1"
             >
               <div>
                 <Link href={`/projects/${project.slug}`} className="block cursor-pointer">
                   
-                  <div className="relative aspect-video w-full overflow-hidden border-b">
+                  <div className="relative aspect-video w-full overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center">
                     {project.image ? (
                       <img
                         src={project.image}
@@ -81,7 +81,7 @@ export default function FeaturedProjects() {
                         className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-xs font-bold uppercase tracking-wider">
+                      <div className="w-full h-full flex items-center justify-center text-xs font-bold text-slate-400 uppercase tracking-wider">
                         No Preview Image
                       </div>
                     )}
@@ -94,10 +94,10 @@ export default function FeaturedProjects() {
 
                   
                   <div className="p-5 space-y-3">
-                    <h3 className="text-sm font-bold text-white group-hover:text-violet-400 transition-colors">
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-violet-600 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-[11px] leading-relaxed line-clamp-3 text-slate-300">
+                    <p className="text-[11px] leading-relaxed line-clamp-3 text-slate-500">
                       {project.description ? project.description.replace(/<[^>]*>/g, '') : ''}
                     </p>
                   </div>
@@ -109,7 +109,7 @@ export default function FeaturedProjects() {
                     {project.skills.slice(0, 3).map((skill) => (
                       <span
                         key={skill.id}
-                        className="text-[8px] font-bold px-2 py-0.5 rounded border border-slate-700 bg-slate-800 text-slate-300 uppercase tracking-wide"
+                        className="text-[8px] font-bold px-2 py-0.5 rounded bg-violet-50 text-violet-650 uppercase tracking-wide"
                       >
                         {skill.name}
                       </span>
@@ -124,13 +124,13 @@ export default function FeaturedProjects() {
               </div>
 
               
-              <div className="p-5 pt-0 flex items-center gap-4">
+              <div className="p-5 pt-0 flex items-center gap-3">
                 {project.url && (
                   <a
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[10px] font-bold text-white px-4 py-2 rounded-lg transition-all"
+                    className="text-[10px] font-bold text-white bg-violet-600 hover:bg-violet-500 px-4 py-2 rounded-lg transition-all shadow-md shadow-violet-600/10 cursor-pointer"
                   >
                     Live Demo
                   </a>
@@ -140,7 +140,7 @@ export default function FeaturedProjects() {
                     href={project.github_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[10px] font-bold hover:text-white transition-colors"
+                    className="text-[10px] font-bold text-slate-500 hover:text-slate-900 border border-slate-200 bg-white hover:bg-slate-50 px-4 py-2 rounded-lg transition-all cursor-pointer"
                   >
                     Source Code
                   </a>

@@ -32,7 +32,6 @@ export default function Navbar() {
         
         <Link href="/" className="text-xl font-medium text-indigo-600 transition-colors relative group py-2">
             Tanvir
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-violet-500 to-indigo-500 transition-all duration-300 group-hover:w-full"></span>
           </Link>
 
         <nav className="flex items-center gap-8">
@@ -45,9 +44,8 @@ export default function Navbar() {
             About
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-violet-500 to-indigo-500 transition-all duration-300 group-hover:w-full"></span>
           </Link>
-          <Link href="/contact" className="text-sm font-medium  transition-colors relative group py-2">
+          <Link href="/contact" className="text-sm border px-4 rounded-2xl font-medium  transition-colors relative group py-2">
             Contact
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-violet-500 to-indigo-500 transition-all duration-300 group-hover:w-full"></span>
           </Link>
         </nav>
 

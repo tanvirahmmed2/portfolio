@@ -100,11 +100,11 @@ export default function ProjectsPage() {
               <Link
                 key={project.id}
                 href={`/projects/${project.slug}`}
-                className="group border border-slate-200 bg-white rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between hover:shadow-lg hover:border-violet-400/40"
+                className="group bg-white rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between shadow-md hover:shadow-xl hover:-translate-y-1 hover:bg-slate-50/10"
               >
                 <div>
                   
-                  <div className="relative aspect-video w-full overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center">
+                  <div className="relative aspect-video w-full overflow-hidden bg-slate-50/50 flex items-center justify-center">
                     {project.image ? (
                       <img
                         src={project.image}
@@ -141,7 +141,7 @@ export default function ProjectsPage() {
                         {project.skills.map((skill) => (
                           <span
                             key={skill.id}
-                            className="text-[8px] font-black px-2 py-0.5 rounded-md bg-slate-50 border border-slate-100 text-slate-500 uppercase tracking-wider"
+                            className="text-[8px] font-black px-2.5 py-1 rounded-lg bg-violet-50 text-violet-600 uppercase tracking-wider"
                           >
                             {skill.name}
                           </span>

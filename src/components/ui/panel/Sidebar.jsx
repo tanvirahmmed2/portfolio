@@ -47,6 +47,17 @@ export default function Sidebar() {
       )
     },
     {
+      name: 'Achievements',
+      path: '/panel/achievements',
+      icon: (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14L18.16 10.58A12.082 12.082 0 0118.825 17.06A11.953 11.953 0 0012 20.055a11.953 11.953 0 00-6.825-2.995 12.08 12.08 0 01.665-6.479L12 14z" />
+        </svg>
+      )
+    },
+    {
       name: 'Blogs',
       path: '/panel/blogs',
       icon: (

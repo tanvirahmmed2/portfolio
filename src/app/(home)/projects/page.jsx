@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import ProjectCard from '@/components/pages/ProjectCard';
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState([]);
@@ -97,70 +98,7 @@ export default function ProjectsPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {filteredProjects.map((project) => (
-              <Link
-                key={project.id}
-                href={`/projects/${project.slug}`}
-                className="group bg-white rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between shadow-md hover:shadow-xl hover:-translate-y-1 hover:bg-slate-50/10"
-              >
-                <div>
-                  
-                  <div className="relative aspect-video w-full overflow-hidden bg-slate-50/50 flex items-center justify-center">
-                    {project.image ? (
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex flex-col items-center justify-center text-[10px] font-black text-slate-400 uppercase tracking-widest gap-1.5 p-4">
-                        <svg className="w-6 h-6 text-slate-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        No Preview Image
-                      </div>
-                    )}
-                    {project.is_featured && (
-                      <span className="absolute top-3 left-3 bg-violet-600 text-[8px] font-black text-white px-2.5 py-1 rounded-md uppercase tracking-widest shadow-xs">
-                        Featured
-                      </span>
-                    )}
-                  </div>
-
-                  
-                  <div className="p-5 space-y-3">
-                    <h3 className="text-sm font-extrabold text-slate-950 group-hover:text-violet-600 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-[11px] leading-relaxed text-slate-500 line-clamp-3">
-                      {project.description ? project.description.replace(/<[^>]*>/g, '') : ''}
-                    </p>
-
-                    
-                    {project.skills && project.skills.length > 0 && (
-                      <div className="flex flex-wrap gap-1 pt-2">
-                        {project.skills.map((skill) => (
-                          <span
-                            key={skill.id}
-                            className="text-[8px] font-black px-2.5 py-1 rounded-lg bg-violet-50 text-violet-600 uppercase tracking-wider"
-                          >
-                            {skill.name}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className="p-5 pt-0">
-                  <span className="text-[9px] font-extrabold text-violet-600 group-hover:text-violet-500 transition-colors flex items-center gap-1">
-                    View Project Specifications
-                    <svg className="w-3 h-3 transform group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </div>
-
-              </Link>
+              <ProjectCard key={project.id} project={project} />
             ))}
           </div>
         )}

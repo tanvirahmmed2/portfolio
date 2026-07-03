@@ -1,0 +1,69 @@
+"use client";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+
+export default function BlogCard({ blog }) {
+  return (
+    <div className="relative group bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-[2.5rem] flex flex-col h-full overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 will-change-transform hover:-translate-y-1">
+      {/* Image Section */}
+      <div className="relative h-56 overflow-hidden shrink-0 bg-slate-50 flex items-center justify-center">
+        {blog.image ? (
+          <Image
+            width={1000}
+            height={1000}
+            src={blog.image}
+            alt={blog.title}
+            loading="lazy"
+            className="w-full h-full object-cover opacity-90 dark:opacity-60 transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center text-[10px] font-black text-slate-400 uppercase tracking-widest gap-1.5 p-4">
+            No Preview Image
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-zinc-950 via-transparent to-transparent"></div>
+        
+        {/* Float Badge */}
+        <div className="absolute top-6 left-6">
+          <div className="flex items-center gap-2 px-3 py-1 bg-white/95 dark:bg-zinc-900/95 border border-zinc-100 dark:border-white/5 rounded-full shadow-md">
+            <div className="w-1.5 h-1.5 rounded-full bg-violet-500"></div>
+            <span className="text-[8px] font-black uppercase tracking-widest text-zinc-650 dark:text-zinc-400">
+              {blog.published_at || blog.created_at ? new Date(blog.published_at || blog.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Article'}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Text content container */}
+      <div className="relative z-10 p-8 flex flex-col flex-grow -mt-10 bg-white/95 dark:bg-zinc-950/95 rounded-t-[2.5rem]">
+        <h3 className="text-xl font-black text-zinc-900 dark:text-zinc-100 group-hover:text-violet-500 transition-colors leading-tight mb-4">
+          {blog.title}
+        </h3>
+        
+        <div className="flex-grow space-y-3 overflow-hidden">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed transition-all duration-300 line-clamp-2">
+            {blog.description ? blog.description.replace(/<[^>]*>/g, '').slice(0, 120) + '...' : ''}
+          </p>
+
+          <Link
+            href={`/blogs/${blog.slug}`}
+            className="text-[9px] font-black uppercase tracking-widest text-zinc-400 hover:text-violet-500 flex items-center gap-1 transition-colors mt-2"
+          >
+            Details <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+          </Link>
+        </div>
+
+        {/* Bottom Actions */}
+        <div className="pt-6 flex items-center gap-3">
+          <Link
+            href={`/blogs/${blog.slug}`}
+            className="flex-1 flex items-center justify-center gap-2 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-4 py-3 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-transform duration-200 hover:scale-[1.02] shadow-sm cursor-pointer"
+          >
+            Read Article
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}

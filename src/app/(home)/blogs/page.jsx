@@ -57,59 +57,7 @@ export default function BlogsPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {blogs.map((blog) => (
-              <Link
-                key={blog.id}
-                href={`/blogs/${blog.slug}`}
-                className="group border border-slate-200 bg-white rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between hover:shadow-lg hover:border-violet-400/40"
-              >
-                <div>
-                  
-                  <div className="relative aspect-video w-full overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center">
-                    {blog.image ? (
-                      <img
-                        src={blog.image}
-                        alt={blog.title}
-                        className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex flex-col items-center justify-center text-[10px] font-black text-slate-400 uppercase tracking-widest gap-1.5 p-4">
-                        <svg className="w-6 h-6 text-slate-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        No Preview Image
-                      </div>
-                    )}
-                  </div>
-
-                  
-                  <div className="p-5 space-y-2">
-                    
-                    
-                    <span className="text-[8px] font-black uppercase tracking-widest text-slate-400 block">
-                      {blog.created_at ? new Date(blog.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : ''}
-                    </span>
-
-                    <h2 className="text-sm font-extrabold text-slate-950 group-hover:text-violet-600 transition-colors line-clamp-2 leading-snug">
-                      {blog.title}
-                    </h2>
-                    
-                    <p className="text-[11px] leading-relaxed text-slate-500 line-clamp-3">
-                      {blog.description ? blog.description.replace(/<[^>]*>/g, '').slice(0, 120) + '...' : ''}
-                    </p>
-                  </div>
-                </div>
-
-                
-                <div className="p-5 pt-0">
-                  <span className="text-[9px] font-extrabold text-violet-600 group-hover:text-violet-500 transition-colors flex items-center gap-1">
-                    Read Article
-                    <svg className="w-3 h-3 transform group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </div>
-
-              </Link>
+              <BlogCard key={blog.id} blog={blog} />
             ))}
           </div>
         )}

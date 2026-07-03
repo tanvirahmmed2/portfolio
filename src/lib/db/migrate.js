@@ -208,7 +208,24 @@ async function migrate() {
       );
     `);
 
-    
+    // Achievements Table
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS achievements (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        description TEXT,
+        image VARCHAR(255),
+        image_id TEXT,
+        awarder VARCHAR(255) NOT NULL,
+        date_earned DATE NOT NULL,
+        url VARCHAR(255),
+        is_featured BOOLEAN DEFAULT TRUE,
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    // Project Skills Table
     await client.query(`
       CREATE TABLE IF NOT EXISTS project_skills (
         project_id INTEGER NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
@@ -263,6 +280,8 @@ async function migrate() {
     await client.query('CREATE INDEX IF NOT EXISTS idx_project_skills_skill_id ON project_skills(skill_id);');
     await client.query('CREATE INDEX IF NOT EXISTS idx_blog_skills_skill_id ON blog_skills(skill_id);');
     await client.query('CREATE INDEX IF NOT EXISTS idx_contact_replies_contact_id ON contact_replies(contact_id);');
+    await client.query('CREATE INDEX IF NOT EXISTS idx_achievements_date_earned ON achievements(date_earned DESC);');
+
 
     
     await client.query('ALTER TABLE reviews ADD COLUMN IF NOT EXISTS email VARCHAR(255);');
@@ -281,7 +300,8 @@ async function migrate() {
 
     
     console.log('Setting up updated_at triggers...');
-    const tablesWithUpdatedAt = ['users', 'projects', 'comments', 'reviews', 'blogs', 'work', 'events', 'settings'];
+    const tablesWithUpdatedAt = ['users', 'projects', 'comments', 'reviews', 'blogs', 'work', 'events', 'settings', 'achievements'];
+
     for (const t of tablesWithUpdatedAt) {
       await client.query(`DROP TRIGGER IF EXISTS set_updated_at_${t} ON "${t}";`);
       await client.query(`

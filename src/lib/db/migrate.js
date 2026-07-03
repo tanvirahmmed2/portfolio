@@ -71,7 +71,6 @@ async function migrate() {
       CREATE TABLE IF NOT EXISTS skills (
         id SERIAL PRIMARY KEY,
         name VARCHAR(100) UNIQUE NOT NULL,
-        category VARCHAR(50) NOT NULL,
         proficiency INTEGER CHECK (proficiency BETWEEN 0 AND 100),
         image VARCHAR(255),
         image_id TEXT,
@@ -87,7 +86,6 @@ async function migrate() {
         id SERIAL PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
         slug VARCHAR(255) UNIQUE NOT NULL,
-        summary VARCHAR(500) NOT NULL,
         description TEXT NOT NULL,
         image TEXT,
         image_id TEXT,
@@ -137,7 +135,6 @@ async function migrate() {
     await client.query(`
       CREATE TABLE IF NOT EXISTS blogs (
         id SERIAL PRIMARY KEY,
-        author_id INTEGER NOT NULL REFERENCES "users"(id) ON DELETE CASCADE,
         title VARCHAR(255) NOT NULL,
         slug VARCHAR(255) UNIQUE NOT NULL,
         description TEXT NOT NULL,
@@ -252,7 +249,7 @@ async function migrate() {
     // 4. Create Indexes
     console.log('Creating database indexes...');
     await client.query('CREATE INDEX IF NOT EXISTS idx_user_email ON "users"(email);');
-    await client.query('CREATE INDEX IF NOT EXISTS idx_skills_category ON skills(category);');
+
     await client.query('CREATE INDEX IF NOT EXISTS idx_projects_slug ON projects(slug);');
     await client.query('CREATE INDEX IF NOT EXISTS idx_projects_is_published ON projects(is_published);');
     await client.query('CREATE INDEX IF NOT EXISTS idx_comments_project_id ON comments(project_id);');

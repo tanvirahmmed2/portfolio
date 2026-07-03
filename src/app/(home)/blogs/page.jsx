@@ -94,7 +94,7 @@ export default function BlogsPage() {
                     </h2>
                     
                     <p className="text-[11px] leading-relaxed text-slate-500 line-clamp-3">
-                      {blog.summary || (blog.content ? blog.content.replace(/<[^>]*>/g, '').slice(0, 120) + '...' : '')}
+                      {blog.description ? blog.description.replace(/<[^>]*>/g, '').slice(0, 120) + '...' : ''}
                     </p>
                   </div>
                 </div>

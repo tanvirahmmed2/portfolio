@@ -3,6 +3,17 @@ import { query } from '@/lib/db/database.js';
 import { isAdmin, verifyAuth } from '@/lib/db/middleware.js';
 import { deleteImage } from '@/lib/db/cloudinary.js';
 
+function slugify(text) {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')   // Remove non-word characters except spaces/hyphens
+    .replace(/[\s_]+/g, '-')    // Replace spaces/underscores with hyphens
+    .replace(/-+/g, '-')        // Remove duplicate hyphens
+    .replace(/^-+|-+$/g, '');   // Trim hyphens from start and end
+}
+
 // GET: Retrieve all blog posts or a single post by id/slug
 export async function GET(req) {
   try {
@@ -46,18 +57,11 @@ export async function GET(req) {
     let blogsRes;
     if (admin) {
       blogsRes = await query(
-        `SELECT b.*, u.name as author_name 
-         FROM blogs b 
-         LEFT JOIN users u ON b.author_id = u.id 
-         ORDER BY b.created_at DESC`
+        `SELECT * FROM blogs ORDER BY created_at DESC`
       );
     } else {
       blogsRes = await query(
-        `SELECT b.*, u.name as author_name 
-         FROM blogs b 
-         LEFT JOIN users u ON b.author_id = u.id 
-         WHERE b.is_published = true 
-         ORDER BY b.published_at DESC`
+        `SELECT * FROM blogs WHERE is_published = true ORDER BY published_at DESC`
       );
     }
 
@@ -77,26 +81,28 @@ export async function POST(req) {
     }
 
     const body = await req.json();
-    const { title, slug, description, image, image_id, is_published, skill_ids } = body;
+    const { title, description, image, image_id, is_published, skill_ids } = body;
 
-    if (!title || !slug || !description) {
-      return NextResponse.json({ error: 'Title, slug, and description are required' }, { status: 400 });
+    if (!title || !description) {
+      return NextResponse.json({ error: 'Title and description are required' }, { status: 400 });
     }
 
+    const generatedSlug = slugify(title);
+
     // Check slug uniqueness
-    const slugCheck = await query('SELECT id FROM blogs WHERE slug = $1', [slug]);
+    const slugCheck = await query('SELECT id FROM blogs WHERE slug = $1', [generatedSlug]);
     if (slugCheck.rows.length > 0) {
-      return NextResponse.json({ error: 'Slug must be unique' }, { status: 400 });
+      return NextResponse.json({ error: 'Blog title yields a duplicate slug. Please use a unique title.' }, { status: 400 });
     }
 
     const isPub = is_published === true;
     const publishedAt = isPub ? new Date() : null;
 
     const insertRes = await query(
-      `INSERT INTO blogs (author_id, title, slug, description, image, image_id, is_published, published_at) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8) 
+      `INSERT INTO blogs (title, slug, description, image, image_id, is_published, published_at) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7) 
        RETURNING *`,
-      [adminUser.id, title, slug, description, image || null, image_id || null, isPub, publishedAt]
+      [title, generatedSlug, description, image || null, image_id || null, isPub, publishedAt]
     );
 
     const newBlog = insertRes.rows[0];
@@ -131,10 +137,10 @@ export async function PUT(req) {
     }
 
     const body = await req.json();
-    const { title, slug, description, image, image_id, is_published, skill_ids } = body;
+    const { title, description, image, image_id, is_published, skill_ids } = body;
 
-    if (!title || !slug || !description) {
-      return NextResponse.json({ error: 'Title, slug, and description are required' }, { status: 400 });
+    if (!title || !description) {
+      return NextResponse.json({ error: 'Title and description are required' }, { status: 400 });
     }
 
     // Get current blog to handle images/publishing dates
@@ -144,12 +150,13 @@ export async function PUT(req) {
     }
 
     const currentBlog = currentBlogRes.rows[0];
+    const generatedSlug = slugify(title);
 
     // Check slug uniqueness if changed
-    if (currentBlog.slug !== slug) {
-      const slugCheck = await query('SELECT id FROM blogs WHERE slug = $1 AND id != $2', [slug, id]);
+    if (currentBlog.slug !== generatedSlug) {
+      const slugCheck = await query('SELECT id FROM blogs WHERE slug = $1 AND id != $2', [generatedSlug, id]);
       if (slugCheck.rows.length > 0) {
-        return NextResponse.json({ error: 'Slug must be unique' }, { status: 400 });
+        return NextResponse.json({ error: 'Blog title yields a duplicate slug. Please use a unique title.' }, { status: 400 });
       }
     }
 
@@ -175,7 +182,7 @@ export async function PUT(req) {
        SET title = $1, slug = $2, description = $3, image = $4, image_id = $5, is_published = $6, published_at = $7
        WHERE id = $8 
        RETURNING *`,
-      [title, slug, description, image || null, image_id || null, is_published === true, publishedAt, id]
+      [title, generatedSlug, description, image || null, image_id || null, is_published === true, publishedAt, id]
     );
 
     // Sync skill mappings if array is provided

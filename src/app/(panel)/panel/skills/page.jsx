@@ -7,16 +7,12 @@ export default function PanelSkillsPage() {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  // Category tabs / filter
-  const [selectedTab, setSelectedTab] = useState('All');
-
   // Modal form states
   const [modalOpen, setModalOpen] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
   const [editingId, setEditingId] = useState(null);
   
   const [name, setName] = useState('');
-  const [category, setCategory] = useState('Frontend');
   const [proficiency, setProficiency] = useState(80);
   const [displayOrder, setDisplayOrder] = useState(0);
   const [isFeatured, setIsFeatured] = useState(false);
@@ -29,9 +25,6 @@ export default function PanelSkillsPage() {
   // Delete confirmation modal states
   const [deleteConfirmId, setDeleteConfirmId] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
-
-  const categories = ['Frontend', 'Backend', 'Database', 'DevOps', 'Mobile', 'Other'];
-  const tabOptions = ['All', ...categories];
 
   const fetchSkills = async () => {
     try {
@@ -95,7 +88,6 @@ export default function PanelSkillsPage() {
   const handleOpenCreateModal = () => {
     setEditingId(null);
     setName('');
-    setCategory('Frontend');
     setProficiency(80);
     setDisplayOrder(0);
     setIsFeatured(false);
@@ -107,7 +99,6 @@ export default function PanelSkillsPage() {
   const handleOpenEditModal = (skill) => {
     setEditingId(skill.id);
     setName(skill.name);
-    setCategory(skill.category);
     setProficiency(skill.proficiency);
     setDisplayOrder(skill.display_order);
     setIsFeatured(skill.is_featured);
@@ -133,7 +124,6 @@ export default function PanelSkillsPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: name.trim(),
-          category,
           proficiency: Number(proficiency),
           display_order: Number(displayOrder),
           is_featured: isFeatured,
@@ -180,9 +170,7 @@ export default function PanelSkillsPage() {
     }
   };
 
-  const filteredSkills = selectedTab === 'All' 
-    ? skills 
-    : skills.filter(skill => skill.category === selectedTab);
+  const filteredSkills = skills;
 
   return (
     <div className="space-y-6">
@@ -191,7 +179,7 @@ export default function PanelSkillsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black tracking-tight text-slate-900">Skills Library</h1>
-          <p className="text-sm mt-1 text-slate-500">Manage core competencies, category listings, and proficiencies.</p>
+          <p className="text-sm mt-1 text-slate-500">Manage core competencies, developer assets, and proficiencies.</p>
         </div>
         <button
           onClick={handleOpenCreateModal}
@@ -202,24 +190,6 @@ export default function PanelSkillsPage() {
           </svg>
           Add New Skill
         </button>
-      </div>
-
-      {/* Tabs Filter */}
-      <div className="flex flex-wrap gap-2 border-b border-slate-200 pb-4">
-        {tabOptions.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setSelectedTab(tab)}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wide uppercase transition-all duration-200 cursor-pointer
-              ${selectedTab === tab
-                ? 'bg-slate-800 text-white border border-slate-700'
-                : 'text-slate-500 hover:text-slate-900 border border-transparent hover:bg-slate-200/50'
-              }
-            `}
-          >
-            {tab}
-          </button>
-        ))}
       </div>
 
       {/* Loading Skeleton */}
@@ -246,7 +216,7 @@ export default function PanelSkillsPage() {
           <svg className="w-12 h-12 mx-auto mb-3 text-slate-350" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
           </svg>
-          <p className="font-medium">No skills found in this category.</p>
+          <p className="font-medium">No skills found.</p>
           <button
             onClick={handleOpenCreateModal}
             className="mt-3 text-xs font-bold text-violet-600 hover:text-violet-750 transition-colors cursor-pointer"
@@ -280,9 +250,6 @@ export default function PanelSkillsPage() {
                   )}
                   <div className="min-w-0">
                     <h3 className="font-bold text-slate-800 group-hover:text-violet-600 transition-colors truncate">{skill.name}</h3>
-                    <span className="inline-block px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border border-slate-200 bg-slate-50 text-slate-500 rounded-full mt-1.5">
-                      {skill.category}
-                    </span>
                   </div>
                 </div>
 
@@ -371,33 +338,17 @@ export default function PanelSkillsPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Category */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Category</label>
-                  <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
-                  >
-                    {categories.map((cat) => (
-                      <option key={cat} value={cat}>{cat}</option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Display Order */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Display Order</label>
-                  <input
-                    type="number"
-                    value={displayOrder}
-                    onChange={(e) => setDisplayOrder(e.target.value)}
-                    placeholder="0"
-                    min="0"
-                    className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
-                  />
-                </div>
+              {/* Display Order */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Display Order</label>
+                <input
+                  type="number"
+                  value={displayOrder}
+                  onChange={(e) => setDisplayOrder(e.target.value)}
+                  placeholder="0"
+                  min="0"
+                  className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
+                />
               </div>
 
               {/* Proficiency Slider */}

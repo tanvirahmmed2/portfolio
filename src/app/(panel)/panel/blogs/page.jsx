@@ -166,7 +166,6 @@ export default function PanelBlogsPage() {
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="font-bold text-white group-hover:text-violet-400 transition-colors line-clamp-2 leading-snug">{blog.title}</h3>
-                  <p className="text-[11px] mt-2 font-medium">By: {blog.author_name || 'System Admin'}</p>
                 </div>
 
                 <div className="flex justify-between items-center text-[10px] font-semibold border-t pt-3 mt-4">

@@ -8,7 +8,6 @@ export default function BlogForm({ blog, onCancel, onSuccess }) {
   
   const [mounted, setMounted] = useState(false);
   const [title, setTitle] = useState(blog ? blog.title : '');
-  const [slug, setSlug] = useState(blog ? blog.slug : '');
   const [description, setDescription] = useState(blog ? blog.description : '');
   const [isPublished, setIsPublished] = useState(blog ? blog.is_published : false);
   const [imageUrl, setImageUrl] = useState(blog ? blog.image : '');
@@ -58,24 +57,6 @@ export default function BlogForm({ blog, onCancel, onSuccess }) {
     }
   }, [blog]);
 
-  const generateSlug = (val) => {
-    return val
-      .toLowerCase()
-      .trim()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/[\s_]+/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/(^-|-$)/g, '');
-  };
-
-  const handleTitleChange = (e) => {
-    const val = e.target.value;
-    setTitle(val);
-    if (!blog) {
-      setSlug(generateSlug(val));
-    }
-  };
-
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -118,8 +99,8 @@ export default function BlogForm({ blog, onCancel, onSuccess }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title.trim() || !slug.trim()) {
-      showToast('Title and Slug are required fields', 'error');
+    if (!title.trim()) {
+      showToast('Title is a required field', 'error');
       return;
     }
 
@@ -138,7 +119,6 @@ export default function BlogForm({ blog, onCancel, onSuccess }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           title: title.trim(),
-          slug: slug.trim(),
           description,
           image: imageUrl || null,
           image_id: imageId || null,
@@ -165,31 +145,18 @@ export default function BlogForm({ blog, onCancel, onSuccess }) {
   if (!mounted) return null;
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-4xl p-2 sm:p-6 border border-slate-200 bg-white rounded-3xl shadow-xs">
+    <form onSubmit={handleSubmit} className="space-y-6 max-w-7xl mx-auto p-2 sm:p-6 border border-slate-200 bg-white rounded-3xl shadow-xs">
       
-      {/* Title & Slug */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-bold text-slate-750 uppercase tracking-wide">Post Title</label>
-          <input
-            type="text"
-            value={title}
-            onChange={handleTitleChange}
-            placeholder="e.g. Building micro-frontends with React"
-            className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
-          />
-        </div>
-
-        <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-bold text-slate-750 uppercase tracking-wide">Url Slug</label>
-          <input
-            type="text"
-            value={slug}
-            onChange={(e) => setSlug(generateSlug(e.target.value))}
-            placeholder="e.g. building-micro-frontends-with-react"
-            className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
-          />
-        </div>
+      {/* Title */}
+      <div className="flex flex-col gap-1.5">
+        <label className="text-xs font-bold text-slate-755 uppercase tracking-wide">Post Title</label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="e.g. Building micro-frontends with React"
+          className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-200"
+        />
       </div>
 
       {/* Editor Description Content */}

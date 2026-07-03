@@ -33,14 +33,14 @@ export async function POST(req) {
     }
 
     const body = await req.json();
-    const { name, category, image, image_id, is_featured } = body;
+    const { name, image, image_id, is_featured } = body;
     
     // Convert and validate types
     const proficiency = parseInt(body.proficiency, 10) || 0;
     const display_order = parseInt(body.display_order, 10) || 0;
 
-    if (!name || !category) {
-      return NextResponse.json({ error: 'Name and category are required' }, { status: 400 });
+    if (!name) {
+      return NextResponse.json({ error: 'Name is required' }, { status: 400 });
     }
 
     if (proficiency < 0 || proficiency > 100) {
@@ -54,12 +54,11 @@ export async function POST(req) {
     }
 
     const insertRes = await query(
-      `INSERT INTO skills (name, category, proficiency, image, image_id, display_order, is_featured) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7) 
+      `INSERT INTO skills (name, proficiency, image, image_id, display_order, is_featured) 
+       VALUES ($1, $2, $3, $4, $5, $6) 
        RETURNING *`,
       [
         name.trim(),
-        category.trim(),
         proficiency,
         image || null,
         image_id || null,
@@ -90,14 +89,14 @@ export async function PUT(req) {
     }
 
     const body = await req.json();
-    const { name, category, image, image_id, is_featured } = body;
+    const { name, image, image_id, is_featured } = body;
     
     // Convert and validate types
     const proficiency = parseInt(body.proficiency, 10) || 0;
     const display_order = parseInt(body.display_order, 10) || 0;
 
-    if (!name || !category) {
-      return NextResponse.json({ error: 'Name and category are required' }, { status: 400 });
+    if (!name) {
+      return NextResponse.json({ error: 'Name is required' }, { status: 400 });
     }
 
     if (proficiency < 0 || proficiency > 100) {
@@ -131,12 +130,11 @@ export async function PUT(req) {
 
     const updateRes = await query(
       `UPDATE skills 
-       SET name = $1, category = $2, proficiency = $3, image = $4, image_id = $5, display_order = $6, is_featured = $7
-       WHERE id = $8 
+       SET name = $1, proficiency = $2, image = $3, image_id = $4, display_order = $5, is_featured = $6
+       WHERE id = $7 
        RETURNING *`,
       [
         name.trim(),
-        category.trim(),
         proficiency,
         image || null,
         image_id || null,

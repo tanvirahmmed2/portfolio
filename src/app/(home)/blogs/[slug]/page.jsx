@@ -109,11 +109,6 @@ export default function BlogDetailPage({ params }) {
             {blog.title}
           </h1>
 
-          {blog.summary && (
-            <p className="text-xs sm:text-sm leading-relaxed italic border-l-2 border-violet-500/20 pl-4 py-1">
-              {blog.summary}
-            </p>
-          )}
         </div>
 
         {/* Cover Photo */}
@@ -130,7 +125,7 @@ export default function BlogDetailPage({ params }) {
         {/* Rich HTML body contents */}
         <div className="prose prose-invert prose-sm max-w-none prose-neutral prose-p:leading-relaxed prose-headings:font-bold prose-headings:tracking-tight prose-a:text-violet-400 hover:prose-a:text-violet-300 pt-4">
           <div
-            dangerouslySetInnerHTML={{ __html: blog.content }}
+            dangerouslySetInnerHTML={{ __html: blog.description }}
             className="text-xs sm:text-sm space-y-4 whitespace-normal"
           />
         </div>

@@ -3,6 +3,17 @@ import { query } from '@/lib/db/database.js';
 import { isAdmin } from '@/lib/db/middleware.js';
 import { deleteImage } from '@/lib/db/cloudinary.js';
 
+function slugify(text) {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')   // Remove non-word characters except spaces/hyphens
+    .replace(/[\s_]+/g, '-')    // Replace spaces/underscores with hyphens
+    .replace(/-+/g, '-')        // Remove duplicate hyphens
+    .replace(/^-+|-+$/g, '');   // Trim hyphens from start and end
+}
+
 // GET: Fetch all projects or single project by id/slug
 export async function GET(req) {
   try {
@@ -89,8 +100,6 @@ export async function POST(req) {
     const body = await req.json();
     const {
       title,
-      slug,
-      summary,
       description,
       image,
       image_id,
@@ -101,24 +110,25 @@ export async function POST(req) {
       skill_ids
     } = body;
 
-    if (!title || !slug || !summary || !description) {
-      return NextResponse.json({ error: 'Title, slug, summary, and description are required' }, { status: 400 });
+    if (!title || !description) {
+      return NextResponse.json({ error: 'Title and description are required' }, { status: 400 });
     }
 
+    const generatedSlug = slugify(title);
+
     // Check slug uniqueness
-    const slugCheck = await query('SELECT id FROM projects WHERE slug = $1', [slug]);
+    const slugCheck = await query('SELECT id FROM projects WHERE slug = $1', [generatedSlug]);
     if (slugCheck.rows.length > 0) {
-      return NextResponse.json({ error: 'Slug must be unique' }, { status: 400 });
+      return NextResponse.json({ error: 'Project title yields a duplicate slug. Please use a unique title.' }, { status: 400 });
     }
 
     const insertProjectRes = await query(
-      `INSERT INTO projects (title, slug, summary, description, image, image_id, url, github_url, is_featured, is_published)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+      `INSERT INTO projects (title, slug, description, image, image_id, url, github_url, is_featured, is_published)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
        RETURNING *`,
       [
         title,
-        slug,
-        summary,
+        generatedSlug,
         description,
         image || null,
         image_id || null,
@@ -162,8 +172,6 @@ export async function PUT(req) {
     const body = await req.json();
     const {
       title,
-      slug,
-      summary,
       description,
       image,
       image_id,
@@ -174,8 +182,8 @@ export async function PUT(req) {
       skill_ids
     } = body;
 
-    if (!title || !slug || !summary || !description) {
-      return NextResponse.json({ error: 'Title, slug, summary, and description are required' }, { status: 400 });
+    if (!title || !description) {
+      return NextResponse.json({ error: 'Title and description are required' }, { status: 400 });
     }
 
     // Check current project to handle image change
@@ -185,12 +193,13 @@ export async function PUT(req) {
     }
 
     const currentProj = currentProjRes.rows[0];
+    const generatedSlug = slugify(title);
 
     // Check slug uniqueness if it was changed
-    if (currentProj.slug !== slug) {
-      const slugCheck = await query('SELECT id FROM projects WHERE slug = $1 AND id != $2', [slug, id]);
+    if (currentProj.slug !== generatedSlug) {
+      const slugCheck = await query('SELECT id FROM projects WHERE slug = $1 AND id != $2', [generatedSlug, id]);
       if (slugCheck.rows.length > 0) {
-        return NextResponse.json({ error: 'Slug must be unique' }, { status: 400 });
+        return NextResponse.json({ error: 'Project title yields a duplicate slug. Please use a unique title.' }, { status: 400 });
       }
     }
 
@@ -206,13 +215,12 @@ export async function PUT(req) {
     // Update project
     const updateRes = await query(
       `UPDATE projects 
-       SET title = $1, slug = $2, summary = $3, description = $4, image = $5, image_id = $6, url = $7, github_url = $8, is_featured = $9, is_published = $10
-       WHERE id = $11
+       SET title = $1, slug = $2, description = $3, image = $4, image_id = $5, url = $6, github_url = $7, is_featured = $8, is_published = $9
+       WHERE id = $10
        RETURNING *`,
       [
         title,
-        slug,
-        summary,
+        generatedSlug,
         description,
         image || null,
         image_id || null,

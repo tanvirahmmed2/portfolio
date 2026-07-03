@@ -132,7 +132,7 @@ export default function ProjectsPage() {
                       {project.title}
                     </h3>
                     <p className="text-[11px] leading-relaxed text-slate-500 line-clamp-3">
-                      {project.description}
+                      {project.description ? project.description.replace(/<[^>]*>/g, '') : ''}
                     </p>
 
                     {/* Tags */}
@@ -212,9 +212,10 @@ export default function ProjectsPage() {
                     </span>
                   )}
                 </div>
-                <p className="text-xs leading-relaxed text-slate-600 whitespace-pre-line">
-                  {selectedProject.description}
-                </p>
+                <div 
+                  className="text-xs leading-relaxed text-slate-600 prose prose-sm prose-neutral max-w-none prose-p:leading-relaxed prose-headings:font-bold prose-headings:tracking-tight prose-a:text-violet-600 hover:prose-a:text-violet-500 pt-2"
+                  dangerouslySetInnerHTML={{ __html: selectedProject.description }}
+                />
               </div>
 
               {/* Technologies */}

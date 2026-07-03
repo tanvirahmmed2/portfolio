@@ -171,7 +171,9 @@ export default function PanelProjectsPage() {
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
                   <h3 className="font-bold text-slate-800 group-hover:text-violet-600 transition-colors line-clamp-1 leading-snug">{project.title}</h3>
-                  <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">{project.summary}</p>
+                  <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+                    {project.description ? project.description.replace(/<[^>]*>/g, '') : ''}
+                  </p>
                 </div>
 
                 <div className="flex justify-between items-center text-[10px] font-semibold border-t border-slate-100 pt-3 mt-4 text-slate-400">

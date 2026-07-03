@@ -97,7 +97,7 @@ export default function FeaturedProjects() {
                     {project.title}
                   </h3>
                   <p className="text-[11px] leading-relaxed line-clamp-3">
-                    {project.description}
+                    {project.description ? project.description.replace(/<[^>]*>/g, '') : ''}
                   </p>
 
                   {/* Skills tags */}
@@ -123,9 +123,9 @@ export default function FeaturedProjects() {
 
               {/* Action Buttons */}
               <div className="p-5 pt-0 flex items-center gap-4">
-                {project.project_url && (
+                {project.url && (
                   <a
-                    href={project.project_url}
+                    href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[10px] font-bold text-white px-4 py-2 rounded-lg transition-all"

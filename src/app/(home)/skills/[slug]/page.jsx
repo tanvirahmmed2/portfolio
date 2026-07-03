@@ -24,7 +24,7 @@ export default function SkillDetailPage({ params }) {
         // Find matching skill slug
         const found = list.find(s => s.name.toLowerCase().replace(/ /g, '-') === slug);
         if (!found) {
-          setError('Skill category not found');
+          setError('Skill profile not found');
           setLoading(false);
           return;
         }
@@ -70,7 +70,7 @@ export default function SkillDetailPage({ params }) {
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="max-w-md w-full text-center space-y-4">
-          <h2 className="text-lg font-bold text-white">Oops! Category Error</h2>
+          <h2 className="text-lg font-bold text-white">Oops! Skill Error</h2>
           <p className="text-xs">{error || 'Skill details not found'}</p>
           <div className="pt-2">
             <Link
@@ -122,7 +122,6 @@ export default function SkillDetailPage({ params }) {
           
           <div className="flex-1 w-full space-y-3">
             <div className="space-y-1 text-center sm:text-left">
-              <span className="text-[9px] font-bold text-violet-400 uppercase tracking-widest block">{skill.category}</span>
               <h1 className="text-2xl font-black text-white">{skill.name}</h1>
             </div>
             

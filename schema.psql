@@ -23,7 +23,7 @@ CREATE TABLE users (
 CREATE TABLE skills (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL,
-    category VARCHAR(50) NOT NULL, -- e.g., 'Frontend', 'Backend', 'Database', 'DevOps', 'Mobile'
+
     proficiency INTEGER CHECK (proficiency BETWEEN 0 AND 100), -- 0-100 percentage
     image VARCHAR(255),
     image_id TEXT,
@@ -37,7 +37,6 @@ CREATE TABLE projects (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     slug VARCHAR(255) UNIQUE NOT NULL,
-    summary VARCHAR(500) NOT NULL,
     description TEXT NOT NULL,
     image TEXT,
     image_id TEXT,
@@ -80,7 +79,6 @@ CREATE TABLE reviews (
 -- 6. BLOGS TABLE
 CREATE TABLE blogs (
     id SERIAL PRIMARY KEY,
-    author_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     title VARCHAR(255) NOT NULL,
     slug VARCHAR(255) UNIQUE NOT NULL,
     description TEXT NOT NULL,
@@ -171,7 +169,7 @@ CREATE TABLE settings (
 
 -- INDEXES FOR PERFORMANCE OPTIMIZATION
 CREATE INDEX idx_user_email ON users(email);
-CREATE INDEX idx_skills_category ON skills(category);
+
 CREATE INDEX idx_projects_slug ON projects(slug);
 CREATE INDEX idx_projects_is_published ON projects(is_published);
 CREATE INDEX idx_comments_project_id ON comments(project_id);

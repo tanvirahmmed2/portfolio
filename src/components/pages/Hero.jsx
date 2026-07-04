@@ -31,10 +31,10 @@ export default function Hero() {
       <div className="max-w-7xl w-full flex flex-col items-center justify-center gap-6 relative z-10">
 
         <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight text-center leading-tight">
-          {settings?.title || 'Senior Full-Stack Developer'}
+          {settings?.title}
         </h1>
         <p className="text-xs sm:text-sm max-w-xl mx-auto leading-relaxed text-slate-500 text-center">
-          {settings?.bio || 'Crafting robust software solutions and modern web applications with precision, detail, and rich user experiences.'}
+          {settings?.bio }
         </p>
 
         <div className='w-auto mx-auto'>

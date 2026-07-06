@@ -30,7 +30,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         
-        <Link href="/" className="text-2xl italic  font-black text-indigo-600 transition-colors relative group py-2">
+        <Link href="/" className="text-2xl font-mono font-black text-indigo-600 transition-colors relative group py-2">
             Tanvir
           </Link>
 

@@ -1,5 +1,25 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, ease: 'easeOut' }
+  }
+};
 
 export default function WorksPage() {
   const [works, setWorks] = useState([]);
@@ -51,9 +71,18 @@ export default function WorksPage() {
             <p className="text-xs font-semibold">No career timeline details recorded yet.</p>
           </div>
         ) : (
-          <div className="space-y-8 relative before:absolute before:inset-y-2 before:left-[15px] before:w-[1.5px] before:bg-slate-200/80">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="space-y-8 relative before:absolute before:inset-y-2 before:left-[15px] before:w-[1.5px] before:bg-slate-200/80"
+          >
             {works.map((work) => (
-              <div key={work.id} className="relative pl-10 group">
+              <motion.div 
+                key={work.id} 
+                variants={itemVariants}
+                className="relative pl-10 group"
+              >
                 
                 
                 <div className="absolute left-[9px] top-3.5 w-3.5 h-3.5 border-2 border-violet-500 bg-white rounded-full group-hover:bg-violet-500 group-hover:scale-125 transition-all duration-300 z-10"></div>
@@ -78,9 +107,9 @@ export default function WorksPage() {
                   </p>
                 </div>
 
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
 
       </div>

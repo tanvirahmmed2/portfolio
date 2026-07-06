@@ -1,6 +1,26 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, ease: 'easeOut' }
+  }
+};
 
 export default function WorksLife() {
   const [works, setWorks] = useState([]);
@@ -43,7 +63,13 @@ export default function WorksLife() {
 
   return (
     <section className="py-20 px-6 sm:px-8 border-t border-slate-100 bg-white text-slate-650 selection:bg-violet-100 selection:text-violet-900">
-      <div className="max-w-7xl mx-auto space-y-12">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-7xl mx-auto space-y-12"
+      >
         
         
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
@@ -63,9 +89,19 @@ export default function WorksLife() {
         </div>
 
         
-        <div className="space-y-6 relative before:absolute before:inset-y-2 before:left-[15px] before:w-[1px] before:bg-slate-200">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="space-y-6 relative before:absolute before:inset-y-2 before:left-[15px] before:w-[1px] before:bg-slate-200"
+        >
           {works.map((work) => (
-            <div key={work.id} className="relative pl-10 group">
+            <motion.div 
+              key={work.id} 
+              variants={itemVariants}
+              className="relative pl-10 group"
+            >
               
               
               <div className="absolute left-[9px] top-2 w-[13px] h-[13px] border-2 border-violet-500 bg-white rounded-full group-hover:scale-120 transition-transform z-10"></div>
@@ -90,11 +126,11 @@ export default function WorksLife() {
                 </p>
               </div>
 
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-      </div>
+      </motion.div>
     </section>
   );
 }

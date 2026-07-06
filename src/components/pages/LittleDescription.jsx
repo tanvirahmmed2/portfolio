@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export default function LittleDescription() {
   const [settings, setSettings] = useState(null);
@@ -20,7 +21,13 @@ export default function LittleDescription() {
   }, []);
 
   return (
-    <section className="py-20 px-6 sm:px-8 border-t border-slate-100 bg-white text-slate-650 selection:bg-violet-100 selection:text-violet-900">
+    <motion.section 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="py-20 px-6 sm:px-8 border-t border-slate-100 bg-white text-slate-655 selection:bg-violet-100 selection:text-violet-900"
+    >
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 items-center justify-between">
         
         
@@ -40,6 +47,6 @@ export default function LittleDescription() {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 }

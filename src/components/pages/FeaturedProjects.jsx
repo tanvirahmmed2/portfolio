@@ -2,6 +2,26 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ProjectCard from './ProjectCard';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: 'easeOut' }
+  }
+};
 
 export default function FeaturedProjects() {
   const [projects, setProjects] = useState([]);
@@ -45,13 +65,19 @@ export default function FeaturedProjects() {
 
   return (
     <section className="py-20 px-6 sm:px-8 border-t">
-      <div className="max-w-7xl mx-auto space-y-12">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-7xl mx-auto space-y-12"
+      >
         
         
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div className="space-y-2">
             <span className="text-[10px] font-black tracking-widest text-violet-400 uppercase">Selected Work</span>
-            <h2 className="text-3xl font-black text-white">Featured Projects</h2>
+            <h2 className="text-3xl font-black text-slate-900 dark:text-white">Featured Projects</h2>
           </div>
           <Link
             href="/projects"
@@ -65,13 +91,21 @@ export default function FeaturedProjects() {
         </div>
 
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
           {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <motion.div key={project.id} variants={itemVariants}>
+              <ProjectCard project={project} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-      </div>
+      </motion.div>
     </section>
   );
 }

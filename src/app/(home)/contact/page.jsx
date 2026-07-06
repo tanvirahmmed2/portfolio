@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { useToast } from '@/components/helper/ToastProvider.jsx';
-import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function ContactPage() {
   const { showToast } = useToast();
@@ -69,7 +69,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen py-28 px-6 sm:px-8 relative overflow-hidden bg-white text-slate-650 selection:bg-violet-100 selection:text-violet-900 flex items-center justify-center">
+    <div className="min-h-screen py-28 px-6 sm:px-8 relative overflow-hidden bg-white text-slate-655 selection:bg-violet-100 selection:text-violet-900 flex items-center justify-center">
       
       
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-100/30 rounded-full blur-[100px] pointer-events-none"></div>
@@ -77,15 +77,26 @@ export default function ContactPage() {
 
       <div className="max-w-7xl w-full relative z-10 flex flex-col items-center justify-center gap-6">
 
-        <div className="w-full flex flex-col items-center justify-center gap-2 text-center max-w-2xl">
+        <motion.div 
+          initial={{ opacity: 0, y: -15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full flex flex-col items-center justify-center gap-2 text-center max-w-2xl"
+        >
           <span className="text-[10px] font-black tracking-widest text-violet-600 uppercase">Say Hello</span>
           <h1 className="text-3xl font-black tracking-tight text-slate-900 mt-1">Get in Touch</h1>
           <p className="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">
             Have a project idea, job opening, or simply want to chat? Send a message and let's construct something awesome together.
           </p>
-        </div>
+        </motion.div>
 
-        <form onSubmit={handleSubmit} className="w-full max-w-3xl mt-6 p-6 sm:p-8 border border-slate-200 bg-slate-50/20 rounded-3xl space-y-5 shadow-xl">
+        <motion.form 
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
+          onSubmit={handleSubmit} 
+          className="w-full max-w-3xl mt-6 p-6 sm:p-8 border border-slate-200 bg-slate-50/20 rounded-3xl space-y-5 shadow-xl"
+        >
           <div className="w-full flex flex-col gap-4">
             <div className="w-full flex flex-col sm:flex-row items-center gap-4">
               <div className="flex flex-col gap-1.5 w-full">
@@ -154,7 +165,7 @@ export default function ContactPage() {
               </>
             )}
           </button>
-        </form>
+        </motion.form>
 
       </div>
     </div>

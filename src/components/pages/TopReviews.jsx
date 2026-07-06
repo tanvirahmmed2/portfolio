@@ -1,6 +1,26 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: 'easeOut' }
+  }
+};
 
 export default function TopReviews() {
   const [reviews, setReviews] = useState([]);
@@ -43,8 +63,14 @@ export default function TopReviews() {
   if (reviews.length === 0) return null;
 
   return (
-    <section className="py-20 px-6 sm:px-8 border-t border-slate-105 bg-white text-slate-650 selection:bg-violet-100 selection:text-violet-900">
-      <div className="max-w-7xl mx-auto space-y-12">
+    <section className="py-20 px-6 sm:px-8 border-t border-slate-105 bg-white text-slate-655 selection:bg-violet-100 selection:text-violet-900">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-7xl mx-auto space-y-12"
+      >
         
         
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
@@ -64,10 +90,17 @@ export default function TopReviews() {
         </div>
 
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
           {reviews.map((review) => (
-            <div
+            <motion.div
               key={review.id}
+              variants={itemVariants}
               className="p-6 border border-slate-200 bg-white rounded-3xl transition-all duration-300 flex flex-col justify-between hover:shadow-md hover:border-violet-500/20"
             >
               <div className="space-y-4">
@@ -89,7 +122,7 @@ export default function TopReviews() {
 
               
               <div className="mt-6 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-violet-50 border border-violet-100 text-violet-600 font-black text-xs uppercase flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-violet-50 border border-violet-100 text-violet-600 font-black text-xs uppercase flex items-center justify-center font-bold">
                   {review.name ? review.name[0] : 'U'}
                 </div>
                 <div className="flex flex-col min-w-0">
@@ -98,11 +131,11 @@ export default function TopReviews() {
                 </div>
               </div>
 
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-      </div>
+      </motion.div>
     </section>
   );
 }

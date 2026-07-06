@@ -1,6 +1,25 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: 'easeOut' }
+  }
+};
 
 export default function Acheivement() {
   const [achievements, setAchievements] = useState([]);
@@ -44,7 +63,13 @@ export default function Acheivement() {
 
   return (
     <section className="py-20 px-6 sm:px-8 border-t bg-slate-50/30">
-      <div className="max-w-7xl mx-auto space-y-12">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-7xl mx-auto space-y-12"
+      >
         
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div className="space-y-2">
@@ -53,10 +78,17 @@ export default function Acheivement() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
           {achievements.map((ach) => (
-            <div
+            <motion.div
               key={ach.id}
+              variants={itemVariants}
               className="relative group bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-[2.5rem] flex flex-col h-full overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 will-change-transform hover:-translate-y-1"
             >
               {/* Image Section */}
@@ -83,7 +115,7 @@ export default function Acheivement() {
                 <div className="absolute top-6 left-6">
                   <div className="flex items-center gap-2 px-3 py-1 bg-white/95 dark:bg-zinc-900/95 border border-zinc-100 dark:border-white/5 rounded-full shadow-md">
                     <div className="w-1.5 h-1.5 rounded-full bg-cyan-500"></div>
-                    <span className="text-[8px] font-black uppercase tracking-widest text-zinc-600 dark:text-zinc-400">
+                    <span className="text-[8px] font-black uppercase tracking-widest text-zinc-650 dark:text-zinc-400">
                       {ach.awarder}
                     </span>
                   </div>
@@ -125,11 +157,11 @@ export default function Acheivement() {
                 )}
               </div>
 
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-      </div>
+      </motion.div>
     </section>
   );
 }

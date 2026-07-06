@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 export default function Hero() {
   const [settings, setSettings] = useState(null);
@@ -30,18 +30,30 @@ export default function Hero() {
 
       <div className="max-w-7xl w-full flex flex-col items-center justify-center gap-6 relative z-10">
 
-        <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight text-center leading-tight">
+        <motion.h1 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+          className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight text-center leading-tight"
+        >
           {settings?.title || 'Senior Full-Stack Developer'}
-        </h1>
-        <p className="text-xs sm:text-sm max-w-xl mx-auto leading-relaxed text-slate-500 text-center">
+        </motion.h1>
+        
+        <motion.p 
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
+          className="text-xs sm:text-sm max-w-xl mx-auto leading-relaxed text-slate-500 text-center"
+        >
           {settings?.bio || 'Crafting robust software solutions and modern web applications with precision, detail, and rich user experiences.'}
-        </p>
+        </motion.p>
 
-        <div className='w-auto mx-auto'>
-          <Image src={'/tanvirahmmed.jpeg'} loading="eager" alt='tanvirahmmed' width={500} height={500} className='w-full max-w-52 rounded-full overflow-hidden object-cover border border-slate-100 shadow-md'/>
-        </div>
-
-        <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
+          className="flex flex-wrap items-center justify-center gap-4 pt-4"
+        >
           <Link
             href="/projects"
             className="px-6 py-3 rounded-xl text-xs font-bold text-white bg-violet-600 hover:bg-violet-500 active:scale-98 transition-all shadow-md shadow-violet-600/10 hover:-translate-y-0.5"
@@ -50,14 +62,18 @@ export default function Hero() {
           </Link>
           <Link
             href="/contact"
-            className="px-6 py-3 rounded-xl text-xs font-bold border border-slate-200 hover:border-slate-800 text-slate-600 hover:text-slate-900 bg-white hover:-translate-y-0.5 transition-all"
+            className="px-6 py-3 rounded-xl text-xs font-bold border border-slate-200 hover:border-slate-800 text-slate-650 hover:text-slate-900 bg-white hover:-translate-y-0.5 transition-all"
           >
             Get In Touch
           </Link>
-        </div>
+        </motion.div>
 
-        
-        <div className="flex justify-center items-center gap-5 pt-8">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.45 }}
+          className="flex justify-center items-center gap-5 pt-8"
+        >
           {settings?.socials?.github && (
             <a
               href={settings.socials.github}
@@ -97,7 +113,7 @@ export default function Hero() {
               </svg>
             </a>
           )}
-        </div>
+        </motion.div>
 
       </div>
     </section>

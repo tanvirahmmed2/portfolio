@@ -2,6 +2,26 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import BlogCard from './BlogCard';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: 'easeOut' }
+  }
+};
 
 export default function LatestBlogs() {
   const [blogs, setBlogs] = useState([]);
@@ -45,7 +65,13 @@ export default function LatestBlogs() {
 
   return (
     <section className="py-20 px-6 sm:px-8 border-t bg-slate-50/10">
-      <div className="max-w-7xl mx-auto space-y-12">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-7xl mx-auto space-y-12"
+      >
         
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div className="space-y-2">
@@ -63,13 +89,21 @@ export default function LatestBlogs() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
           {blogs.map((blog) => (
-            <BlogCard key={blog.id} blog={blog} />
+            <motion.div key={blog.id} variants={itemVariants}>
+              <BlogCard blog={blog} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-      </div>
+      </motion.div>
     </section>
   );
 }

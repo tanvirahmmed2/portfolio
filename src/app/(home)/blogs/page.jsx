@@ -1,6 +1,26 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { motion } from 'framer-motion';
+import BlogCard from '@/components/pages/BlogCard';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: 'easeOut' }
+  }
+};
 
 export default function BlogsPage() {
   const [blogs, setBlogs] = useState([]);
@@ -26,7 +46,7 @@ export default function BlogsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen py-28 px-6 sm:px-8 relative overflow-hidden bg-white text-slate-600 selection:bg-violet-100 selection:text-violet-900">
+    <div className="min-h-screen py-28 px-6 sm:px-8 relative overflow-hidden bg-white text-slate-655 selection:bg-violet-100 selection:text-violet-900">
       
       
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-100/30 rounded-full blur-[100px] pointer-events-none"></div>
@@ -55,11 +75,18 @@ export default function BlogsPage() {
             <p className="text-sm font-bold text-slate-800">No blogs published yet.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
             {blogs.map((blog) => (
-              <BlogCard key={blog.id} blog={blog} />
+              <motion.div key={blog.id} variants={itemVariants}>
+                <BlogCard blog={blog} />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
 
       </div>

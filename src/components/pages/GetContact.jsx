@@ -1,10 +1,17 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function GetContact() {
   return (
-    <section className="py-24 px-6 sm:px-8 border-t border-slate-100 bg-white text-slate-650 selection:bg-violet-100 selection:text-violet-900 relative overflow-hidden text-center">
+    <motion.section 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="py-24 px-6 sm:px-8 border-t border-slate-100 bg-white text-slate-650 selection:bg-violet-100 selection:text-violet-900 relative overflow-hidden text-center"
+    >
       
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-violet-100/30 rounded-full blur-[80px] pointer-events-none"></div>
 
@@ -29,6 +36,6 @@ export default function GetContact() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

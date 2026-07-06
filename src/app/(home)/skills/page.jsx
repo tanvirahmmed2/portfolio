@@ -1,6 +1,26 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: 'easeOut' }
+  }
+};
 
 export default function SkillsPage() {
   const [skills, setSkills] = useState([]);
@@ -23,10 +43,8 @@ export default function SkillsPage() {
     loadSkills();
   }, []);
 
-  
-
   return (
-    <div className="min-h-screen py-28 px-6 sm:px-8 relative overflow-hidden bg-white text-slate-600 selection:bg-violet-100 selection:text-violet-900">
+    <div className="min-h-screen py-28 px-6 sm:px-8 relative overflow-hidden bg-white text-slate-655 selection:bg-violet-100 selection:text-violet-900">
       
       
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-100/30 rounded-full blur-[100px] pointer-events-none"></div>
@@ -59,45 +77,51 @@ export default function SkillsPage() {
             <p className="text-sm font-medium text-slate-500">No technical skills recorded yet.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
+          >
             {skills.map((skill) => {
               const slug = skill.name.toLowerCase().replace(/ /g, '-');
               return (
-                <Link
-                  key={skill.id}
-                  href={`/skills/${slug}`}
-                  className="p-4 border border-slate-200 bg-slate-50/20 rounded-2xl hover:border-violet-400/40 hover:bg-white hover:shadow-md transition-all duration-300 flex items-center gap-3 group"
-                >
-                  {skill.image ? (
-                    <img
-                      src={skill.image}
-                      alt={skill.name}
-                      className="w-7 h-7 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
-                    />
-                  ) : (
-                    <div className="w-7 h-7 rounded-lg bg-violet-50 text-violet-600 flex items-center justify-center text-[10px] font-black uppercase shrink-0">
-                      {skill.name.slice(0, 2)}
-                    </div>
-                  )}
-                  
-                  <div className="flex-1 min-w-0">
-                    <span className="text-xs font-extrabold text-slate-800 block truncate group-hover:text-violet-600 transition-colors">
-                      {skill.name}
-                    </span>
+                <motion.div key={skill.id} variants={itemVariants}>
+                  <Link
+                    href={`/skills/${slug}`}
+                    className="p-4 border border-slate-200 bg-slate-50/20 rounded-2xl hover:border-violet-400/40 hover:bg-white hover:shadow-md transition-all duration-300 flex items-center gap-3 group"
+                  >
+                    {skill.image ? (
+                      <img
+                        src={skill.image}
+                        alt={skill.name}
+                        className="w-7 h-7 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                      />
+                    ) : (
+                      <div className="w-7 h-7 rounded-lg bg-violet-50 text-violet-600 flex items-center justify-center text-[10px] font-black uppercase shrink-0 font-bold">
+                        {skill.name.slice(0, 2)}
+                      </div>
+                    )}
                     
-                    
-                    <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden mt-2">
-                      <div
-                        className="bg-gradient-to-r from-violet-600 to-indigo-600 h-full rounded-full"
-                        style={{ width: `${skill.proficiency || 0}%` }}
-                      ></div>
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs font-extrabold text-slate-800 block truncate group-hover:text-violet-600 transition-colors">
+                        {skill.name}
+                      </span>
+                      
+                      
+                      <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden mt-2">
+                        <div
+                          className="bg-gradient-to-r from-violet-600 to-indigo-600 h-full rounded-full"
+                          style={{ width: `${skill.proficiency || 0}%` }}
+                        ></div>
+                      </div>
                     </div>
-                  </div>
 
-                </Link>
+                  </Link>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         )}
 
       </div>

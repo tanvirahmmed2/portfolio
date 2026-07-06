@@ -1,5 +1,6 @@
 import Footer from '@/components/ui/bars/Footer';
 import Navbar from '@/components/ui/bars/Navbar';
+import Template from '@/components/Template';
 import React from 'react';
 
 export const metadata = {
@@ -8,9 +9,13 @@ export const metadata = {
 };
 
 export default function HomeLayout({ children }) {
-  return <div className='w-full'>
-    <Navbar />
-    {children}
-    <Footer />
-  </div>;
+  return (
+    <Template>
+      <div className='w-full'>
+        <Navbar />
+        {children}
+        <Footer />
+      </div>
+    </Template>
+  );
 }

@@ -59,7 +59,7 @@ export default function ProjectsPage() {
   }, [search, projects]);
 
   return (
-    <div className="min-h-screen py-28 px-6 sm:px-8 relative overflow-hidden bg-white text-slate-655 selection:bg-violet-100 selection:text-violet-900">
+    <div className="min-h-screen py-28 px-6 sm:px-8 relative overflow-x-hidden bg-white text-slate-655 selection:bg-violet-100 selection:text-violet-900">
       
       
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-100/30 rounded-full blur-[100px] pointer-events-none"></div>
